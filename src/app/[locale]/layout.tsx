@@ -5,6 +5,8 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import ClientProviders from "@/components/providers/ClientProviders";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,9 +41,11 @@ async function LayoutContent({
         }
       >
         <ClientProviders locale={locale}>
+          <Header />
           <div role="main" tabIndex={-1}>
             {children}
           </div>
+          <Footer />
         </ClientProviders>
       </Suspense>
     </body>
