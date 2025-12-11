@@ -2,7 +2,7 @@ import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="mx-auto bg-accent px-16 border-t border-t-primary/10">
+    <footer className="mx-auto bg-primary-foreground px-16 border-t border-t-primary/10">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center lg:gap-64">
         <div className="flex flex-col justify-center items-center lg:items-start gap-2 py-8 lg:pb-4">
           <p className="text-2xl font-bold">Workout Tracker</p>

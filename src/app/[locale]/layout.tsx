@@ -5,8 +5,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import ClientProviders from "@/components/providers/ClientProviders";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,7 +26,7 @@ async function LayoutContent({
 }) {
   return (
     <body
-      className="font-sans min-h-screen bg-background text-foreground antialiased selection:text-primary-foreground"
+      className="font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground"
       suppressHydrationWarning
     >
       <Suspense
@@ -41,11 +40,9 @@ async function LayoutContent({
         }
       >
         <ClientProviders locale={locale}>
-          <Header />
-          <div role="main" tabIndex={-1}>
+          <ConditionalLayout>
             {children}
-          </div>
-          <Footer />
+          </ConditionalLayout>
         </ClientProviders>
       </Suspense>
     </body>
