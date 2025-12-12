@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { hasLocale } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -39,11 +39,11 @@ async function LayoutContent({
           </div>
         }
       >
-        <ClientProviders locale={locale}>
-          <ConditionalLayout>
-            {children}
-          </ConditionalLayout>
-        </ClientProviders>
+        <NextIntlClientProvider locale={locale}>
+          <ClientProviders>
+            <ConditionalLayout>{children}</ConditionalLayout>
+          </ClientProviders>
+        </NextIntlClientProvider>
       </Suspense>
     </body>
   );

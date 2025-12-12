@@ -1,5 +1,8 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "Nav": {
+    "home": "Domov",
+    "workouts": "Cvičenia",
+    "exercises": "Cviky",
+    "contact": "Kontakt"
   }
 }

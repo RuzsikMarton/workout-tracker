@@ -1,5 +1,8 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "Navbar": {
+    "home": "Kezdőlap",
+    "workouts": "Edzések",
+    "exercises": "Gyakorlatok",
+    "contact": "Kapcsolat"
   }
 }
