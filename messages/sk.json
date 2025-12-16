@@ -1,8 +1,41 @@
 {
+  "metadata": {
+    "title": "Workout Tracker",
+    "description": "Workout Tracker je váš ultimátny fitnes spoločník. Zaznamenávajte si svoje tréningy, sledujte svoj pokrok a dosahujte svoje fitnes ciele ľahko."
+  },
   "Nav": {
     "home": "Domov",
     "workouts": "Cvičenia",
     "exercises": "Cviky",
+    "contact": "Kontakt",
+    "signin": "Prihlásiť sa"
+  },
+  "Footer": {
+    "language": {
+      "en": "Angličtina",
+      "sk": "Slovenčina",
+      "hu": "Maďarčina"
+    },
     "contact": "Kontakt"
+  },
+  "SignIn": {
+    "title": "Prihlásenie",
+    "emailLabel": "Emailová adresa",
+    "passwordLabel": "Heslo",
+    "submitButton": "Prihlásiť sa",
+    "signingIn": "Prihlasovanie...",
+    "noAccount": "Nemáte účet?",
+    "registerLink": "Zaregistrujte sa teraz"
+  },
+  "SignUp": {
+    "title": "Registrácia",
+    "fullNameLabel": "Celé meno",
+    "emailLabel": "Emailová adresa",
+    "passwordLabel": "Heslo",
+    "confirmPasswordLabel": "Potvrdiť heslo",
+    "submitButton": "Zaregistrovať sa",
+    "signingUp": "Registrácia...",
+    "haveAccount": "Už máte účet?",
+    "signinLink": "Prihláste sa tu"
   }
 }

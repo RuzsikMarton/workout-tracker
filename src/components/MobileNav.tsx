@@ -1,15 +1,19 @@
 "use client";
 
+import { NavigationProps } from "@/types";
 import Link from "next/link";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Workouts", href: "/workout" },
-  { name: "Exercises", href: "/exercises" },
-  { name: "Contact", href: "/contact" },
-];
+interface MobileNavProps extends NavigationProps {
+  ComponentStyles: string;
+}
 
-const MobileNav = ({ ComponentStyles }: { ComponentStyles: string }) => {
+const MobileNav = ({ data, ComponentStyles }: MobileNavProps) => {
+  const navLinks = [
+    { name: data.home, href: "/" },
+    { name: data.workouts, href: "/workouts" },
+    { name: data.exercises, href: "/exercises" },
+    { name: data.contact, href: "/contact" },
+  ];
   return (
     <nav className={ComponentStyles}>
       {navLinks.map((link) => {

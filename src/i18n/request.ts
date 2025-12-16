@@ -9,10 +9,6 @@ export default getRequestConfig(
       ? requested
       : routing.defaultLocale;
 
-    if (!routing.locales.includes(locale as any)) {
-      locale = routing.defaultLocale;
-    }
-
     let messages;
     try {
       messages = (await import(`../../messages/${locale}.json`)).default;

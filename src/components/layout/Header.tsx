@@ -8,11 +8,20 @@ import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const Header = () => {
   const [headerActive, setHeaderActive] = useState(false);
-  const [isOpen , setIsOpen] = useState(true);
+  const [isOpen , setIsOpen] = useState(false);
   const [isMobile , setIsMobile] = useState(false);
+
+  const t = useTranslations("Nav");
+  const navData = {
+    home: t("home"),
+    workouts: t("workouts"),
+    exercises: t("exercises"),
+    contact: t("contact"),
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,12 +39,12 @@ const Header = () => {
         <Link href="/">
           <Image src="/next.svg" alt="" width={120} height={50}></Image>
         </Link>
-        <Nav />
-        <MobileNav ComponentStyles={`${headerActive ? 'top-20' : 'top-28'} ${isOpen ? 'max-h-max py-8 border-background border-t': 'max-h-0 overflow-hidden'} flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 bg-amber-200 transition-all bg-primary-foreground`}/>
+        <Nav data={navData}/>
+        <MobileNav data={navData} ComponentStyles={`${headerActive ? 'top-20' : 'top-28'} ${isOpen ? 'max-h-max py-8 border-foreground border-y border-y-primary/10': 'max-h-0 overflow-hidden'} flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-primary-foreground`}/>
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <Link href={"/signin"}>
-            <Button variant="outline">Sign In</Button>
+            <Button variant="outline">{t('signin')}</Button>
           </Link>
           <Button variant={"outline"} className="xl:hidden" onClick={() => setIsOpen(!isOpen)}><Menu/></Button>
         </div>

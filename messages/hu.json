@@ -1,8 +1,41 @@
 {
-  "Navbar": {
+  "metadata": {
+    "title": "Workout Tracker",
+    "description": "A Workout Tracker az ultimát fitnesz társad. Naplózd edzéseidet, kövesd nyomon fejlődésed, és érd el fitnesz céljaid könnyedén."
+  },
+  "Nav": {
     "home": "Kezdőlap",
     "workouts": "Edzések",
     "exercises": "Gyakorlatok",
+    "contact": "Kapcsolat",
+    "signin": "Bejelentkezés"
+  },
+  "Footer": {
+    "language": {
+      "en": "Angol",
+      "sk": "Szlovák",
+      "hu": "Magyar"
+    },
     "contact": "Kapcsolat"
+  },
+  "SignIn": {
+    "title": "Bejelentkezés",
+    "emailLabel": "Email cím",
+    "passwordLabel": "Jelszó",
+    "submitButton": "Bejelentkezés",
+    "signingIn": "Bejelentkezés...",
+    "noAccount": "Nincs fiókod?",
+    "registerLink": "Regisztrálj most"
+  },
+  "SignUp": {
+    "title": "Regisztráció",
+    "fullNameLabel": "Teljes név",
+    "emailLabel": "Email cím",
+    "passwordLabel": "Jelszó",
+    "confirmPasswordLabel": "Jelszó megerősítése",
+    "submitButton": "Regisztráció",
+    "signingUp": "Regisztráció...",
+    "haveAccount": "Már van fiókod?",
+    "signinLink": "Jelentkezz be itt"
   }
 }

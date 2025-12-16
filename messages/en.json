@@ -1,8 +1,41 @@
 {
-  "Navbar": {
+  "metadata": {
+    "title": "Workout Tracker",
+    "description": "Workout Tracker is your ultimate fitness companion. Log workouts, monitor progress, and achieve your fitness goals with ease."
+  },
+  "Nav": {
     "home": "Home",
     "workouts": "Workouts",
     "exercises": "Exercises",
+    "contact": "Contact",
+    "signin": "Sign In"
+  },
+  "Footer": {
+    "language": {
+      "en": "English",
+      "sk": "Slovak",
+      "hu": "Hungarian"
+    },
     "contact": "Contact"
+  },
+  "SignIn": {
+    "title": "Login",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "submitButton": "Sign In",
+    "signingIn": "Signing in...",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Sign up now"
+  },
+  "SignUp": {
+    "title": "Register",
+    "fullNameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "submitButton": "Sign Up",
+    "signingUp": "Signing up...",
+    "haveAccount": "Already have an account?",
+    "signinLink": "Sign in here"
   }
 }
