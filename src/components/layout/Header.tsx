@@ -7,13 +7,24 @@ import Link from "next/link";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { LogOut, Menu, User } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { signOutAction } from "@/app/actions/auth";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-const Header = () => {
+interface HeaderProps {
+  publicSession: {
+    user: {
+      id: string;
+      name: string;
+    };
+  } | null;
+}
+
+const Header = ({ publicSession }: HeaderProps) => {
   const [headerActive, setHeaderActive] = useState(false);
-  const [isOpen , setIsOpen] = useState(false);
-  const [isMobile , setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const t = useTranslations("Nav");
   const navData = {
@@ -21,7 +32,7 @@ const Header = () => {
     workouts: t("workouts"),
     exercises: t("exercises"),
     contact: t("contact"),
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,19 +45,62 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`${headerActive ? "h-20" : "h-28"} fixed top-0 w-full z-50 transition-all bg-primary-foreground backdrop-blur-sm border-b border-b-primary/10`}>
+    <header
+      className={`${
+        headerActive ? "h-20" : "h-28"
+      } fixed top-0 w-full z-50 transition-all bg-primary-foreground backdrop-blur-sm border-b border-b-primary/10`}
+    >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <Link href="/">
           <Image src="/next.svg" alt="" width={120} height={50}></Image>
         </Link>
-        <Nav data={navData}/>
-        <MobileNav data={navData} ComponentStyles={`${headerActive ? 'top-20' : 'top-28'} ${isOpen ? 'max-h-max py-8 border-foreground border-y border-y-primary/10': 'max-h-0 overflow-hidden'} flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-primary-foreground`}/>
+        <Nav data={navData} />
+        <MobileNav
+          data={navData}
+          ComponentStyles={`${headerActive ? "top-20" : "top-28"} ${
+            isOpen
+              ? "max-h-max py-8 border-foreground border-y border-y-primary/10"
+              : "max-h-0 overflow-hidden"
+          } flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-primary-foreground`}
+        />
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link href={"/signin"}>
-            <Button variant="outline">{t('signin')}</Button>
-          </Link>
-          <Button variant={"outline"} className="xl:hidden" onClick={() => setIsOpen(!isOpen)}><Menu/></Button>
+          {publicSession ? (
+            <>
+              <Link href={"/dashboard"}>
+                <Button variant="outline">
+                  {/* Mobile: icon only */}
+                  <User className="h-4 w-4 md:hidden" />
+
+                  {/* Desktop: name */}
+                  <span className="hidden md:inline">
+                    {publicSession.user.name}
+                  </span>
+                </Button>
+              </Link>
+              <form action={signOutAction}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button type="submit" variant="outline">
+                      <LogOut />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t("signout")}</TooltipContent>
+                </Tooltip>
+              </form>
+            </>
+          ) : (
+            <Link href={"/signin"}>
+              <Button variant="outline">{t("signin")}</Button>
+            </Link>
+          )}
+          <Button
+            variant={"outline"}
+            className="xl:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <Menu />
+          </Button>
         </div>
       </div>
     </header>

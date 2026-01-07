@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { Locale, routing } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import ClientProviders from "@/components/providers/ClientProviders";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import { getMessages, getTranslations } from "next-intl/server";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -37,6 +39,18 @@ async function LayoutContent({
   locale: string;
 }) {
   const messages = await getMessages({ locale });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const publicSession = session
+    ? {
+        user: {
+          id: session.user.id,
+          name: session.user.name,
+        },
+      }
+    : null;
   return (
     <body
       className="font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground"
@@ -54,7 +68,7 @@ async function LayoutContent({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientProviders>
-            <ConditionalLayout>{children}</ConditionalLayout>
+            <ConditionalLayout publicSession={publicSession}>{children}</ConditionalLayout>
           </ClientProviders>
         </NextIntlClientProvider>
       </Suspense>
@@ -68,6 +82,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
   return (
     <html
       lang={locale}

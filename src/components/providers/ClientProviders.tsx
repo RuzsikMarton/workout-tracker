@@ -2,7 +2,6 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "./ThemeProvider";
-import { NextIntlClientProvider } from "next-intl";
 
 interface ClientProvidersProps {
   children: ReactNode;

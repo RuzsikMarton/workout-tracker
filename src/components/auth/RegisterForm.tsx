@@ -5,6 +5,8 @@ import { SignUpInput, signUpSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
+import { signUpAction } from "@/app/actions/auth";
+import { useRouter } from "next/navigation";
 
 interface SignUpFormProps {
   data: {
@@ -21,20 +23,24 @@ interface SignUpFormProps {
 }
 
 export default function RegisterForm({ data }: SignUpFormProps) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<SignUpInput>({ resolver: zodResolver(signUpSchema) });
 
-  const onSubmit: SubmitHandler<SignUpInput> = async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
-    } catch (err) {
-      setError("root", { message: "Failed to register. Please try again." });
+  const onSubmit: SubmitHandler<SignUpInput> = async (formData) => {
+    clearErrors("root");
+    const res = await signUpAction(formData);
+    if (!res.ok) {
+      setError("root", { message: res.message });
+      return;
     }
+    router.push("/");
+    router.refresh();
   };
 
   return (

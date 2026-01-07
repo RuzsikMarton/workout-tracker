@@ -6,18 +6,24 @@ import Footer from "./Footer";
 
 interface ConditionalLayoutProps {
   children: React.ReactNode;
+  publicSession: {
+    user: {
+      id: string;
+      name: string;
+    };
+  } | null;
 }
 
-const ConditionalLayout = ({ children }: ConditionalLayoutProps) => {
+const ConditionalLayout = ({ children, publicSession }: ConditionalLayoutProps) => {
   const pathname = usePathname();
 
   // Hide header and footer on these routes
   const hideLayout =
-    pathname.includes("/signin") || pathname.includes("/register");
+    pathname.includes("/signin") || pathname.includes("/signup");
 
   return (
     <>
-      {!hideLayout && <Header />}
+      {!hideLayout && <Header publicSession={publicSession}/>}
       <div role="main" tabIndex={-1}>
         {children}
       </div>

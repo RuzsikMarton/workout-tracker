@@ -5,6 +5,8 @@ import { SignInInput, signInSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
+import { signInAction } from "@/app/actions/auth";
+import { useRouter } from "next/navigation";
 
 interface SignInFormProps {
   data: {
@@ -19,19 +21,26 @@ interface SignInFormProps {
 }
 
 export default function SignInForm({ data }: SignInFormProps) {
+
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<SignInInput>({ resolver: zodResolver(signInSchema) });
 
-  const onSubmit: SubmitHandler<SignInInput> = async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    } catch (err) {
-      setError("root", { message: "Failed to sign in. Please try again." });
+  const onSubmit: SubmitHandler<SignInInput> = async (formData) => {
+    clearErrors("root");
+    const res = await signInAction(formData);
+
+    if (!res.ok) {
+      setError("root", { message: res.message });
+      return;
     }
+    router.push("/");
+    router.refresh();
   };
 
   return (
@@ -71,7 +80,7 @@ export default function SignInForm({ data }: SignInFormProps) {
       <div className="mt-10 flex text-primary/70">
         <span className="text-sm">{data.noAccount}</span>
         <Link
-          href="/register"
+          href="/signup"
           className="text-sm ml-1 underline hover:text-primary"
         >
           {data.registerLink}

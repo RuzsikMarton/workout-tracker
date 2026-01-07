@@ -8,7 +8,8 @@
     "workouts": "Edzések",
     "exercises": "Gyakorlatok",
     "contact": "Kapcsolat",
-    "signin": "Bejelentkezés"
+    "signin": "Bejelentkezés",
+    "signout": "Kijelentkezés"
   },
   "Footer": {
     "language": {

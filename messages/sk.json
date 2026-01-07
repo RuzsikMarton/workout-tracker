@@ -8,7 +8,8 @@
     "workouts": "Cvičenia",
     "exercises": "Cviky",
     "contact": "Kontakt",
-    "signin": "Prihlásiť sa"
+    "signin": "Prihlásiť sa",
+    "signout": "Odhlásiť sa"
   },
   "Footer": {
     "language": {
