@@ -43,6 +43,8 @@ async function LayoutContent({
     headers: await headers(),
   });
 
+  console.log("Layout session:", session);
+
   const publicSession = session
     ? {
         user: {

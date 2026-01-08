@@ -21,6 +21,8 @@ model User {
   email         String
   emailVerified Boolean   @default(false)
   image         String?
+  role          Role      @default(USER)
+  workouts      Workout[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
@@ -76,4 +78,71 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Workout {
+  id            String          @id @default(cuid())
+  title         String
+  description   String?
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutExercises WorkoutExercise[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([userId])
+  @@map("workout")
+}
+
+model Exercise {
+  id               String            @id @default(cuid())
+  name             String
+  description      String?
+  muscleGroup      String?
+  equipmentType    String?
+  workoutExercises WorkoutExercise[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@map("exercise")
+}
+
+model WorkoutExercise {
+  id         String      @id @default(cuid())
+  workoutId  String
+  exerciseId String
+  order      Int         // Order of exercise in the workout
+  workout    Workout     @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercise   Exercise    @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  sets       ExerciseSet[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@unique([workoutId, exerciseId])
+  @@index([workoutId])
+  @@index([exerciseId])
+  @@map("workout_exercise")
+}
+
+model ExerciseSet {
+  id                String          @id @default(cuid())
+  workoutExerciseId String
+  setNumber         Int             // 1st set, 2nd set, etc.
+  reps              Int?            // Number of repetitions
+  weight            Float?          // Weight used (in kg or lbs)
+  duration          Int?            // Duration in seconds (for time-based exercises)
+  distance          Float?          // Distance (for cardio exercises)
+  restTime          Int?            // Rest time in seconds
+  completed         Boolean         @default(false)
+  workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([workoutExerciseId])
+  @@map("exercise_set")
 }
