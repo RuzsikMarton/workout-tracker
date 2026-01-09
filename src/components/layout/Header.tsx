@@ -51,8 +51,14 @@ const Header = ({ publicSession }: HeaderProps) => {
       } fixed top-0 w-full z-50 transition-all bg-primary-foreground backdrop-blur-sm border-b border-b-primary/10`}
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
-        <Link href="/">
-          <Image src="/next.svg" alt="" width={120} height={50}></Image>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Workout Tracker Logo"
+            width={120}
+            height={50}
+            priority
+          />
         </Link>
         <Nav data={navData} />
         <MobileNav

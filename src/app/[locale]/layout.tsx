@@ -19,7 +19,6 @@ interface MetadataProps {
   params: Promise<{ locale: string }>;
 }
 
-
 export async function generateMetadata({ params }: MetadataProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
@@ -42,8 +41,6 @@ async function LayoutContent({
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
-  console.log("Layout session:", session);
 
   const publicSession = session
     ? {
@@ -70,7 +67,9 @@ async function LayoutContent({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientProviders>
-            <ConditionalLayout publicSession={publicSession}>{children}</ConditionalLayout>
+            <ConditionalLayout publicSession={publicSession}>
+              {children}
+            </ConditionalLayout>
           </ClientProviders>
         </NextIntlClientProvider>
       </Suspense>

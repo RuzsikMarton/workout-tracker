@@ -122,11 +122,24 @@
 }
 
 @layer components {
+
+  .page-main {
+    @apply flex min-h-screen font-sans;
+  }
+
+  .page-div{
+    @apply w-full px-4 mx-auto max-w-7xl; 
+  }
+
   .input-label{
-    @apply mt-4 text-sm text-muted-foreground mb-1 block
+    @apply mt-4 text-sm text-muted-foreground mb-1 block;
   }
 
   .input-primary {
     @apply w-full border py-2 px-3 bg-input rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50;
+  }
+
+  .socials-icon{
+    @apply flex items-center justify-center p-1 border-2 rounded-full border-primary hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300;
   }
 }

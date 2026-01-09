@@ -49,7 +49,9 @@ const Footer = () => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between text-primary/70 items-center gap-4">
         <span>© 2025 Workout Tracker. Marton Ruzsik</span>
-        <span>Made with Next.js and Tailwind CSS</span>
+        <span className="hidden lg:block">
+          Made with Next.js and Tailwind CSS
+        </span>
         <div>Privacy Policy | Terms of Service</div>
       </div>
     </footer>

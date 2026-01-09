@@ -11,13 +11,12 @@ export default function SignInPage() {
     signingIn: t("signingIn"),
     noAccount: t("noAccount"),
     registerLink: t("registerLink"),
-  }
+  };
   return (
-    <main className="flex min-h-screen font-sans">
+    <main className="page-main">
       <div className="flex justify-center items-center grow p-4 sm:p-8">
-        <SignInForm data={signInData}/>
+        <SignInForm data={signInData} />
       </div>
     </main>
   );
 }
-         
