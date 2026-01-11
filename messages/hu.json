@@ -38,5 +38,35 @@
     "signingUp": "Regisztráció...",
     "haveAccount": "Már van fiókod?",
     "signinLink": "Jelentkezz be itt"
+  },
+  "Contact": {
+    "title": "Lépj kapcsolatba velünk",
+    "description": "Örömmel hallunk felőled! Legyenek kérdéseid, visszajelzéseid vagy segítségre van szükséged, bátran fordulj hozzánk."
+  },
+  "ContactForm": {
+    "title": "Üzenet küldése",
+    "fNameLabel": "Keresztnév",
+    "lNameLabel": "Vezetéknév",
+    "messageLabel": "Üzenet",
+    "submitButton": "Üzenet küldése",
+    "sending": "Küldés...",
+    "successMessage": "Köszönjük, hogy kapcsolatba léptél velünk! Hamarosan válaszolunk.",
+    "errorMessage": "Hoppá! Valami hiba történt. Kérjük, próbáld meg később újra."
+  },
+    "HeroSection": {
+    "title": "Kövessd nyomon edzéseidet a <span>WT</span>-vel.",
+    "description": "Egyszerűsítsd fitnesz utad intuitív edzéskövető eszközeinkkel.",
+    "startTracking": "Követés kezdése",
+    "contactUs": "Kapcsolat"
+  },
+  "FeaturesSection": {
+    "mainHeading": "Az <span>edzésed</span> támogatására építve",
+    "subHeading": "Minden, amire szükséged van ahhoz, hogy okosabban edzhess, következetes maradj, és valódi eredményeket érj el.",
+    "feature1Title": "Edzésnapló",
+    "feature1Desc": "Könnyedén rögzítheted edzéseidet, gyakorlatokat, sorozatokat és ismétléseket.",
+    "feature2Title": "Gyakorlatkönyvtár",
+    "feature2Desc": "Böngéssz a különböző gyakorlatok között, és találd meg a számodra megfelelőt.",
+    "feature3Title": "Fejlődéskövetés",
+    "feature3Desc": "Kövesd nyomon fejlődésedet személyes rekordok és teljesítményelemzések segítségével."
   }
 }

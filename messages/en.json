@@ -38,5 +38,35 @@
     "signingUp": "Signing up...",
     "haveAccount": "Already have an account?",
     "signinLink": "Sign in here"
+  },
+  "Contact": {
+    "title": "Get in Touch",
+    "description": "We'd love to hear from you! Whether you have questions, feedback, or need assistance, feel free to reach out."
+  },
+  "ContactForm": {
+    "title": "Send a Message",
+    "fNameLabel": "First Name",
+    "lNameLabel": "Last Name",
+    "messageLabel": "Message",
+    "submitButton": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Thank you for reaching out! We'll get back to you soon.",
+    "errorMessage": "Oops! Something went wrong. Please try again later."
+  },
+  "HeroSection": {
+    "title": "Track Your Workouts with <span>WT</span>.",
+    "description": "Simplify your fitness journey with our intuitive workout tracking tools.",
+    "startTracking": "Start Tracking",
+    "contactUs": "Contact Us"
+  },
+  "FeaturesSection": {
+    "mainHeading": "Built to Power <span>Your Training</span>",
+    "subHeading": "Everything you need to train smarter, stay consistent, and see real results.",
+    "feature1Title": "Workout Tracking",
+    "feature1Desc": "Track your workouts efficiently with our user-friendly interface designed for fitness enthusiasts.",
+    "feature2Title": "Exercises List",
+    "feature2Desc": "List of exercises with detailed descriptions and images to guide your workouts.",
+    "feature3Title": "Progress Tracking",
+    "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics." 
   }
 }

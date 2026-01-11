@@ -1,16 +1,17 @@
 import ContactForm from "@/components/ContactForm";
-import { Button } from "@/components/ui/button";
-import { Contact, Link, Mail } from "lucide-react";
+import { Link, Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { FaFacebook, FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
 
 const ContactPage = () => {
+  const t = useTranslations("Contact");
   return (
     <main className="page-main pt-28 bg-zinc-50 dark:bg-secondary">
       <div className="page-div max-w-7xl mx-auto gap-4 flex flex-col md:flex-row">
         <div className="flex-1 flex flex-col p-8 justify-center">
-          <h1 className="text-4xl font-bold mb-8 text-red-700">Get in Touch</h1>
+          <h1 className="text-4xl font-bold mb-8 text-red-700">{t("title")}</h1>
           <p className="text-lg text-muted-foreground mb-16">
-            If you have any questions, feel free to reach out to us.
+            {t("description")}
           </p>
           <div className="flex flex-col space-y-6">
             <div className="flex items-center gap-8">

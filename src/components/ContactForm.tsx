@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { set } from "zod";
+import { useTranslations } from "next-intl";
 
 const ContactForm = () => {
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
 
+  const t = useTranslations("ContactForm");
+
   const onSubmit = async (event: any) => {
     setError("");
     event.preventDefault();
-    setResult("Sending....");
+    setResult(t("sending"));
     const formData = new FormData(event.target);
 
     const firstName = formData.get("firstName") as string;
@@ -30,20 +32,20 @@ const ContactForm = () => {
 
     const data = await response.json();
     if (data.success) {
-      setResult("Form Submitted Successfully");
+      setResult(t("successMessage"));
       event.target.reset();
     } else {
-      setError("Error");
+      setError(t("errorMessage"));
     }
   };
   return (
     <>
       <form onSubmit={onSubmit} className="flex flex-col gap-4 w-full">
-        <h2 className="text-2xl font-bold mb-2 text-red-700">Send a Message</h2>
+        <h2 className="text-2xl font-bold mb-2 text-red-700">{t("title")}</h2>
         <div className="flex gap-4">
           <div className="flex-1 flex flex-col">
             <label className="text-sm font-medium mb-2" htmlFor="firstName">
-              First Name
+              {t("fNameLabel")}
             </label>
             <input
               type="text"
@@ -55,7 +57,7 @@ const ContactForm = () => {
           </div>
           <div className="flex-1 flex flex-col">
             <label className="text-sm font-medium mb-2" htmlFor="lastName">
-              Last Name
+              {t("lNameLabel")}
             </label>
             <input
               type="text"
@@ -80,7 +82,7 @@ const ContactForm = () => {
         </div>
         <div className="flex flex-col">
           <label className="text-sm font-medium mb-2" htmlFor="message">
-            Message
+            {t("messageLabel")}
           </label>
           <textarea
             id="message"
@@ -96,7 +98,7 @@ const ContactForm = () => {
           className="w-full bg-red-700 hover:bg-red-800"
           type="submit"
         >
-          Send Message
+          {t("submitButton")}
         </Button>
       </form>
     </>

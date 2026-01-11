@@ -38,5 +38,35 @@
     "signingUp": "Registrácia...",
     "haveAccount": "Už máte účet?",
     "signinLink": "Prihláste sa tu"
+  },
+  "Contact": {
+    "title": "Kontaktujte nás",
+    "description": "Radi vás počujeme! Či už máte otázky, spätnú väzbu alebo potrebujete pomoc, neváhajte nás kontaktovať."
+  },
+  "ContactForm": {
+    "title": "Odoslať správu",
+    "fNameLabel": "Meno",
+    "lNameLabel": "Priezvisko",
+    "messageLabel": "Správa",
+    "submitButton": "Odoslať správu",
+    "sending": "Odosielanie...",
+    "successMessage": "Ďakujeme, že ste nás kontaktovali! Čoskoro sa vám ozveme.",
+    "errorMessage": "Ups! Niečo sa pokazilo. Skúste to prosím neskôr znova."
+  },
+   "HeroSection": {
+    "title": "Sledujte svoje tréningy s <span>WT</span>.",
+    "description": "Zjednodušte svoju fitnes cestu s našimi intuitívnymi nástrojmi na sledovanie tréningov.",
+    "startTracking": "Začať sledovanie",
+    "contactUs": "Kontakt"
+  },
+  "FeaturesSection": {
+    "mainHeading": "Vytvorené na podporu <span>Vášho tréningu</span>",
+    "subHeading": "Všetko, čo potrebujete na inteligentnejší tréning, udržanie konzistencie a dosiahnutie skutočných výsledkov.",
+    "feature1Title": "Sledovanie pokroku",
+    "feature1Desc": "Sledujte svoju fitnes cestu pomocou sledovania osobných rekordov a analytiky výkonu.",
+    "feature2Title": "Prispôsobiteľné cvičenia",
+    "feature2Desc": "Vytvárajte a prispôsobujte si cvičenia podľa svojich cieľov a preferencií.",
+    "feature3Title": "Analytika výkonu",
+    "feature3Desc": "Získajte prehľady o svojom výkone a identifikujte oblasti na zlepšenie."
   }
 }

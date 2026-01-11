@@ -19,6 +19,7 @@ export default async function middleware(req: NextRequest) {
     '/en/signup',
     '/sk/signup',
     '/hu/signup',
+    '/contact',
     '/en/contact',
     '/sk/contact',
     '/hu/contact',
