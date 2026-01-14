@@ -68,5 +68,9 @@
     "feature2Desc": "List of exercises with detailed descriptions and images to guide your workouts.",
     "feature3Title": "Progress Tracking",
     "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics." 
+  },
+  "ExercisesPage": {
+    "title": "Explore Exercises",
+    "description": "Discover a variety of exercises to enhance your workout routine."
   }
 }

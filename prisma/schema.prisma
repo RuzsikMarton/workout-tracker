@@ -86,14 +86,14 @@ enum Role {
 }
 
 model Workout {
-  id            String          @id @default(cuid())
-  title         String
-  description   String?
-  userId        String
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id               String            @id @default(cuid())
+  title            String
+  description      String?
+  userId           String
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   workoutExercises WorkoutExercise[]
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
 
   @@index([userId])
   @@map("workout")
@@ -103,8 +103,8 @@ model Exercise {
   id               String            @id @default(cuid())
   name             String
   description      String?
-  muscleGroup      String?
-  equipmentType    String?
+  muscleGroup      String[]
+  equipment        String[]
   workoutExercises WorkoutExercise[]
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
@@ -113,15 +113,15 @@ model Exercise {
 }
 
 model WorkoutExercise {
-  id         String      @id @default(cuid())
+  id         String        @id @default(cuid())
   workoutId  String
   exerciseId String
-  order      Int         // Order of exercise in the workout
-  workout    Workout     @relation(fields: [workoutId], references: [id], onDelete: Cascade)
-  exercise   Exercise    @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  order      Int // Order of exercise in the workout
+  workout    Workout       @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercise   Exercise      @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
   sets       ExerciseSet[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
 
   @@unique([workoutId, exerciseId])
   @@index([workoutId])
@@ -132,12 +132,12 @@ model WorkoutExercise {
 model ExerciseSet {
   id                String          @id @default(cuid())
   workoutExerciseId String
-  setNumber         Int             // 1st set, 2nd set, etc.
-  reps              Int?            // Number of repetitions
-  weight            Float?          // Weight used (in kg or lbs)
-  duration          Int?            // Duration in seconds (for time-based exercises)
-  distance          Float?          // Distance (for cardio exercises)
-  restTime          Int?            // Rest time in seconds
+  setNumber         Int // 1st set, 2nd set, etc.
+  reps              Int? // Number of repetitions
+  weight            Float? // Weight used (in kg or lbs)
+  duration          Int? // Duration in seconds (for time-based exercises)
+  distance          Float? // Distance (for cardio exercises)
+  restTime          Int? // Rest time in seconds
   completed         Boolean         @default(false)
   workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
   createdAt         DateTime        @default(now())
