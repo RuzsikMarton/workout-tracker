@@ -1,0 +1,35 @@
+{
+  "muscleGroups": {
+    "all": "Összes",
+    "chest": "Mellkas",
+    "legs": "Lábak",
+    "back": "Hát",
+    "shoulders": "Vállak",
+    "biceps": "Bicepsz",
+    "triceps": "Tricepsz",
+    "abs": "Hasizom",
+    "forearms": "Alkar"
+  },
+  "equipment": {
+    "all": "Összes",
+    "bodyweight": "Saját testsúly",
+    "bench": "Pad",
+    "dumbbell": "Kézi súlyzó",
+    "barbell": "Rúd súlyzó",
+    "kettlebell": "Kettlebell",
+    "machine": "Gép",
+    "cable": "Kábel"
+  },
+  "bench-press": {
+    "name": "Fekvenyomás",
+    "description": "A fekvenyomás egy összetett gyakorlat, amely a mellkast, a vállakat és a tricepszet célozza meg."
+  },
+  "push-ups": {
+    "name": "Fekvőtámasz",
+    "description": "A fekvőtámasz egy testsúlyos gyakorlat, amely erősíti a mellkast, a vállakat és a törzset."
+  },
+  "squats": {
+    "name": "Guggolás",
+    "description": "A guggolás egy alapvető alsótest gyakorlat, amely a combfeszítőket, combhajlítókat és a farizomzatot célozza meg."
+  }
+}

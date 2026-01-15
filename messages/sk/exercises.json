@@ -1,0 +1,35 @@
+{
+  "muscleGroups": {
+    "all": "Všetky",
+    "chest": "Hrudník",
+    "legs": "Nohy",
+    "back": "Chrbát",
+    "shoulders": "Ramená",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "abs": "Brušné svaly",
+    "forearms": "Predlaktia"
+  },
+  "equipment": {
+    "all": "Všetko",
+    "bodyweight": "Vlastná váha",
+    "bench": "Lavica",
+    "dumbbell": "Činka",
+    "barbell": "Hriadeľová činka",
+    "kettlebell": "Kettlebell",
+    "machine": "Stroj",
+    "cable": "Kábel"
+  },
+  "bench-press": {
+    "name": "Tlaky na lavičke",
+    "description": "Tlaky na lavičke sú komplexné cvičenie, ktoré zacieľuje na hrudník, ramená a tricepsy."
+  },
+  "push-ups": {
+    "name": "Kliky",
+    "description": "Kliky sú cvičenie s vlastnou hmotnosťou, ktoré posilňuje hrudník, ramená a jadro."
+  },
+  "squats": {
+    "name": "Drepy",
+    "description": "Drep je základné cvičenie dolnej časti tela zamerané na štvorhlavý sval, ohýbače kolien a sedacie svaly."
+  }
+}

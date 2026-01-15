@@ -69,8 +69,31 @@
     "feature3Title": "Progress Tracking",
     "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics." 
   },
-  "ExercisesPage": {
-    "title": "Explore Exercises",
-    "description": "Discover a variety of exercises to enhance your workout routine."
+    "ExercisesPage": {
+    "title": "Exercises"
+  },
+  "FilterBar": {
+    "muscle": "Target Muscle:",
+    "equipment": "Equipment:",
+    "order": "Order by:"
+  },
+  "ExerciseList": {
+    "errorTitle": "Something went wrong",
+    "errorMessage": "We couldn't load the exercises. Please try again later.",
+    "noExercisesTitle": "No Exercises Found",
+    "noExercisesMessage": "Try adjusting your filters to find what you're looking for."
+  },
+  "ExerciseCard": {
+    "details": "Details",
+    "add": "Add",
+    "muscle": "Target Muscle:",
+    "equipment": "Equipment:"
+  },
+  "ExercisePage": {
+    "muscle": "Target Muscle:",
+    "equipment": "Equipment:",
+    "description": "Overview",
+    "imgAlt": "Exercise demonstration IMG",
+    "button": "Add to Workout"
   }
 }

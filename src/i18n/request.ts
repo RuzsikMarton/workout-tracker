@@ -11,10 +11,24 @@ export default getRequestConfig(
 
     let messages;
     try {
-      messages = (await import(`../../messages/${locale}.json`)).default;
+      // Load all message files for the locale
+      const common = (await import(`../../messages/${locale}/common.json`)).default;
+      const exercises = (await import(`../../messages/${locale}/exercises.json`)).default;
+      
+      // Merge all message files
+      messages = {
+        ...common,
+        ...exercises,
+      };
     } catch {
-      messages = (await import(`../../messages/${routing.defaultLocale}.json`))
-        .default;
+      // Fallback to default locale
+      const common = (await import(`../../messages/${routing.defaultLocale}/common.json`)).default;
+      const exercises = (await import(`../../messages/${routing.defaultLocale}/exercises.json`)).default;
+      
+      messages = {
+        ...common,
+        ...exercises,
+      };
     }
     
     return {

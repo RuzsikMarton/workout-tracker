@@ -105,6 +105,7 @@ model Exercise {
   description      String?
   muscleGroup      String[]
   equipment        String[]
+  imgUrl           String?
   workoutExercises WorkoutExercise[]
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt

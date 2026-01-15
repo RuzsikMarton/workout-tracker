@@ -53,7 +53,7 @@
     "successMessage": "Köszönjük, hogy kapcsolatba léptél velünk! Hamarosan válaszolunk.",
     "errorMessage": "Hoppá! Valami hiba történt. Kérjük, próbáld meg később újra."
   },
-    "HeroSection": {
+  "HeroSection": {
     "title": "Kövessd nyomon edzéseidet a <span>WT</span>-vel.",
     "description": "Egyszerűsítsd fitnesz utad intuitív edzéskövető eszközeinkkel.",
     "startTracking": "Követés kezdése",
@@ -68,5 +68,31 @@
     "feature2Desc": "Böngéssz a különböző gyakorlatok között, és találd meg a számodra megfelelőt.",
     "feature3Title": "Fejlődéskövetés",
     "feature3Desc": "Kövesd nyomon fejlődésedet személyes rekordok és teljesítményelemzések segítségével."
+  },
+    "ExercisesPage": {
+    "title": "Gyakorlatok"
+  },  "FilterBar": {
+    "muscle": "Célizom:",
+    "equipment": "Felszerelés:",
+    "order": "Rendezés:"
+  },
+  "ExerciseList": {
+    "errorTitle": "Hiba a gyakorlatok betöltésekor",
+    "errorMessage": "Hoppá! Valami hiba történt a gyakorlatok lekérése során. Kérjük, próbáld meg újra később.",
+    "noExercisesTitle": "Nincs találat",
+    "noExercisesMessage": "Próbáld meg módosítani a szűrőket, hogy megtaláld, amit keresel."
+  },
+  "ExerciseCard": {
+    "details": "Részletek",
+    "add": "Hozzáadás",
+    "muscle": "Izomcsoport:",
+    "equipment": "Felszerelés:"
+  },
+  "ExercisePage": {
+    "muscleGroup": "Izomcsoport",
+    "equipment": "Felszerelés",
+    "description": "Leírás",
+    "imgAlt": "Gyakorlat bemutató GIF",
+    "button": "Hozzáadás az edzéshez"
   }
 }

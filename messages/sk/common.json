@@ -53,7 +53,7 @@
     "successMessage": "Ďakujeme, že ste nás kontaktovali! Čoskoro sa vám ozveme.",
     "errorMessage": "Ups! Niečo sa pokazilo. Skúste to prosím neskôr znova."
   },
-   "HeroSection": {
+  "HeroSection": {
     "title": "Sledujte svoje tréningy s <span>WT</span>.",
     "description": "Zjednodušte svoju fitnes cestu s našimi intuitívnymi nástrojmi na sledovanie tréningov.",
     "startTracking": "Začať sledovanie",
@@ -68,5 +68,32 @@
     "feature2Desc": "Vytvárajte a prispôsobujte si cvičenia podľa svojich cieľov a preferencií.",
     "feature3Title": "Analytika výkonu",
     "feature3Desc": "Získajte prehľady o svojom výkone a identifikujte oblasti na zlepšenie."
+  },
+    "ExercisesPage": {
+    "title": "Cviky"
+  },  
+  "FilterBar": {
+    "muscle": "Cieľová svalová skupina:",
+    "equipment": "Vybavenie:",
+    "order": "Zoradiť podľa:"
+  },
+  "ExerciseList": {
+    "errorTitle": "Nastala chyba",
+    "errorMessage": "Nepodarilo sa načítať cviky. Skúste to prosím neskôr znova.",
+    "noExercisesTitle": "Nenašli sa žiadne cviky",
+    "noExercisesMessage": "Skúste upraviť filtre, aby ste našli to, čo hľadáte."
+  },
+  "ExerciseCard": {
+    "details": "Detaily",
+    "add": "Pridať",
+    "muscle": "Cieľová svalová skupina:",
+    "equipment": "Vybavenie:"
+  },
+  "ExercisePage": {
+    "muscle": "Cieľová svalová skupina:",
+    "equipment": "Vybavenie:",
+    "description": "Prehľad",
+    "imgAlt": "Ukážka cvičenia IMG",
+    "button": "Pridať do tréningu"
   }
 }

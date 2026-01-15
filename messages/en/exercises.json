@@ -1,0 +1,35 @@
+{
+  "muscleGroups": {
+    "all": "All",
+    "chest": "Chest",
+    "legs": "Legs",
+    "back": "Back",
+    "shoulders": "Shoulders",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "abs": "Abs",
+    "forearms": "Forearms"
+  },
+  "equipment": {
+    "all": "All",
+    "bodyweight": "Bodyweight",
+    "bench": "Bench",
+    "dumbbell": "Dumbbell",
+    "barbell": "Barbell",
+    "kettlebell": "Kettlebell",
+    "machine": "Machine",
+    "cable": "Cable"
+  },
+  "bench-press": {
+    "name": "Bench Press",
+    "description": "The bench press is a compound exercise that targets the chest, shoulders, and triceps."
+  },
+  "push-ups": {
+    "name": "Push Ups",
+    "description": "Push-ups are a bodyweight exercise that strengthens the chest, shoulders, and core."
+  },
+  "squats": {
+    "name": "Squats",
+    "description": "The squat is a fundamental lower body exercise targeting the quadriceps, hamstrings, and glutes."
+  }
+}

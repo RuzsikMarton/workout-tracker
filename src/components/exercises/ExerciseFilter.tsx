@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const ExerciseFilter = () => {
+  const t = useTranslations("FilterBar");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -18,7 +20,7 @@ const ExerciseFilter = () => {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
-              Target muscle:
+              {t("muscle")}
             </span>
             <select
               onChange={(e) => handleChange(e.target.value, "muscle")}
@@ -31,7 +33,7 @@ const ExerciseFilter = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
-              Equipment:
+              {t("equipment")}
             </span>
             <select
               onChange={(e) => handleChange(e.target.value, "equipment")}
@@ -46,7 +48,7 @@ const ExerciseFilter = () => {
         <div>
           <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
-              Order By:
+              {t("order")}
             </span>
             <select
               onChange={(e) => handleChange(e.target.value, "sort")}
