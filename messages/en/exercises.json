@@ -18,7 +18,9 @@
     "barbell": "Barbell",
     "kettlebell": "Kettlebell",
     "machine": "Machine",
-    "cable": "Cable"
+    "pull-up-bar": "Pull-up Bar",
+    "cable": "Cable",
+    "none": "None"
   },
   "bench-press": {
     "name": "Bench Press",

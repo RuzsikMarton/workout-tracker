@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Role } from "@prisma/client";
 
 interface ConditionalLayoutProps {
   children: React.ReactNode;
@@ -11,10 +12,14 @@ interface ConditionalLayoutProps {
       id: string;
       name: string;
     };
+    role: Role;
   } | null;
 }
 
-const ConditionalLayout = ({ children, publicSession }: ConditionalLayoutProps) => {
+const ConditionalLayout = ({
+  children,
+  publicSession,
+}: ConditionalLayoutProps) => {
   const pathname = usePathname();
 
   // Hide header and footer on these routes
@@ -23,7 +28,7 @@ const ConditionalLayout = ({ children, publicSession }: ConditionalLayoutProps) 
 
   return (
     <>
-      {!hideLayout && <Header publicSession={publicSession}/>}
+      {!hideLayout && <Header publicSession={publicSession} />}
       <div role="main" tabIndex={-1}>
         {children}
       </div>

@@ -2,6 +2,7 @@ import { AlertTriangle, SearchX } from "lucide-react";
 import ExerciseSkeleton from "./ExerciseSkeleton";
 import ExereciseCard from "./ExerciseCard";
 import { useTranslations } from "next-intl";
+import { PaginationWithLinks } from "../ui/pagination-with-links";
 
 const items = [
   {

@@ -1,27 +1,31 @@
 "use client";
 
-import { PaginatedExercises } from "@/types";
 import { useEffect, useState } from "react";
 import ExerciseFilter from "./ExerciseFilter";
 import ExerciseList from "./ExerciseList";
 import { useTranslations } from "next-intl";
+import { PaginationWithLinks } from "../ui/pagination-with-links";
+import { useSearchParams } from "next/navigation";
 
-const ExercisesClient = ({ initial }: { initial: PaginatedExercises }) => {
+const ExercisesClient = () => {
   const t = useTranslations("ExercisesPage");
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState({
     muscle: null as string[] | null,
     equipment: null as string[] | null,
   });
-  const [page, setPage] = useState(initial.page || 1);
-  const [data, setData] = useState<PaginatedExercises>(initial);
+
+  const currentPage = parseInt(searchParams.get("page") || "1");
+  const pageSize = parseInt(searchParams.get("pageSize") || "10");
+
+  const [totalExercises, setTotalExercises] = useState(100);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setPage(1);
-  }, [filters]);
-
-  useEffect(() => {}, [filters, page]);
+    console.log("Search params changed:", searchParams.toString());
+    console.log("Current page:", currentPage);
+  }, [searchParams, currentPage]);
 
   return (
     <div className="w-full">
@@ -34,6 +38,14 @@ const ExercisesClient = ({ initial }: { initial: PaginatedExercises }) => {
       </div>
       <ExerciseFilter />
       <ExerciseList isLoading={isLoading} error={error} />
+      <div className="w-full md:w-4/5 mx-auto mt-8 mb-4">
+        <PaginationWithLinks
+          page={currentPage}
+          pageSize={pageSize}
+          totalCount={totalExercises}
+          //pageSizeSelectOptions={{ pageSizeOptions: [5, 10, 20] }}
+        />
+      </div>
     </div>
   );
 };

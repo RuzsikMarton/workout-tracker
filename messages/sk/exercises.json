@@ -18,7 +18,9 @@
     "barbell": "Hriadeľová činka",
     "kettlebell": "Kettlebell",
     "machine": "Stroj",
-    "cable": "Kábel"
+    "pull-up-bar": "Hrazda",
+    "cable": "Kábel",
+    "none": "Žiadne"
   },
   "bench-press": {
     "name": "Tlaky na lavičke",

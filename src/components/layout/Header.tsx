@@ -11,6 +11,15 @@ import { LogOut, Menu, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { signOutAction } from "@/app/actions/auth";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Role } from "@prisma/client";
 
 interface HeaderProps {
   publicSession: {
@@ -18,6 +27,7 @@ interface HeaderProps {
       id: string;
       name: string;
     };
+    role: Role;
   } | null;
 }
 
@@ -73,17 +83,34 @@ const Header = ({ publicSession }: HeaderProps) => {
           <ThemeToggle />
           {publicSession ? (
             <>
-              <Link href={"/dashboard"}>
-                <Button variant="outline">
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
                   {/* Mobile: icon only */}
-                  <User className="h-4 w-4 md:hidden" />
-
                   {/* Desktop: name */}
-                  <span className="hidden md:inline">
-                    {publicSession.user.name}
-                  </span>
-                </Button>
-              </Link>
+                  <Button variant="outline">
+                    <User className="h-4 w-4 md:hidden" />
+                    <span className="hidden md:inline ml-2 font-medium">
+                      {publicSession.user.name}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem asChild>
+                    <Link href={`/profile/${publicSession.user.id}`}>
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  {publicSession.role === "ADMIN" && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuLabel>Admin</DropdownMenuLabel>
+                      <DropdownMenuItem asChild>
+                        <Link href="/exercises/new">Add exercise</Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
               <form action={signOutAction}>
                 <Tooltip>
                   <TooltipTrigger asChild>

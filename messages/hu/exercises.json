@@ -18,7 +18,9 @@
     "barbell": "Rúd súlyzó",
     "kettlebell": "Kettlebell",
     "machine": "Gép",
-    "cable": "Kábel"
+    "pull-up-bar": "Húzódzkodó rúd",
+    "cable": "Kábel",
+    "none": "Nincs"
   },
   "bench-press": {
     "name": "Fekvenyomás",

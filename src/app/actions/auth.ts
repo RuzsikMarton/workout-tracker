@@ -2,7 +2,6 @@
 
 import { auth } from "@/lib/auth";
 import { SignInInput, signInSchema, SignUpInput, signUpSchema } from "@/lib/validations";
-import { refresh } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 

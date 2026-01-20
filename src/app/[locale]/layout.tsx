@@ -48,6 +48,7 @@ async function LayoutContent({
           id: session.user.id,
           name: session.user.name,
         },
+        role: session.role,
       }
     : null;
   return (

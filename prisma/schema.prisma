@@ -102,7 +102,6 @@ model Workout {
 model Exercise {
   id               String            @id @default(cuid())
   name             String
-  description      String?
   muscleGroup      String[]
   equipment        String[]
   imgUrl           String?
