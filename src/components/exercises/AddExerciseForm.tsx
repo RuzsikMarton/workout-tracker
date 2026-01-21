@@ -3,10 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { useRouter } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { CreateExerciseData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { exerciseSchema } from "@/lib/validations";
+import { createExerciseAction } from "@/app/actions/exercises";
+import { useState } from "react";
+import { set } from "zod";
 
 const MUSCLE_GROUPS = [
   "chest",
@@ -33,6 +36,7 @@ const EQUIPMENT_OPTIONS = [
 
 const AddExerciseForm = () => {
   const router = useRouter();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -40,6 +44,7 @@ const AddExerciseForm = () => {
     handleSubmit,
     setError,
     clearErrors,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<CreateExerciseData>({
     resolver: zodResolver(exerciseSchema),
@@ -49,14 +54,31 @@ const AddExerciseForm = () => {
     },
   });
 
-  const onSubmit = async (data: CreateExerciseData) => {
-    clearErrors();
-    console.log("Submitting data:", data);
+  const onSubmit: SubmitHandler<CreateExerciseData> = async (formData) => {
+    clearErrors("root");
+    setSuccessMessage(null);
+    const res = await createExerciseAction(formData);
+    if (!res.ok) {
+      setError("root", { message: res.message });
+      return;
+    } else {
+      setSuccessMessage("Exercise created successfully!");
+      reset();
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 1500);
+    }
   };
 
   return (
     <div className="max-w-2xl w-full mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Add New Exercise</h1>
+
+      {successMessage && (
+        <div className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200 px-4 py-3 rounded-md mb-4">
+          {successMessage}
+        </div>
+      )}
 
       {errors.root && (
         <div className="bg-destructive/10 text-destructive px-4 py-3 rounded-md mb-4">

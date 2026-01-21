@@ -26,12 +26,44 @@
     "name": "Tlaky na lavičke",
     "description": "Tlaky na lavičke sú komplexné cvičenie, ktoré zacieľuje na hrudník, ramená a tricepsy."
   },
-  "push-ups": {
+  "push-up": {
     "name": "Kliky",
     "description": "Kliky sú cvičenie s vlastnou hmotnosťou, ktoré posilňuje hrudník, ramená a jadro."
   },
-  "squats": {
+  "squat": {
     "name": "Drepy",
     "description": "Drep je základné cvičenie dolnej časti tela zamerané na štvorhlavý sval, ohýbače kolien a sedacie svaly."
+  },
+  "deadlift": {
+    "name": "Mŕtvy ťah",
+    "description": "Mŕtvy ťah je komplexné cvičenie, ktoré zacieľuje na celý zadný reťazec, vrátane chrbta, sedacích svalov a ohýbačov kolien."
+  },
+  "lat-pulldown": {
+    "name": "Sťahovanie kladky na chrbát",
+    "description": "Sťahovanie kladky na chrbát je cvičenie, ktoré zacieľuje na široké svaly chrbta."
+  },
+  "seated-cable-row": {
+    "name": "Veslovanie na kladke v sede",
+    "description": "Veslovanie na kladke v sede je cvičenie, ktoré zacieľuje na svaly hornej časti chrbta a bicepsy."
+  },
+  "closegrip-cable-row": {
+    "name": "Veslovanie na kladke s úzkym úchopom",
+    "description": "Veslovanie na kladke s úzkym úchopom je cvičenie, ktoré zacieľuje na strednú časť chrbta a bicepsy pomocou úzkeho úchopu."
+  },
+  "pushdown": {
+    "name": "Stláčanie kladky na tricepsy",
+    "description": "Stláčanie kladky na tricepsy je izolačné cvičenie, ktoré zacieľuje na tricepsové svaly pomocou kladkového stroja."
+  },
+  "dumbbell-curl": {
+    "name": "Bicepsový zdvih s činkami",
+    "description": "Bicepsový zdvih s činkami je izolačné cvičenie, ktoré zacieľuje na bicepsové svaly pomocou činiek."
+  },
+  "barbell-curl": {
+    "name": "Bicepsový zdvih s hriadeľovou činkou",
+    "description": "Bicepsový zdvih s hriadeľovou činkou je izolačné cvičenie, ktoré zacieľuje na bicepsové svaly pomocou hriadeľovej činky."
+  },
+  "dumbbell-lateral-raise": {
+    "name": "Bočné zdvihy s činkami",
+    "description": "Bočné zdvihy s činkami sú izolačné cvičenie, ktoré zacieľuje na ramenné svaly pomocou činiek."
   }
 }

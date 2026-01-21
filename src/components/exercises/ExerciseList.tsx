@@ -1,27 +1,26 @@
 import { AlertTriangle, SearchX } from "lucide-react";
 import ExerciseSkeleton from "./ExerciseSkeleton";
-import ExereciseCard from "./ExerciseCard";
+import ExerciseCard from "./ExerciseCard";
 import { useTranslations } from "next-intl";
-import { PaginationWithLinks } from "../ui/pagination-with-links";
 
 const items = [
   {
     id: "1",
-    name: "push-ups",
-    muscleGroup: ["Chest"],
-    equipment: ["Bodyweight"],
+    name: "push-up",
+    muscleGroup: ["chest", "triceps"],
+    equipment: ["bodyweight"],
   },
   {
     id: "2",
-    name: "squats",
-    muscleGroup: ["Legs"],
-    equipment: ["Bodyweight"],
+    name: "squat",
+    muscleGroup: ["legs"],
+    equipment: ["bodyweight"],
   },
   {
     id: "3",
     name: "bench-press",
-    muscleGroup: ["Chest"],
-    equipment: ["Barbell"],
+    muscleGroup: ["chest", "triceps"],
+    equipment: ["barbell", "bench"],
   },
 ];
 
@@ -67,7 +66,7 @@ const ExerciseList = ({
   return (
     <div>
       {items.map((exercise) => (
-        <ExereciseCard key={exercise.id} exercise={exercise} />
+        <ExerciseCard key={exercise.id} exercise={exercise} />
       ))}
     </div>
   );

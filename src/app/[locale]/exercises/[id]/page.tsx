@@ -6,9 +6,7 @@ import Image from "next/image";
 const ExercisePage = () => {
   const exercise: Exercise = {
     id: "1",
-    name: "push-ups",
-    imgUrl: "/exercises/push-ups.png",
-    description: "A basic push-up exercise.",
+    name: "push-up",
     muscleGroup: ["chest", "triceps"],
     equipment: ["bodyweight"],
   };
@@ -37,15 +35,16 @@ const ExercisePage = () => {
         <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
           {/*Left column*/}
           <div className="space-y-4 flex flex-col items-center">
-            {exercise.imgUrl && (
+            <div className="relative w-full max-w-md aspect-square">
               <Image
-                src={exercise.imgUrl}
+                src={exercise.imgUrl || "/logo.png"}
                 alt={tPage("imgAlt")}
-                width={400}
-                height={400}
-                className="rounded-md"
+                fill
+                className="rounded-md object-cover"
+                unoptimized={exercise.imgUrl ? true : false}
+                priority
               />
-            )}
+            </div>
             <div className="lg:hidden">
               <AddToWorkoutButton text={tPage("button")} />
             </div>

@@ -26,12 +26,44 @@
     "name": "Fekvenyomás",
     "description": "A fekvenyomás egy összetett gyakorlat, amely a mellkast, a vállakat és a tricepszet célozza meg."
   },
-  "push-ups": {
+  "push-up": {
     "name": "Fekvőtámasz",
     "description": "A fekvőtámasz egy testsúlyos gyakorlat, amely erősíti a mellkast, a vállakat és a törzset."
   },
-  "squats": {
+  "squat": {
     "name": "Guggolás",
     "description": "A guggolás egy alapvető alsótest gyakorlat, amely a combfeszítőket, combhajlítókat és a farizomzatot célozza meg."
+  },
+  "deadlift": {
+    "name": "Felhúzás",
+    "description": "A felhúzás egy összetett gyakorlat, amely az egész hátsó láncot célozza meg, beleértve a hátat, a farizmokat és a combhajlítókat."
+  },
+  "lat-pulldown": {
+    "name": "Húzódzkodás gépen",
+    "description": "A húzódzkodás gépen egy gyakorlat, amely a hát széles izmait célozza meg."
+  },
+  "seated-cable-row": {
+    "name": "Ülő evezés kábelgépen",
+    "description": "Az ülő evezés kábelgépen egy gyakorlat, amely a felső hát és a bicepsz izmait célozza meg."
+  },
+  "closegrip-cable-row": {
+    "name": "Szűk fogású evezés kábelgépen",
+    "description": "A szűk fogású evezés kábelgépen egy gyakorlat, amely a középső hát és a bicepsz izmait célozza meg szűk fogással."
+  },
+  "pushdown": {
+    "name": "Tricepsz letolás",
+    "description": "A tricepsz letolás egy izolációs gyakorlat, amely a tricepsz izmait célozza meg kábelgépen."
+  },
+  "dumbbell-curl": {
+    "name": "Kézi súlyzós bicepsz hajlítás",
+    "description": "A kézi súlyzós bicepsz hajlítás egy izolációs gyakorlat, amely a bicepsz izmait célozza meg kézi súlyzókkal."
+  },
+  "barbell-curl": {
+    "name": "Rúdsúlyzós bicepsz hajlítás",
+    "description": "A rúdsúlyzós bicepsz hajlítás egy izolációs gyakorlat, amely a bicepsz izmait célozza meg rúdsúlyzóval."
+  },
+  "dumbbell-lateral-raise": {
+    "name": "Kézi súlyzós oldalemelés",
+    "description": "A kézi súlyzós oldalemelés egy izolációs gyakorlat, amely a vállak középső részét célozza meg kézi súlyzókkal."
   }
 }
