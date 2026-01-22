@@ -73,6 +73,7 @@
     "title": "Exercises"
   },
   "FilterBar": {
+    "showall": "Show All",
     "muscle": "Target Muscle:",
     "equipment": "Equipment:",
     "order": "Order by:"

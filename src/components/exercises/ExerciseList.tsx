@@ -3,31 +3,12 @@ import ExerciseSkeleton from "./ExerciseSkeleton";
 import ExerciseCard from "./ExerciseCard";
 import { useTranslations } from "next-intl";
 
-const items = [
-  {
-    id: "1",
-    name: "push-up",
-    muscleGroup: ["chest", "triceps"],
-    equipment: ["bodyweight"],
-  },
-  {
-    id: "2",
-    name: "squat",
-    muscleGroup: ["legs"],
-    equipment: ["bodyweight"],
-  },
-  {
-    id: "3",
-    name: "bench-press",
-    muscleGroup: ["chest", "triceps"],
-    equipment: ["barbell", "bench"],
-  },
-];
-
 const ExerciseList = ({
+  exercises,
   isLoading,
   error,
 }: {
+  exercises: any[];
   isLoading: boolean;
   error: string | null;
 }) => {
@@ -51,7 +32,7 @@ const ExerciseList = ({
     );
   }
 
-  if (!items?.length) {
+  if (!exercises?.length) {
     return (
       <div className="w-4/5 mx-auto mt-4 rounded-xl border p-6 text-center">
         <SearchX className="mx-auto mb-4 h-6 w-6 text-muted-foreground" />
@@ -65,7 +46,7 @@ const ExerciseList = ({
 
   return (
     <div>
-      {items.map((exercise) => (
+      {exercises.map((exercise) => (
         <ExerciseCard key={exercise.id} exercise={exercise} />
       ))}
     </div>

@@ -1,6 +1,5 @@
 {
   "muscleGroups": {
-    "all": "Összes",
     "chest": "Mellkas",
     "legs": "Lábak",
     "back": "Hát",
@@ -11,7 +10,6 @@
     "forearms": "Alkar"
   },
   "equipment": {
-    "all": "Összes",
     "bodyweight": "Saját testsúly",
     "bench": "Pad",
     "dumbbell": "Kézi súlyzó",

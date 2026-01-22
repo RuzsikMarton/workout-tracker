@@ -73,6 +73,7 @@
     "title": "Cviky"
   },  
   "FilterBar": {
+    "showall": "Zobraziť všetko",
     "muscle": "Cieľová svalová skupina:",
     "equipment": "Vybavenie:",
     "order": "Zoradiť podľa:"

@@ -1,6 +1,5 @@
 {
   "muscleGroups": {
-    "all": "All",
     "chest": "Chest",
     "legs": "Legs",
     "back": "Back",
@@ -11,7 +10,6 @@
     "forearms": "Forearms"
   },
   "equipment": {
-    "all": "All",
     "bodyweight": "Bodyweight",
     "bench": "Bench",
     "dumbbell": "Dumbbell",

@@ -71,7 +71,9 @@
   },
     "ExercisesPage": {
     "title": "Gyakorlatok"
-  },  "FilterBar": {
+  },  
+  "FilterBar": {
+    "showall": "Összes mutatása",
     "muscle": "Célizom:",
     "equipment": "Felszerelés:",
     "order": "Rendezés:"

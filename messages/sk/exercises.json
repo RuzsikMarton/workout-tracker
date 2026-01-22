@@ -1,6 +1,5 @@
 {
   "muscleGroups": {
-    "all": "Všetky",
     "chest": "Hrudník",
     "legs": "Nohy",
     "back": "Chrbát",
@@ -11,7 +10,6 @@
     "forearms": "Predlaktia"
   },
   "equipment": {
-    "all": "Všetko",
     "bodyweight": "Vlastná váha",
     "bench": "Lavica",
     "dumbbell": "Činka",

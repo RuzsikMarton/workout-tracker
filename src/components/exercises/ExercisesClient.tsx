@@ -10,22 +10,51 @@ import { useSearchParams } from "next/navigation";
 const ExercisesClient = () => {
   const t = useTranslations("ExercisesPage");
   const searchParams = useSearchParams();
-  const [filters, setFilters] = useState({
-    muscle: null as string[] | null,
-    equipment: null as string[] | null,
-  });
 
   const currentPage = parseInt(searchParams.get("page") || "1");
-  const pageSize = parseInt(searchParams.get("pageSize") || "10");
+  const limit = parseInt(searchParams.get("limit") || "10");
 
-  const [totalExercises, setTotalExercises] = useState(100);
-  const [isLoading, setIsLoading] = useState(false);
+  const [exercises, setExercises] = useState<any[]>([]);
+  const [totalExercises, setTotalExercises] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("Search params changed:", searchParams.toString());
-    console.log("Current page:", currentPage);
-  }, [searchParams, currentPage]);
+    const fetchExercises = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const params = new URLSearchParams({
+          page: currentPage.toString(),
+          pageSize: limit.toString(),
+        });
+
+        // adding filters if they exist
+        if (searchParams.get("muscle")) {
+          params.set("muscle", searchParams.get("muscle")!);
+        }
+        if (searchParams.get("equipment")) {
+          params.set("equipment", searchParams.get("equipment")!);
+        }
+        if (searchParams.get("sort")) {
+          params.set("sort", searchParams.get("sort")!);
+        }
+
+        const response = await fetch(`/api/exercises?${params.toString()}`);
+        if (!response.ok) throw new Error("Failed to fetch exercises");
+
+        const data = await response.json();
+        setExercises(data.data);
+        setTotalExercises(data.pagination.total);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchExercises();
+  }, [searchParams, currentPage, limit]);
 
   return (
     <div className="w-full">
@@ -37,11 +66,11 @@ const ExercisesClient = () => {
         </div>
       </div>
       <ExerciseFilter />
-      <ExerciseList isLoading={isLoading} error={error} />
+      <ExerciseList exercises={exercises} isLoading={isLoading} error={error} />
       <div className="w-full md:w-4/5 mx-auto mt-8 mb-4">
         <PaginationWithLinks
           page={currentPage}
-          pageSize={pageSize}
+          pageSize={limit}
           totalCount={totalExercises}
           //pageSizeSelectOptions={{ pageSizeOptions: [5, 10, 20] }}
         />
