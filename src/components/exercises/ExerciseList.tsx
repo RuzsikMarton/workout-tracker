@@ -2,13 +2,14 @@ import { AlertTriangle, SearchX } from "lucide-react";
 import ExerciseSkeleton from "./ExerciseSkeleton";
 import ExerciseCard from "./ExerciseCard";
 import { useTranslations } from "next-intl";
+import { ExercisePrisma } from "@/types";
 
 const ExerciseList = ({
   exercises,
   isLoading,
   error,
 }: {
-  exercises: any[];
+  exercises: ExercisePrisma[];
   isLoading: boolean;
   error: string | null;
 }) => {

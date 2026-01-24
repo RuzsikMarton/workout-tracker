@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
+import { Prisma } from "@prisma/client";
 
 export async function GET(req: NextRequest) {
     const session = await auth.api.getSession({ headers: req.headers });
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") || "10")));
     const skip = (page - 1) * limit;
     
-    const where: any = {};
+    const where: Prisma.ExerciseWhereInput = {};
     if (equipment) {
         where.equipment = { has: equipment };
     }

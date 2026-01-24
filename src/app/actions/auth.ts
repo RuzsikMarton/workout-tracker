@@ -24,14 +24,14 @@ export async function signUpAction(formData: SignUpInput): Promise<AuthActionRes
       },
     });
 
-    if ((result as any)?.error) {
+    if ((result as { error?: { message?: string } })?.error) {
       return { ok: false, message: (result as any).error.message ?? "Failed to sign up." };
     }
 
     return { ok: true };
     
-  } catch (error: any) {
-    const errorMessage = error?.message || "Failed to sign up. Please try again.";
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to sign up. Please try again.";
     return { ok: false, message: errorMessage };
   }
 }
@@ -52,13 +52,13 @@ export async function signInAction(formData : SignInInput): Promise<AuthActionRe
       },
     });
 
-    if ((result as any)?.error) {
+    if ((result as { error?: { message?: string } })?.error) {
       return { ok: false, message: (result as any).error.message ?? "Failed to sign in." };
     }
 
     return { ok: true};
-  } catch (error: any) {
-    const errorMessage = error?.message || "Failed to sign in. Please try again.";
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Failed to sign in. Please try again.";
     return { ok: false, message: errorMessage };
   }
 }

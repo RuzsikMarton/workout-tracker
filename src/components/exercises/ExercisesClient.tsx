@@ -6,6 +6,7 @@ import ExerciseList from "./ExerciseList";
 import { useTranslations } from "next-intl";
 import { PaginationWithLinks } from "../ui/pagination-with-links";
 import { useSearchParams } from "next/navigation";
+import { ExercisePrisma } from "@/types";
 
 const ExercisesClient = () => {
   const t = useTranslations("ExercisesPage");
@@ -14,7 +15,7 @@ const ExercisesClient = () => {
   const currentPage = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "10");
 
-  const [exercises, setExercises] = useState<any[]>([]);
+  const [exercises, setExercises] = useState<ExercisePrisma[]>([]);
   const [totalExercises, setTotalExercises] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -91,9 +91,11 @@
     "equipment": "Equipment:"
   },
   "ExercisePage": {
-    "muscle": "Target Muscle:",
-    "equipment": "Equipment:",
-    "description": "Overview",
+    "loading": "Loading exercise...",
+    "error": "Something went wrong while loading the exercise. Please try again.",
+    "muscleLabel": "Target Muscle:",
+    "equipmentLabel": "Equipment:",
+    "descriptionLabel": "Overview",
     "imgAlt": "Exercise demonstration IMG",
     "button": "Add to Workout"
   }

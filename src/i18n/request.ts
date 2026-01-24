@@ -3,9 +3,9 @@ import { routing } from "./routing";
 import { hasLocale } from "next-intl";
 
 export default getRequestConfig(
-  async ({ requestLocale }): Promise<{ locale: string; messages: any }> => {
+  async ({ requestLocale }): Promise<{ locale: string; messages: Record<string, unknown> }> => {
     const requested = await requestLocale;
-    let locale = hasLocale(routing.locales, requested)
+    const locale = hasLocale(routing.locales, requested)
       ? requested
       : routing.defaultLocale;
 

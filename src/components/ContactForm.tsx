@@ -10,11 +10,13 @@ const ContactForm = () => {
 
   const t = useTranslations("ContactForm");
 
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     setError("");
     event.preventDefault();
     setResult(t("sending"));
-    const formData = new FormData(event.target);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
@@ -33,7 +35,7 @@ const ContactForm = () => {
     const data = await response.json();
     if (data.success) {
       setResult(t("successMessage"));
-      event.target.reset();
+      form.reset();
     } else {
       setError(t("errorMessage"));
     }

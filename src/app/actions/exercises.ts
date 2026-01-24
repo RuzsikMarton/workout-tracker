@@ -30,12 +30,12 @@ export async function createExerciseAction(formData: CreateExerciseData): Promis
             },
         })
 
-        if ((res as any)?.error) {
+        if ((res as { error?: { message?: string } })?.error) {
             return { ok: false, message: (res as any).error.message ?? "Failed to create exercise." };
         }
         return { ok: true };
-    } catch (error: any) {
-        const errorMessage = error?.message || "Failed to create exercise. Please try again.";
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Failed to create exercise. Please try again.";
         return { ok: false, message: errorMessage };
     }
 }

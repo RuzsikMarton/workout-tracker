@@ -91,9 +91,11 @@
     "equipment": "Felszerelés:"
   },
   "ExercisePage": {
-    "muscleGroup": "Izomcsoport",
-    "equipment": "Felszerelés",
-    "description": "Leírás",
+    "loading": "Gyakorlat betöltése...",
+    "error": "Hiba történt a gyakorlat betöltésekor. Kérjük, próbáld meg újra.",
+    "muscleLabel": "Izomcsoport:",
+    "equipmentLabel": "Felszerelés:",
+    "descriptionLabel": "Leírás",
     "imgAlt": "Gyakorlat bemutató GIF",
     "button": "Hozzáadás az edzéshez"
   }

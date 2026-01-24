@@ -91,9 +91,11 @@
     "equipment": "Vybavenie:"
   },
   "ExercisePage": {
-    "muscle": "Cieľová svalová skupina:",
-    "equipment": "Vybavenie:",
-    "description": "Prehľad",
+    "loading": "Načítava sa cvik...",
+    "error": "Nastala chyba pri načítavaní cviku. Skúste to prosím znova.",
+    "muscleLabel": "Cieľová svalová skupina:",
+    "equipmentLabel": "Vybavenie:",
+    "descriptionLabel": "Prehľad",
     "imgAlt": "Ukážka cvičenia IMG",
     "button": "Pridať do tréningu"
   }

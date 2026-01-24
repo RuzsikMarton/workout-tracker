@@ -8,22 +8,14 @@ interface ClientProvidersProps {
 }
 
 const ClientProviders = ({ children }: ClientProvidersProps) => {
-  const [ismounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    queueMicrotask(() => setIsMounted(true));
   }, []);
 
-  if (!ismounted) {
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange={false}
-    >
-      {children}
-    </ThemeProvider>;
-  }
+  if (!isMounted) return null;
+
   return (
     <ThemeProvider
       attribute="class"

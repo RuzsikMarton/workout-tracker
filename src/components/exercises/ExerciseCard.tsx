@@ -32,7 +32,7 @@ const ExerciseCard = ({ exercise }: { exercise: Exercise }) => {
       </div>
       <div>{/* Placeholder for an image or illustration */}</div>
       <div className="flex gap-2">
-        <Link href={`/exercises/${exercise.id}`}>
+        <Link href={`/exercises/${exercise.name}`}>
           <Button variant="outline" className="h-10 w-30 rounded-md">
             <Info /> {tC("details")}
           </Button>
