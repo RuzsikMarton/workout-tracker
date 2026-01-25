@@ -133,12 +133,9 @@ model ExerciseSet {
   id                String          @id @default(cuid())
   workoutExerciseId String
   setNumber         Int // 1st set, 2nd set, etc.
-  reps              Int? // Number of repetitions
-  weight            Float? // Weight used (in kg or lbs)
-  duration          Int? // Duration in seconds (for time-based exercises)
-  distance          Float? // Distance (for cardio exercises)
-  restTime          Int? // Rest time in seconds
-  completed         Boolean         @default(false)
+  reps              Int
+  weight            Float
+  //completed         Boolean         @default(false)
   workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt

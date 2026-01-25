@@ -13,12 +13,21 @@ export default getRequestConfig(
     try {
       // Load all message files for the locale
       const common = (await import(`../../messages/${locale}/common.json`)).default;
-      const exercises = (await import(`../../messages/${locale}/exercises.json`)).default;
-      
+      //const exercises = (await import(`../../messages/${locale}/exercises.json`)).default;
+
+      // Fetch translations from remote source
+      {/*const [resCommon, resExercises] = await Promise.all([
+        fetch(`${process.env.I18N_URL}${locale}/common.json`, { next: { revalidate: 600 } }),
+        fetch(`${process.env.I18N_URL}${locale}/exercises.json`, { next: { revalidate: 600 } })
+      ]);*/}
+
+      const resExercises = await fetch(`${process.env.I18N_URL}${locale}/exercises.json`, { next: { revalidate: 600 } });
+      //const remoteCommon = resCommon.ok ? await resCommon.json() : {};
+      const remoteExercises = resExercises.ok ? await resExercises.json() : {};
       // Merge all message files
       messages = {
         ...common,
-        ...exercises,
+        ...remoteExercises,
       };
     } catch {
       // Fallback to default locale
