@@ -77,7 +77,7 @@ const AddExerciseForm = () => {
     setSuccessMessage(null);
 
     try {
-      // Upload image first if file is selected
+      // upload image
       if (selectedFile) {
         setIsUploading(true);
         const imageUrl = await uploadImageToCloudinary(selectedFile);
@@ -85,7 +85,7 @@ const AddExerciseForm = () => {
         setIsUploading(false);
       }
 
-      // Create exercise with image URL
+      // create exercise
       const res = await createExerciseAction(formData);
       if (!res.ok) {
         setError("root", { message: res.message });

@@ -98,5 +98,23 @@
     "descriptionLabel": "Leírás",
     "imgAlt": "Gyakorlat bemutató GIF",
     "button": "Hozzáadás az edzéshez"
+  },
+  "PersonalBestCard": {
+    "title": "Személyes rekord",
+    "noData": "Még nincs személyes rekord ehhez a gyakorlathoz.",
+    "dateLabel": "Dátum:",
+    "setLabel": "Sorozat",
+    "repsLabel": "Ismétlések",
+    "weightLabel": "Súly",
+    "volumeLabel": "Összmunka"
+  },
+  "LastExerciseCard": {
+    "title": "Legutóbbi edzés",
+    "noData": "Még nincs rögzített edzés ehhez a gyakorlathoz.",
+    "dateLabel": "Dátum:",
+    "setLabel": "Sorozat",
+    "repsLabel": "Ismétlések",
+    "weightLabel": "Súly",
+    "volumeLabel": "Összmunka"
   }
 }

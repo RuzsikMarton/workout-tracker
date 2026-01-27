@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import AddToWorkoutButton from "./AddToWorkoutButton";
+import AddToWorkoutButton from "../AddToWorkoutButton";
 import { ExercisePrisma } from "@/types";
 
 const ExercisePageCard = (exercise: ExercisePrisma) => {

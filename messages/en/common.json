@@ -98,5 +98,23 @@
     "descriptionLabel": "Overview",
     "imgAlt": "Exercise demonstration IMG",
     "button": "Add to Workout"
+  },
+  "PersonalBestCard": {
+    "title": "Personal Bests",
+    "noData": "No personal bests recorded yet.",
+    "dateLabel": "Date:",
+    "setLabel": "Sets",
+    "repsLabel": "Reps",
+    "weightLabel": "Weight",
+    "volumeLabel": "Volume"
+  },
+  "LastExerciseCard": {
+    "title": "Last Exercise",
+    "noData": "No exercises logged yet.",
+    "dateLabel": "Date:",
+    "setLabel": "Sets",
+    "repsLabel": "Reps",
+    "weightLabel": "Weight",
+    "volumeLabel": "Volume"
   }
 }

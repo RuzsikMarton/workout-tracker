@@ -98,5 +98,23 @@
     "descriptionLabel": "Prehľad",
     "imgAlt": "Ukážka cvičenia IMG",
     "button": "Pridať do tréningu"
+  },
+  "PersonalBestCard": {
+    "title": "Osobné rekordy",
+    "noData": "Zatiaľ neboli zaznamenané žiadne osobné rekordy.",
+    "dateLabel": "Dátum",
+    "setLabel": "Séria",
+    "repsLabel": "Opakovania",
+    "weightLabel": "Váha (kg)",
+    "volumeLabel": "Objem (kg)"
+  },
+  "LastExerciseCard": {
+    "title": "Posledný tréning",
+    "noData": "Zatiaľ neboli zaznamenané žiadne tréningy.",
+    "dateLabel": "Dátum",
+    "setLabel": "Séria",
+    "repsLabel": "Opakovania",
+    "weightLabel": "Váha (kg)",
+    "volumeLabel": "Objem (kg)"
   }
 }

@@ -1,6 +1,37 @@
-import ExercisePageCard from "@/components/exercises/ExercisePageCard";
+import ExercisePageCard from "@/components/exercises/exercisepage/ExercisePageCard";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import ExerciseSessionStatCard from "@/components/exercises/exercisepage/ExerciseSessionStatCard";
+
+const exerciseSets = [
+  {
+    id: "1",
+    setNumber: 1,
+    reps: 10,
+    weight: 100,
+    workoutExerciseId: "we1",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "2",
+    setNumber: 2,
+    reps: 8,
+    weight: 120,
+    workoutExerciseId: "we1",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: "3",
+    setNumber: 3,
+    reps: 6,
+    weight: 140,
+    workoutExerciseId: "we1",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
 
 const ExercisePage = async ({
   params,
@@ -18,6 +49,18 @@ const ExercisePage = async ({
   return (
     <main className="min-h-screen font-sans pt-28 dark:bg-secondary">
       <ExercisePageCard {...exercise} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-16 py-6">
+        <ExerciseSessionStatCard
+          key={"personal-best"}
+          type="PersonalBestCard"
+          workoutExercise={exerciseSets}
+        />
+        <ExerciseSessionStatCard
+          key={"last-exercise"}
+          type="LastExerciseCard"
+          workoutExercise={exerciseSets}
+        />
+      </div>
     </main>
   );
 };
