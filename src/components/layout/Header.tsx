@@ -105,6 +105,9 @@ const Header = ({ publicSession }: HeaderProps) => {
                       <DropdownMenuSeparator />
                       <DropdownMenuLabel>Admin</DropdownMenuLabel>
                       <DropdownMenuItem asChild>
+                        <Link href="/admin/users">Users</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
                         <Link href="/exercises/new">Add exercise</Link>
                       </DropdownMenuItem>
                     </>

@@ -33,3 +33,24 @@ export async function hasRole(role: Role) {
   const userRole = await getCurrentUserRole();
   return userRole === role;
 }
+
+export async function getSessionFromHeaders(h: Headers) {
+  return auth.api.getSession({ headers: h });
+}
+
+export async function getRoleFromHeaders(h: Headers): Promise<Role | null> {
+  const session = await getSessionFromHeaders(h);
+  return (session?.role as Role) ?? null;
+}
+
+export async function isAdminFromHeaders(h: Headers) {
+  const role = await getRoleFromHeaders(h);
+  return role === "ADMIN";
+}
+
+export async function requireRoleFromHeaders(h: Headers, requiredRole: Role) {
+  const role = await getRoleFromHeaders(h);
+  if (!role) return { ok: false as const, status: 401, error: "Not authenticated" };
+  if (role !== requiredRole) return { ok: false as const, status: 403, error: "Forbidden" };
+  return { ok: true as const };
+}
