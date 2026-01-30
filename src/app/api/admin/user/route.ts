@@ -69,7 +69,6 @@ export async function PATCH(req: NextRequest) {
                 status: 400,
             });
         }
-        console.log("Received updates:", updates);
         for (const update of updates) {
             if (!update.userId || !update.newRole) {
                 return NextResponse.json({ 
@@ -130,8 +129,7 @@ export async function DELETE(req: NextRequest) {
             return tx.user.deleteMany({
                 where: { id: { in: userIds } },
             });
-        })
-        console.log("Deleted users:", results);
+        });
         return NextResponse.json({ 
             message : "Users deleted successfully"
         }, { status: 200 });

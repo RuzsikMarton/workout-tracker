@@ -29,9 +29,7 @@ export async function GET(req: NextRequest) {
         where.muscleGroup = { has: muscleGroup };
     }
     
-    // Get total count for pagination
-    const totalCount = await prisma.exercise.count({ where });
-    
+    const totalCount = await prisma.exercise.count({ where });  
     // Fetch paginated exercises
     const exercises = await prisma.exercise.findMany({
         where,
