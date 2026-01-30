@@ -19,49 +19,5 @@
     "pull-up-bar": "Pull-up Bar",
     "cable": "Cable",
     "none": "None"
-  },
-  "bench-press": {
-    "name": "Bench Press",
-    "description": "The bench press is a compound exercise that targets the chest, shoulders, and triceps."
-  },
-  "push-up": {
-    "name": "Push Ups",
-    "description": "Push-ups are a bodyweight exercise that strengthens the chest, shoulders, and core."
-  },
-  "squat": {
-    "name": "Squats",
-    "description": "The squat is a fundamental lower body exercise targeting the quadriceps, hamstrings, and glutes."
-  },
-  "deadlift": {
-    "name": "Deadlift",
-    "description": "The deadlift is a compound exercise that targets the entire posterior chain, including the back, glutes, and hamstrings."
-  },
-  "lat-pulldown": {
-    "name": "Lat Pulldown",
-    "description": "The lat pulldown is an exercise that targets the latissimus dorsi muscles in the back."
-  },
-  "seated-cable-row": {
-    "name": "Seated Cable Row",
-    "description": "The seated cable row is an exercise that targets the muscles of the upper back and biceps."
-  },
-  "closegrip-cable-row": {
-    "name": "Close-Grip Cable Row",
-    "description": "The close-grip cable row is an exercise that targets the middle back and biceps using a close grip."
-  },
-  "pushdown": {
-    "name": "Tricep Pushdown",
-    "description": "The tricep pushdown is an isolation exercise that targets the triceps muscles using a cable machine."
-  },
-  "dumbbell-curl": {
-    "name": "Dumbbell Curl",
-    "description": "The dumbbell curl is an isolation exercise that targets the biceps muscles using dumbbells."
-  },
-  "barbell-curl": {
-    "name": "Barbell Curl",
-    "description": "The barbell curl is an isolation exercise that targets the biceps muscles using a barbell."
-  },
-  "dumbbell-lateral-raise": {
-    "name": "Dumbbell Lateral Raise",
-    "description": "The dumbbell lateral raise is an isolation exercise that targets the shoulder muscles, specifically the lateral deltoids."
   }
 }

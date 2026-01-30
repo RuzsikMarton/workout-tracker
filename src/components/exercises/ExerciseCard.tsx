@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Info, Plus } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const ExerciseCard = ({ exercise }: { exercise: Exercise }) => {
   const t = useTranslations(exercise.name);
@@ -30,7 +31,17 @@ const ExerciseCard = ({ exercise }: { exercise: Exercise }) => {
           </span>
         </p>
       </div>
-      <div>{/* Placeholder for an image or illustration */}</div>
+      {exercise.imgUrl && (
+        <div className="relative w-16 h-16 md:w-20 md:h-20 shrink-0">
+          <Image
+            src={exercise.imgUrl}
+            alt={t("name")}
+            fill
+            className="rounded-md object-cover"
+            unoptimized
+          />
+        </div>
+      )}
       <div className="flex gap-2">
         <Link href={`/exercises/${exercise.name}`}>
           <Button variant="outline" className="h-10 w-30 rounded-md">

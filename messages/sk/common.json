@@ -70,7 +70,8 @@
     "feature3Desc": "Získajte prehľady o svojom výkone a identifikujte oblasti na zlepšenie."
   },
     "ExercisesPage": {
-    "title": "Cviky"
+    "title": "Cviky",
+    "imgAlt": "Ukážka cvičenia IMG"
   },  
   "FilterBar": {
     "showall": "Zobraziť všetko",

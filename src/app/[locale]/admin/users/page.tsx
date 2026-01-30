@@ -34,7 +34,7 @@ const UsersPage = async ({
   try {
     const url = new URL(
       "/api/admin/user",
-      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
     );
     if (search) {
       url.searchParams.set("search", search);

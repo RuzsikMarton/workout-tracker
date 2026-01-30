@@ -70,7 +70,8 @@
     "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics." 
   },
     "ExercisesPage": {
-    "title": "Exercises"
+    "title": "Exercises",
+    "imgAlt": "Exercises illustration IMG"
   },
   "FilterBar": {
     "showall": "Show All",

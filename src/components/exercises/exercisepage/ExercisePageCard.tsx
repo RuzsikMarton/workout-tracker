@@ -32,7 +32,7 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
           <div className="space-y-4 flex flex-col items-center">
             <div className="relative w-full max-w-md aspect-square">
               <Image
-                src={exercise.imgUrl || "/logo.png"}
+                src={exercise.imgUrl || "/logo.webp"}
                 alt={tPage("imgAlt")}
                 fill
                 className="rounded-md object-cover"

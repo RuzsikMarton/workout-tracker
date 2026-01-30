@@ -70,7 +70,8 @@
     "feature3Desc": "Kövesd nyomon fejlődésedet személyes rekordok és teljesítményelemzések segítségével."
   },
     "ExercisesPage": {
-    "title": "Gyakorlatok"
+    "title": "Gyakorlatok",
+    "imgAlt": "Gyakorlatok illusztráció IMG"
   },  
   "FilterBar": {
     "showall": "Összes mutatása",

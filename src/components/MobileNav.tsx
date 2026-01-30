@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname } from "@/i18n/navigation";
 import { NavigationProps } from "@/types";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface MobileNavProps extends NavigationProps {
   ComponentStyles: string;

@@ -63,8 +63,8 @@ const Header = ({ publicSession }: HeaderProps) => {
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <Link href="/" className="flex items-center">
           <Image
-            src="/logo.png"
-            alt="Workout Tracker Logo"
+            src="/logo.webp"
+            alt="Workout Tracker"
             width={120}
             height={50}
             priority
