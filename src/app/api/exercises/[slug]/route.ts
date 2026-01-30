@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest , { params }: { params: { slug: string } }) {
+export async function GET(req: NextRequest , { params }: { params:  Promise<{ slug: string }> }) {
         const session = await auth.api.getSession({ headers: req.headers });
         if (!session?.user) {
             return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest , { params }: { params: { slug: strin
             });
         }
 
-        const { slug } = params;
+        const { slug } = await params;
         slug.trim();
 
         const exercise = await prisma.exercise.findUnique({
