@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
     
     // pagination
     const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") || "10")));
-    const skip = (page - 1) * limit;
+    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get("pageSize") || "10")));
+    const skip = (page - 1) * pageSize;
     
     const where: Prisma.ExerciseWhereInput = {};
     if (equipment) {
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
             name: orderBy === "asc" ? "asc" : "desc",
         },
         skip,
-        take: limit,
+        take: pageSize,
     });
     
     return new Response(JSON.stringify({
@@ -45,8 +45,8 @@ export async function GET(req: NextRequest) {
         pagination: {
             total: totalCount,
             page,
-            pageSize: limit,
-            totalPages: Math.ceil(totalCount / limit),
+            pageSize: pageSize,
+            totalPages: Math.ceil(totalCount / pageSize),
         }
     }), {
         status: 200,

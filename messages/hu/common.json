@@ -1,7 +1,12 @@
 {
   "metadata": {
     "title": "Workout Tracker",
-    "description": "A Workout Tracker az ultimát fitnesz társad. Naplózd edzéseidet, kövesd nyomon fejlődésed, és érd el fitnesz céljaid könnyedén."
+    "description": "A Workout Tracker az ultimát fitnesz társad. Naplózd edzéseidet, kövesd nyomon fejlődésed, és érd el fitnesz céljaid könnyedén.",
+    "workouts": "WT | Edzések",
+    "exercises": "WT | Gyakorlatok",
+    "contact": "WT | Kapcsolat",
+    "signin": "WT | Bejelentkezés",
+    "signup": "WT | Regisztráció"
   },
   "Nav": {
     "home": "Kezdőlap",

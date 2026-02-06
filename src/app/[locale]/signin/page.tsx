@@ -1,5 +1,19 @@
 import SignInForm from "@/components/auth/SignInForm";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("signin"),
+  };
+}
 
 export default function SignInPage() {
   const t = useTranslations("SignIn");

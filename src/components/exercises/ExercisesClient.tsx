@@ -13,7 +13,7 @@ const ExercisesClient = () => {
   const searchParams = useSearchParams();
 
   const currentPage = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "10");
+  const pageSize = parseInt(searchParams.get("pageSize") || "10");
 
   const [exercises, setExercises] = useState<ExercisePrisma[]>([]);
   const [totalExercises, setTotalExercises] = useState(0);
@@ -27,7 +27,7 @@ const ExercisesClient = () => {
       try {
         const params = new URLSearchParams({
           page: currentPage.toString(),
-          pageSize: limit.toString(),
+          pageSize: pageSize.toString(),
         });
 
         // adding filters if they exist
@@ -55,7 +55,7 @@ const ExercisesClient = () => {
     };
 
     fetchExercises();
-  }, [searchParams, currentPage, limit]);
+  }, [searchParams, currentPage, pageSize]);
 
   return (
     <div className="w-full">
@@ -71,7 +71,7 @@ const ExercisesClient = () => {
       <div className="w-full md:w-4/5 mx-auto mt-8 mb-4">
         <PaginationWithLinks
           page={currentPage}
-          pageSize={limit}
+          pageSize={pageSize}
           totalCount={totalExercises}
           //pageSizeSelectOptions={{ pageSizeOptions: [5, 10, 20] }}
         />

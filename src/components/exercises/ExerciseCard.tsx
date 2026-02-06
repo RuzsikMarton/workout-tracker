@@ -13,8 +13,8 @@ const ExerciseCard = ({ exercise }: { exercise: Exercise }) => {
   const tMuscle = useTranslations("muscleGroups");
   const tEquipment = useTranslations("equipment");
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center space-x-4 px-4 w-full lg:w-4/5 mx-auto py-4 justify-between gap-4 border-b">
-      <div>
+    <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] sm:gap-16 gap-4 items-center px-4 w-full lg:w-4/5 mx-auto py-4 border-b">
+      <div className="min-w-0">
         <p className="text-lg font-semibold text-red-700 uppercase font-stretch-50%">
           {t("name")}
         </p>
@@ -42,7 +42,7 @@ const ExerciseCard = ({ exercise }: { exercise: Exercise }) => {
           />
         </div>
       )}
-      <div className="flex gap-2">
+      <div className="flex gap-2 shrink-0">
         <Link href={`/exercises/${exercise.name}`}>
           <Button variant="outline" className="h-10 w-30 rounded-md">
             <Info /> {tC("details")}

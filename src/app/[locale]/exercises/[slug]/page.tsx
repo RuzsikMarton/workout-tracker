@@ -2,6 +2,26 @@ import ExercisePageCard from "@/components/exercises/exercisepage/ExercisePageCa
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import ExerciseSessionStatCard from "@/components/exercises/exercisepage/ExerciseSessionStatCard";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale } = await params;
+  const slug = (await params).slug;
+  const t = await getTranslations({
+    locale,
+    namespace: slug.toLocaleLowerCase().trim(),
+  });
+
+  const title = "WT | " + t("name");
+
+  return {
+    title,
+  };
+}
 
 const exerciseSets = [
   {

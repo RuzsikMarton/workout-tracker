@@ -1,7 +1,12 @@
 {
   "metadata": {
     "title": "Workout Tracker",
-    "description": "Workout Tracker is your ultimate fitness companion. Log workouts, monitor progress, and achieve your fitness goals with ease."
+    "description": "Workout Tracker is your ultimate fitness companion. Log workouts, monitor progress, and achieve your fitness goals with ease.",
+    "workouts": "WT | Workouts",
+    "exercises": "WT | Exercises",
+    "contact": "WT | Contact",
+    "signin": "WT | Sign In",
+    "signup": "WT | Sign Up"
   },
   "Nav": {
     "home": "Home",

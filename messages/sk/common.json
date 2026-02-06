@@ -1,7 +1,12 @@
 {
   "metadata": {
     "title": "Workout Tracker",
-    "description": "Workout Tracker je váš ultimátny fitnes spoločník. Zaznamenávajte si svoje tréningy, sledujte svoj pokrok a dosahujte svoje fitnes ciele ľahko."
+    "description": "Workout Tracker je váš ultimátny fitnes spoločník. Zaznamenávajte si svoje tréningy, sledujte svoj pokrok a dosahujte svoje fitnes ciele ľahko.",
+    "workouts": "WT | Tréningy",
+    "exercises": "WT | Cviky",
+    "contact": "WT | Kontakt",
+    "signin": "WT | Prihlásiť sa",
+    "signup": "WT | Registrovať sa"
   },
   "Nav": {
     "home": "Domov",

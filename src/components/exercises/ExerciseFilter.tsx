@@ -16,6 +16,8 @@ const ExerciseFilter = () => {
   const handleChange = (value: string, param: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(param, value);
+    // Reset to page 1 when filters change
+    params.set("page", "1");
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 

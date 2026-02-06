@@ -1,7 +1,21 @@
 import ContactForm from "@/components/ContactForm";
 import { Link, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { FaFacebook, FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("contact"),
+  };
+}
 
 const ContactPage = () => {
   const t = useTranslations("Contact");
