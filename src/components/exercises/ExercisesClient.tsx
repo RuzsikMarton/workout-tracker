@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import ExerciseFilter from "./ExerciseFilter";
 import ExerciseList from "./ExerciseList";
 import { useTranslations } from "next-intl";
@@ -8,6 +7,7 @@ import { PaginationWithLinks } from "../ui/pagination-with-links";
 import { useSearchParams } from "next/navigation";
 import { ExercisePrisma } from "@/types";
 import PageTitle from "../PageTitle";
+import { ExercisesContainer } from "./ExercisesContainer";
 
 const ExercisesClient = ({
   exercises,
@@ -25,20 +25,24 @@ const ExercisesClient = ({
   const pageSize = parseInt(searchParams.get("pageSize") || "10");
 
   return (
-    <div className="w-full">
-      <PageTitle title={t("title")} />
-      <ExerciseFilter />
-      <ExerciseList exercises={exercises} error={error} />
-      <div className="w-full md:w-4/5 mx-auto mt-8 mb-4">
-        <PaginationWithLinks
-          page={currentPage}
-          pageSize={pageSize}
-          totalCount={totalExercises}
-          navigationMode="router"
-          //pageSizeSelectOptions={{ pageSizeOptions: [5, 10, 20] }}
-        />
+    <ExercisesContainer>
+      <div className="w-full">
+        <PageTitle title={t("title")} />
+        <ExerciseFilter />
+        <div className="relative">
+          <ExerciseList exercises={exercises} error={error} />
+        </div>
+        <div className="w-full md:w-4/5 mx-auto mt-8 mb-4">
+          <PaginationWithLinks
+            page={currentPage}
+            pageSize={pageSize}
+            totalCount={totalExercises}
+            navigationMode="router"
+            //pageSizeSelectOptions={{ pageSizeOptions: [5, 10, 20] }}
+          />
+        </div>
       </div>
-    </div>
+    </ExercisesContainer>
   );
 };
 

@@ -74,9 +74,10 @@
     "feature3Title": "Fejlődéskövetés",
     "feature3Desc": "Kövesd nyomon fejlődésedet személyes rekordok és teljesítményelemzések segítségével."
   },
-    "ExercisesPage": {
+  "ExercisesPage": {
     "title": "Gyakorlatok",
-    "imgAlt": "Gyakorlatok illusztráció IMG"
+    "imgAlt": "Gyakorlatok illusztráció IMG",
+    "loading": "Gyakorlatok betöltése..."
   },  
   "FilterBar": {
     "showall": "Összes mutatása",

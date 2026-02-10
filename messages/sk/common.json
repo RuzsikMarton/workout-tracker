@@ -74,9 +74,10 @@
     "feature3Title": "Analytika výkonu",
     "feature3Desc": "Získajte prehľady o svojom výkone a identifikujte oblasti na zlepšenie."
   },
-    "ExercisesPage": {
+  "ExercisesPage": {
     "title": "Cviky",
-    "imgAlt": "Ukážka cvičenia IMG"
+    "imgAlt": "Ukážka cvičenia IMG",
+    "loading": "Načítavajú sa cviky..."
   },  
   "FilterBar": {
     "showall": "Zobraziť všetko",

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { ThemeProvider } from "./ThemeProvider";
 
 interface ClientProvidersProps {
@@ -8,20 +8,12 @@ interface ClientProvidersProps {
 }
 
 const ClientProviders = ({ children }: ClientProvidersProps) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    queueMicrotask(() => setIsMounted(true));
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
       enableSystem
-      disableTransitionOnChange={false}
+      disableTransitionOnChange
     >
       {children}
     </ThemeProvider>

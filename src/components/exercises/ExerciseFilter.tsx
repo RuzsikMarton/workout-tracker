@@ -4,6 +4,7 @@ import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
+import { useExercisesTransition } from "./ExercisesContainer";
 
 const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("FilterBar");
@@ -12,17 +13,22 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { isPending, startTransition } = useExercisesTransition();
 
   const handleChange = (value: string, param: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(param, value);
     // Reset to page 1 when filters change
     params.set("page", "1");
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    startTransition(() => {
+      router.push(`${pathname}?${params.toString()}`);
+    });
   };
 
   const handleReset = () => {
-    router.push(pathname, { scroll: false });
+    startTransition(() => {
+      router.push(pathname);
+    });
   };
 
   // Check if any filters are active
@@ -30,10 +36,13 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
     searchParams.get("muscle") ||
     searchParams.get("equipment") ||
     searchParams.get("sort");
+
+  const isDisabled = disabled || isPending;
+
   return (
     <section className="py-8 bg-subtitle">
       <div
-        className={`flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${disabled ? "opacity-60 pointer-events-none" : ""}`}
+        className={`flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${isDisabled ? "opacity-60 pointer-events-none" : ""}`}
       >
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
@@ -43,7 +52,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
             <select
               onChange={(e) => handleChange(e.target.value, "muscle")}
               value={searchParams.get("muscle") || ""}
-              disabled={disabled}
+              disabled={isDisabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value="" disabled hidden>
@@ -63,7 +72,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
             <select
               onChange={(e) => handleChange(e.target.value, "equipment")}
               value={searchParams.get("equipment") || ""}
-              disabled={disabled}
+              disabled={isDisabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value="" disabled hidden>
@@ -85,7 +94,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
             <select
               onChange={(e) => handleChange(e.target.value, "sort")}
               value={searchParams.get("sort") || "asc"}
-              disabled={disabled}
+              disabled={isDisabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value={"asc"}>A-Z</option>
@@ -95,7 +104,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
           {hasActiveFilters && (
             <button
               onClick={handleReset}
-              disabled={disabled}
+              disabled={isDisabled}
               className="p-2 rounded-full hover:bg-red-600/20 transition-colors text-red-600 dark:text-red-500"
               aria-label="Clear filters"
             >

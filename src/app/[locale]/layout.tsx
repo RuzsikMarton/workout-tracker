@@ -8,6 +8,7 @@ import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import { getMessages, getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -57,10 +58,9 @@ async function LayoutContent({
     >
       <Suspense
         fallback={
-          <div className="min-h-screen bg-background flex items-center justify-center">
-            <div className="flex flex-col items-center space-y-4">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-              <p className="text-sm text-muted-foreground">Loading...</p>
+          <div className="page-main bg-secondary">
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <LoadingSpinner />
             </div>
           </div>
         }
@@ -92,9 +92,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     >
       <Suspense
         fallback={
-          <body className="min-h-screen bg-background">
-            <div className="min-h-screen bg-background flex items-center justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          <body className="min-h-screen bg-secondary">
+            <div className="min-h-screen bg-secondary flex items-center justify-center">
+              <LoadingSpinner />
             </div>
           </body>
         }
