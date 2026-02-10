@@ -1,26 +1,16 @@
 import { AlertTriangle, SearchX } from "lucide-react";
-import ExerciseSkeleton from "./ExerciseSkeleton";
 import ExerciseCard from "./ExerciseCard";
 import { useTranslations } from "next-intl";
 import { ExercisePrisma } from "@/types";
 
 const ExerciseList = ({
   exercises,
-  isLoading,
   error,
 }: {
   exercises: ExercisePrisma[];
-  isLoading: boolean;
   error: string | null;
 }) => {
   const t = useTranslations("ExerciseList");
-  if (isLoading) {
-    return (
-      <div className="space-y-4">
-        <ExerciseSkeleton />
-      </div>
-    );
-  }
   if (error) {
     return (
       <div className="w-4/5 mx-auto mt-4 rounded-xl border p-6 text-center">

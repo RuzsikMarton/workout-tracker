@@ -5,6 +5,10 @@ import { PaginationWithLinks } from "../ui/pagination-with-links";
 import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Save, Trash2 } from "lucide-react";
+import {
+  deleteUsersAdmin,
+  updateUserRolesAdmin,
+} from "@/lib/actions/adminUsers";
 
 const UsersList = ({
   users,
@@ -77,21 +81,10 @@ const UsersList = ({
     try {
       const updates = Object.entries(changedRoles).map(([userId, newRole]) => ({
         userId,
-        newRole,
+        newRole: newRole as "USER" | "ADMIN",
       }));
 
-      const response = await fetch("/api/admin/user", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ updates }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to update roles");
-      }
+      await updateUserRolesAdmin(updates);
       setChangedRoles({});
       setSuccess(
         `Successfully updated ${updates.length} user role${updates.length > 1 ? "s" : ""}!`,
@@ -109,24 +102,17 @@ const UsersList = ({
     setDeleting(true);
     setError(null);
     setSuccess(null);
+    const ids = Array.from(selectedUsers);
     const count = selectedUsers.size;
     try {
-      const res = await fetch("/api/admin/user", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userIds: Array.from(selectedUsers) }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Failed to delete users");
+      await deleteUsersAdmin(ids);
 
       setSelectedUsers(new Set());
       setChangedRoles({});
       setSuccess(`Successfully deleted ${count} user${count > 1 ? "s" : ""}!`);
       setTimeout(() => setSuccess(null), 3000);
       router.refresh();
-    } catch (err: any) {
+    } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete users.");
     } finally {
       setDeleting(false);

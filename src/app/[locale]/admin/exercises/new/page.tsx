@@ -1,4 +1,4 @@
-import AddExerciseForm from "@/components/exercises/AddExerciseForm";
+import AddExerciseForm from "@/components/admin/AddExerciseForm";
 import { requireRole } from "@/lib/user-role";
 
 const NewExercisePage = async () => {

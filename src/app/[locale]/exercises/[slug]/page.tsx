@@ -1,8 +1,8 @@
 import ExercisePageCard from "@/components/exercises/exercisepage/ExercisePageCard";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import ExerciseSessionStatCard from "@/components/exercises/exercisepage/ExerciseSessionStatCard";
 import { getTranslations } from "next-intl/server";
+import { getExercise } from "@/lib/data/getExercises";
 
 export async function generateMetadata({
   params,
@@ -60,9 +60,7 @@ const ExercisePage = async ({
 }) => {
   const { slug } = await params;
 
-  const exercise = await prisma.exercise.findUnique({
-    where: { name: slug.toLocaleLowerCase().trim() },
-  });
+  const exercise = await getExercise({ slug });
   if (!exercise) {
     notFound();
   }

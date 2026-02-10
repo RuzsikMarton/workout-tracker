@@ -3,12 +3,14 @@
 import { NavigationProps } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 interface MobileNavProps extends NavigationProps {
   ComponentStyles: string;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
-const MobileNav = ({ data, ComponentStyles }: MobileNavProps) => {
+const MobileNav = ({ data, ComponentStyles, setIsOpen }: MobileNavProps) => {
   const navLinks = [
     { name: data.home, href: "/" },
     { name: data.workouts, href: "/workouts" },
@@ -20,6 +22,10 @@ const MobileNav = ({ data, ComponentStyles }: MobileNavProps) => {
   const isActive = (href: string) => {
     return pathname === href;
   };
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname, setIsOpen]);
 
   return (
     <nav className={ComponentStyles}>

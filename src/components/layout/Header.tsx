@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { LogOut, Menu, User } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { signOutAction } from "@/app/actions/auth";
+import { signOutAction } from "@/lib/actions/auth";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import {
   DropdownMenu,
@@ -73,6 +73,7 @@ const Header = ({ publicSession }: HeaderProps) => {
         <Nav data={navData} />
         <MobileNav
           data={navData}
+          setIsOpen={setIsOpen}
           ComponentStyles={`${headerActive ? "top-20" : "top-28"} ${
             isOpen
               ? "max-h-max py-8 border-foreground border-y border-y-primary/10"
@@ -108,7 +109,7 @@ const Header = ({ publicSession }: HeaderProps) => {
                         <Link href="/admin/users">Users</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/exercises/new">Add exercise</Link>
+                        <Link href="/admin/exercises/new">Add exercise</Link>
                       </DropdownMenuItem>
                     </>
                   )}

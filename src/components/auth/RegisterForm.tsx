@@ -5,7 +5,7 @@ import { SignUpInput, signUpSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
-import { signUpAction } from "@/app/actions/auth";
+import { signUpAction } from "@/lib/actions/auth";
 import { useRouter } from "next/navigation";
 
 interface SignUpFormProps {

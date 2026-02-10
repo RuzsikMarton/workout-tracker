@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect, forbidden } from "next/navigation";
 import UsersList from "@/components/admin/UsersList";
+import { getUsersAdmin } from "@/lib/data/getUsersAdmin";
 
 export const dynamic = "force-dynamic";
 
@@ -27,43 +28,13 @@ const UsersPage = async ({
   const page = params.page || "1";
   const pageSize = params.pageSize || "10";
 
-  let users = [];
-  let totalCount = 0;
-  let error = null;
+  let error: string | null = null;
 
-  try {
-    const url = new URL(
-      "/api/admin/user",
-      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-    );
-    if (search) {
-      url.searchParams.set("search", search);
-    }
-    url.searchParams.set("page", page);
-    url.searchParams.set("pageSize", pageSize);
-
-    const response = await fetch(url.toString(), {
-      method: "GET",
-      headers: {
-        Cookie: (await headers()).get("cookie") || "",
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.error || `Failed to fetch users: ${response.status}`,
-      );
-    }
-
-    const data = await response.json();
-    users = data.data || [];
-    totalCount = data.totalCount || 0;
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    error = err instanceof Error ? err.message : "Failed to fetch users";
-  }
+  const { users, totalCount } = await getUsersAdmin({
+    search,
+    page: parseInt(page),
+    pageSize: parseInt(pageSize),
+  });
 
   return (
     <div className="page-main pt-28 dark:bg-secondary">

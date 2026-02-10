@@ -85,10 +85,17 @@ enum Role {
   ADMIN
 }
 
+enum WorkoutStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
 model Workout {
   id               String            @id @default(cuid())
   title            String
   description      String?
+  status           WorkoutStatus     @default(IN_PROGRESS)
   userId           String
   user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   workoutExercises WorkoutExercise[]
@@ -96,6 +103,7 @@ model Workout {
   updatedAt        DateTime          @updatedAt
 
   @@index([userId])
+  @@index([userId, status])
   @@map("workout")
 }
 

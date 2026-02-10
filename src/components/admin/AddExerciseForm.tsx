@@ -7,7 +7,7 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { CreateExerciseData } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { exerciseSchema } from "@/lib/validations";
-import { createExerciseAction } from "@/app/actions/exercises";
+import { createExerciseAction } from "@/lib/actions/exercises";
 import { useState, useRef } from "react";
 import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 

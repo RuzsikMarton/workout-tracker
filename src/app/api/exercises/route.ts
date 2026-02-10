@@ -1,55 +1,62 @@
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
-import { Prisma } from "@prisma/client";
+import { getExercises } from "@/lib/data/getExercises";
 
 export async function GET(req: NextRequest) {
-    const session = await auth.api.getSession({ headers: req.headers });
-    if (!session?.user) {
-        return new Response(JSON.stringify({ error: "Unauthorized" }), {
-            status: 401,
-            headers: { "Content-Type": "application/json" },
-        });
-    }
-    const searchParams = req.nextUrl.searchParams;
-    const equipment = searchParams.get("equipment") || "";
-    const muscleGroup = searchParams.get("muscle") || "";
-    const orderBy = searchParams.get("sort") || "asc";
-    
-    // pagination
-    const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get("pageSize") || "10")));
-    const skip = (page - 1) * pageSize;
-    
-    const where: Prisma.ExerciseWhereInput = {};
-    if (equipment) {
-        where.equipment = { has: equipment };
-    }
-    if (muscleGroup) {
-        where.muscleGroup = { has: muscleGroup };
-    }
-    
-    const totalCount = await prisma.exercise.count({ where });  
-    // Fetch paginated exercises
-    const exercises = await prisma.exercise.findMany({
-        where,
-        orderBy: {
-            name: orderBy === "asc" ? "asc" : "desc",
-        },
-        skip,
-        take: pageSize,
+  const session = await auth.api.getSession({ headers: req.headers });
+  if (!session?.user) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
     });
-    
-    return new Response(JSON.stringify({
-        data: exercises,
+  }
+  const searchParams = req.nextUrl.searchParams;
+  const equipment = searchParams.get("equipment") || "";
+  const muscleGroup = searchParams.get("muscle") || "";
+  const orderBy = searchParams.get("sort") || "asc";
+
+  // pagination
+  const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
+  const pageSize = Math.min(
+    100,
+    Math.max(1, parseInt(searchParams.get("pageSize") || "10")),
+  );
+
+  try {
+    const res = await getExercises({
+      equipment,
+      muscle: muscleGroup,
+      sort: orderBy,
+      page,
+      pageSize,
+    });
+
+    return new Response(
+      JSON.stringify({
+        data: res.exercises,
         pagination: {
-            total: totalCount,
-            page,
-            pageSize: pageSize,
-            totalPages: Math.ceil(totalCount / pageSize),
-        }
-    }), {
+          total: res.pagination.total,
+          page,
+          pageSize: pageSize,
+          totalPages: Math.ceil(res.pagination.total / pageSize),
+        },
+      }),
+      {
         status: 200,
         headers: { "Content-Type": "application/json" },
-    });
-} 
+      },
+    );
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+    return new Response(
+      JSON.stringify({
+        error: "Failed to fetch exercises",
+        message: error instanceof Error ? error.message : "Unknown error",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+}

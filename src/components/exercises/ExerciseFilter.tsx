@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 
-const ExerciseFilter = () => {
+const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("FilterBar");
   const tM = useTranslations("muscleGroups");
   const tE = useTranslations("equipment");
@@ -32,7 +32,9 @@ const ExerciseFilter = () => {
     searchParams.get("sort");
   return (
     <section className="py-8 bg-subtitle">
-      <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4">
+      <div
+        className={`flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${disabled ? "opacity-60 pointer-events-none" : ""}`}
+      >
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
@@ -41,6 +43,7 @@ const ExerciseFilter = () => {
             <select
               onChange={(e) => handleChange(e.target.value, "muscle")}
               value={searchParams.get("muscle") || ""}
+              disabled={disabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value="" disabled hidden>
@@ -60,6 +63,7 @@ const ExerciseFilter = () => {
             <select
               onChange={(e) => handleChange(e.target.value, "equipment")}
               value={searchParams.get("equipment") || ""}
+              disabled={disabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value="" disabled hidden>
@@ -81,6 +85,7 @@ const ExerciseFilter = () => {
             <select
               onChange={(e) => handleChange(e.target.value, "sort")}
               value={searchParams.get("sort") || "asc"}
+              disabled={disabled}
               className="appearance-none w-40 bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
             >
               <option value={"asc"}>A-Z</option>
@@ -90,6 +95,7 @@ const ExerciseFilter = () => {
           {hasActiveFilters && (
             <button
               onClick={handleReset}
+              disabled={disabled}
               className="p-2 rounded-full hover:bg-red-600/20 transition-colors text-red-600 dark:text-red-500"
               aria-label="Clear filters"
             >

@@ -1,60 +1,64 @@
 import { prisma } from "@/lib/prisma";
 import { isAdminFromHeaders } from "@/lib/user-role";
 import { Prisma } from "@prisma/client";
-import { stat } from "fs";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-    if (!(await isAdminFromHeaders(req.headers))) {
+  if (!(await isAdminFromHeaders(req.headers))) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  const params = req.nextUrl.searchParams;
+  const search = params.get("search") || "";
+  const page = parseInt(params.get("page") || "1");
+  const pageSize = parseInt(params.get("pageSize") || "10");
 
-    const params = req.nextUrl.searchParams;
-    const search = params.get("search") || "";
-    const page = parseInt(params.get("page") || "1");
-    const pageSize = parseInt(params.get("pageSize") || "10");
-    
-    const where: Prisma.UserWhereInput = search
-        ? {
-            OR: [
-              { name: { contains: search, mode: "insensitive" } },
-              { email: { contains: search, mode: "insensitive" } },
-            ],
-          }
-        : {};
-        try {
-            const users = await prisma.user.findMany({
-                where,
-                select: {
-                    id: true,
-                    name: true,
-                    email: true,
-                    role: true,
-                    createdAt: true,
-                },
-                skip: (page - 1) * pageSize,
-                take: pageSize,
-                orderBy: { createdAt: "desc" },
-            });
-    
-            const totalCount = await prisma.user.count({ where });
-    
-            return NextResponse.json({
-                data: users,
-                totalCount,
-            }, {
-                status: 200,
-                headers: { "Content-Type": "application/json" },
-            });
-        } catch (err : any) {
-            if (err instanceof Prisma.PrismaClientKnownRequestError) {
-                return NextResponse.json({ error: err.message }, { status: 400 });
-            }
-            return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-        }
+  const where: Prisma.UserWhereInput = search
+    ? {
+        OR: [
+          { name: { contains: search, mode: "insensitive" } },
+          { email: { contains: search, mode: "insensitive" } },
+        ],
+      }
+    : {};
+  try {
+    const users = await prisma.user.findMany({
+      where,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+      },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+      orderBy: { createdAt: "desc" },
+    });
+
+    const totalCount = await prisma.user.count({ where });
+
+    return NextResponse.json(
+      {
+        data: users,
+        totalCount,
+      },
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  } catch (err: any) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
+  }
 }
-
+/* MOVED TO SERVER ACTIONS maybe will be used later
 export async function PATCH(req: NextRequest) {
     if (!(await isAdminFromHeaders(req.headers))) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -143,3 +147,4 @@ export async function DELETE(req: NextRequest) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+*/

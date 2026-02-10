@@ -1,13 +1,20 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { SignInInput, signInSchema, SignUpInput, signUpSchema } from "@/lib/validations";
+import {
+  SignInInput,
+  signInSchema,
+  SignUpInput,
+  signUpSchema,
+} from "@/lib/validations";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export type AuthActionResult = { ok: true } | { ok: false; message: string };
 
-export async function signUpAction(formData: SignUpInput): Promise<AuthActionResult> {
+export async function signUpAction(
+  formData: SignUpInput,
+): Promise<AuthActionResult> {
   const parsed = signUpSchema.safeParse(formData);
   if (!parsed.success) {
     return { ok: false, message: "Invalid input" };
@@ -25,18 +32,25 @@ export async function signUpAction(formData: SignUpInput): Promise<AuthActionRes
     });
 
     if ((result as { error?: { message?: string } })?.error) {
-      return { ok: false, message: (result as any).error.message ?? "Failed to sign up." };
+      return {
+        ok: false,
+        message: (result as any).error.message ?? "Failed to sign up.",
+      };
     }
 
     return { ok: true };
-    
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : "Failed to sign up. Please try again.";
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to sign up. Please try again.";
     return { ok: false, message: errorMessage };
   }
 }
 
-export async function signInAction(formData : SignInInput): Promise<AuthActionResult> {
+export async function signInAction(
+  formData: SignInInput,
+): Promise<AuthActionResult> {
   const parsed = signInSchema.safeParse(formData);
   if (!parsed.success) {
     return { ok: false, message: "Invalid input" };
@@ -44,7 +58,7 @@ export async function signInAction(formData : SignInInput): Promise<AuthActionRe
 
   const { email, password } = parsed.data;
 
-  try{
+  try {
     const result = await auth.api.signInEmail({
       body: {
         email: email.trim().toLowerCase(),
@@ -53,12 +67,18 @@ export async function signInAction(formData : SignInInput): Promise<AuthActionRe
     });
 
     if ((result as { error?: { message?: string } })?.error) {
-      return { ok: false, message: (result as any).error.message ?? "Failed to sign in." };
+      return {
+        ok: false,
+        message: (result as any).error.message ?? "Failed to sign in.",
+      };
     }
 
-    return { ok: true};
+    return { ok: true };
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : "Failed to sign in. Please try again.";
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to sign in. Please try again.";
     return { ok: false, message: errorMessage };
   }
 }

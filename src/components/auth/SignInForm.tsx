@@ -5,7 +5,7 @@ import { SignInInput, signInSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
-import { signInAction } from "@/app/actions/auth";
+import { signInAction } from "@/lib/actions/auth";
 import { useRouter } from "next/navigation";
 
 interface SignInFormProps {
@@ -21,7 +21,6 @@ interface SignInFormProps {
 }
 
 export default function SignInForm({ data }: SignInFormProps) {
-
   const router = useRouter();
   const {
     register,
