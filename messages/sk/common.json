@@ -14,7 +14,9 @@
     "exercises": "Cviky",
     "contact": "Kontakt",
     "signin": "Prihlásiť sa",
-    "signout": "Odhlásiť sa"
+    "signout": "Odhlásiť sa",
+    "myaccount": "Můj účet",
+    "profile": "Profil"
   },
   "Footer": {
     "language": {
@@ -26,6 +28,7 @@
   },
   "SignIn": {
     "title": "Prihlásenie",
+    "subtitle": "Pre prístup k cvičeniam a vašim tréningom sa musíte prihlásiť.",
     "emailLabel": "Emailová adresa",
     "passwordLabel": "Heslo",
     "submitButton": "Prihlásiť sa",

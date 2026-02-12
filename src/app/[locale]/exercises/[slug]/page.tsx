@@ -2,7 +2,7 @@ import ExercisePageCard from "@/components/exercises/exercisepage/ExercisePageCa
 import { notFound } from "next/navigation";
 import ExerciseSessionStatCard from "@/components/exercises/exercisepage/ExerciseSessionStatCard";
 import { getTranslations } from "next-intl/server";
-import { getExercise } from "@/lib/data/getExercises";
+import { getExercise } from "@/lib/data/get-exercise";
 
 export async function generateMetadata({
   params,
@@ -65,7 +65,7 @@ const ExercisePage = async ({
     notFound();
   }
   return (
-    <main className="min-h-screen font-sans pt-28 dark:bg-secondary">
+    <main className="min-h-screen font-sans app-layout">
       <ExercisePageCard {...exercise} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-16 py-6">
         <ExerciseSessionStatCard

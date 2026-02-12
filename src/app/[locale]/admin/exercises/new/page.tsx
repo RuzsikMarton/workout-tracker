@@ -4,7 +4,7 @@ import { requireRole } from "@/lib/user-role";
 const NewExercisePage = async () => {
   await requireRole("ADMIN");
   return (
-    <main className="page-main dark:bg-secondary pt-28">
+    <main className="page-main app-layout">
       <div className="flex justify-center items-center grow">
         <AddExerciseForm />
       </div>

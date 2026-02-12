@@ -96,20 +96,25 @@ const Header = ({ publicSession }: HeaderProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuLabel className="text-muted-foreground text-xs uppercase">
+                    {t("myaccount")}
+                  </DropdownMenuLabel>
                   <DropdownMenuItem asChild>
                     <Link href={`/profile/${publicSession.user.id}`}>
-                      Profile
+                      {t("profile")}
                     </Link>
                   </DropdownMenuItem>
                   {publicSession.role === "ADMIN" && (
                     <>
                       <DropdownMenuSeparator />
-                      <DropdownMenuLabel>Admin</DropdownMenuLabel>
+                      <DropdownMenuLabel className="text-muted-foreground text-xs uppercase">
+                        Admin
+                      </DropdownMenuLabel>
                       <DropdownMenuItem asChild>
                         <Link href="/admin/users">Users</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/admin/exercises/new">Add exercise</Link>
+                        <Link href="/admin/exercises/new">Add Exercise</Link>
                       </DropdownMenuItem>
                     </>
                   )}

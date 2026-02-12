@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { getExercise } from "@/lib/data/getExercises";
+import { getExercise } from "@/lib/data/get-exercise";
 import { NextRequest } from "next/server";
 
 export async function GET(

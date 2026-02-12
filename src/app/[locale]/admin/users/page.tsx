@@ -37,7 +37,7 @@ const UsersPage = async ({
   });
 
   return (
-    <div className="page-main pt-28 dark:bg-secondary">
+    <div className="page-main app-layout">
       {error ? (
         <div className="container mx-auto px-4 py-8">
           <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-200 px-4 py-3 rounded">

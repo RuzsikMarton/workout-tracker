@@ -1,6 +1,7 @@
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import LanguageSelector from "../LanguageSelector";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const Footer = () => {
   const t = useTranslations("Footer");
@@ -48,11 +49,23 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row justify-between text-primary/70 items-center gap-4">
-        <span>© 2025 Workout Tracker. Marton Ruzsik</span>
+        <span className="text-center">
+          © 2025 Workout Tracker <span className="hidden md:inline">|</span>{" "}
+          <br className="md:hidden" />
+          Marton Ruzsik
+        </span>
         <span className="hidden lg:block">
           Made with Next.js and Tailwind CSS
         </span>
-        <div>Privacy Policy | Terms of Service</div>
+        <div>
+          <Link href="/privacy-policy" className="hover:text-primary/90">
+            Privacy Policy
+          </Link>{" "}
+          |{" "}
+          <Link href="/terms-of-service" className="hover:text-primary/90">
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </footer>
   );

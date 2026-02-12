@@ -1,6 +1,6 @@
 import ExercisesClient from "@/components/exercises/ExercisesClient";
 import { auth } from "@/lib/auth";
-import { getExercises } from "@/lib/data/getExercises";
+import { getExercises } from "@/lib/data/get-exercise";
 import { ExercisePrisma } from "@/types";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
@@ -60,7 +60,7 @@ const ExercisePage = async ({
   }
 
   return (
-    <main className="page-main pt-28 dark:bg-secondary">
+    <main className="page-main app-layout">
       <ExercisesClient
         exercises={exercises}
         totalExercises={totalExercises}

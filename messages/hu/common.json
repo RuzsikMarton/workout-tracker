@@ -14,7 +14,9 @@
     "exercises": "Gyakorlatok",
     "contact": "Kapcsolat",
     "signin": "Bejelentkezés",
-    "signout": "Kijelentkezés"
+    "signout": "Kijelentkezés",
+    "myaccount": "Saját fiók",
+    "profile": "Profil"
   },
   "Footer": {
     "language": {
@@ -26,6 +28,7 @@
   },
   "SignIn": {
     "title": "Bejelentkezés",
+    "subtitle": "A gyakorlatokhoz és edzéseidhez való hozzáféréshez be kell jelentkezned.",
     "emailLabel": "Email cím",
     "passwordLabel": "Jelszó",
     "submitButton": "Bejelentkezés",

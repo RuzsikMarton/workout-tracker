@@ -20,7 +20,7 @@ export async function generateMetadata({
 const ContactPage = () => {
   const t = useTranslations("Contact");
   return (
-    <main className="page-main pt-28 bg-zinc-50 dark:bg-secondary">
+    <main className="page-main app-layout">
       <div className="page-div max-w-7xl mx-auto gap-4 flex flex-col md:flex-row">
         <div className="flex-1 flex flex-col p-8 justify-center">
           <h1 className="text-4xl font-bold mb-8 text-red-700">{t("title")}</h1>

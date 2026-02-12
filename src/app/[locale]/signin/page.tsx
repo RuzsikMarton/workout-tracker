@@ -19,6 +19,7 @@ export default function SignInPage() {
   const t = useTranslations("SignIn");
   const signInData = {
     title: t("title"),
+    subtitle: t("subtitle"),
     emailLabel: t("emailLabel"),
     passwordLabel: t("passwordLabel"),
     submitButton: t("submitButton"),

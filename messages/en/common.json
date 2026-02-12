@@ -14,7 +14,9 @@
     "exercises": "Exercises",
     "contact": "Contact",
     "signin": "Sign In",
-    "signout": "Sign Out"
+    "signout": "Sign Out",
+    "myaccount": "My Account",
+    "profile": "Profile"
   },
   "Footer": {
     "language": {
@@ -26,6 +28,7 @@
   },
   "SignIn": {
     "title": "Login",
+    "subtitle": "You must log in to access the exercises and your workouts.",
     "emailLabel": "Email Address",
     "passwordLabel": "Password",
     "submitButton": "Sign In",

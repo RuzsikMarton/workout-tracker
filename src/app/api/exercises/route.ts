@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { NextRequest } from "next/server";
-import { getExercises } from "@/lib/data/getExercises";
+import { getExercises } from "@/lib/data/get-exercise";
 
 export async function GET(req: NextRequest) {
   const session = await auth.api.getSession({ headers: req.headers });

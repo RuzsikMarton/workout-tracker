@@ -25,7 +25,7 @@ export default async function Workouts() {
   }
 
   return (
-    <main className="page-main pt-28 bg-secondary">
+    <main className="page-main app-layout">
       <div className="page-div flex flex-col justify-center items-center">
         <h1 className="text-3xl text-red-500 uppercase text-center">
           this page is work in progress

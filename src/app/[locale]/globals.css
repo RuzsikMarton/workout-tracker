@@ -133,6 +133,10 @@
     @apply flex min-h-screen font-sans;
   }
 
+  .app-layout {
+    @apply pt-28 dark:bg-secondary;
+  }
+
   .page-div{
     @apply w-full px-4 mx-auto max-w-7xl; 
   }
@@ -143,6 +147,18 @@
 
   .input-primary {
     @apply w-full border py-2 px-3 bg-input rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50;
+  }
+
+  .policy-container{
+    @apply w-full px-4 mx-auto max-w-4xl p-8 md:p-16 space-y-4;
+  }
+
+  .policy-title{
+    @apply text-3xl text-center md:text-start md:text-5xl mb-4 uppercase font-semibold tracking-wider;
+  }
+
+  .policy-subtitle{
+    @apply text-2xl mt-12 mb-4 font-semibold uppercase tracking-wider;
   }
 
   .socials-icon{

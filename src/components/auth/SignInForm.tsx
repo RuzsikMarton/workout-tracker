@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 interface SignInFormProps {
   data: {
     title: string;
+    subtitle: string;
     emailLabel: string;
     noAccount: string;
     passwordLabel: string;
@@ -45,6 +46,9 @@ export default function SignInForm({ data }: SignInFormProps) {
   return (
     <div className="flex flex-col items-center bg-primary-foreground border rounded-lg p-6 sm:p-8 w-full max-w-md lg:max-w-lg">
       <h1 className="text-3xl font-bold my-6 uppercase">{data.title}</h1>
+      <p className="mb-6 text-sm text-muted-foreground text-center">
+        {data.subtitle}
+      </p>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-2 w-full"
