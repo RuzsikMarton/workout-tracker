@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect, forbidden } from "next/navigation";
 import UsersList from "@/components/admin/UsersList";
-import { getUsersAdmin } from "@/lib/data/getUsersAdmin";
+import { getUsersAdmin } from "@/lib/data/get-admin-users";
+import { User } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -29,12 +30,20 @@ const UsersPage = async ({
   const pageSize = params.pageSize || "10";
 
   let error: string | null = null;
+  let users: User[] = [];
+  let totalCount = 0;
 
-  const { users, totalCount } = await getUsersAdmin({
-    search,
-    page: parseInt(page),
-    pageSize: parseInt(pageSize),
-  });
+  try {
+    const result = await getUsersAdmin({
+      search,
+      page: parseInt(page),
+      pageSize: parseInt(pageSize),
+    });
+    users = result.users;
+    totalCount = result.totalCount;
+  } catch (err) {
+    error = err instanceof Error ? err.message : "Failed to load users";
+  }
 
   return (
     <div className="page-main app-layout">

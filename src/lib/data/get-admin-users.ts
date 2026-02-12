@@ -26,6 +26,7 @@ export async function getUsersAdmin(params: {
           email: true,
           role: true,
           createdAt: true,
+          updatedAt: true,
         },
         skip: (page - 1) * pageSize,
         take: pageSize,

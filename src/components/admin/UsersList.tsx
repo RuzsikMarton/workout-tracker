@@ -9,6 +9,7 @@ import {
   deleteUsersAdmin,
   updateUserRolesAdmin,
 } from "@/lib/actions/adminUsers";
+import { User } from "@/types/auth";
 
 const UsersList = ({
   users,
@@ -16,13 +17,7 @@ const UsersList = ({
   currentPage,
   pageSize,
 }: {
-  users: Array<{
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    createdAt: Date;
-  }>;
+  users: User[];
   totalCount: number;
   currentPage: number;
   pageSize: number;
