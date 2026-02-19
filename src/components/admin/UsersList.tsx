@@ -144,7 +144,7 @@ const UsersList = ({
               {saving ? "Saving..." : "Save Changes"}
             </span>
             {Object.keys(changedRoles).length > 0 && (
-              <span className="ml-2 inline-block rounded-full bg-primary-foreground text-primary px-2 py-0.5 text-xs font-semibold">
+              <span className="ml-2 inline-block rounded-full bg-badge-bg text-primary px-2 py-0.5 text-xs font-semibold">
                 {Object.keys(changedRoles).length}
               </span>
             )}
@@ -157,7 +157,7 @@ const UsersList = ({
             <Trash2 className="h-4 w-4" />
             <span className="hidden md:block">Delete Selected</span>
             {selectedUsers.size > 0 && (
-              <span className="ml-2 inline-block rounded-full bg-primary-foreground text-primary px-2 py-0.5 text-xs font-semibold">
+              <span className="ml-2 inline-block rounded-full bg-badge-bg text-primary px-2 py-0.5 text-xs font-semibold">
                 {selectedUsers.size}
               </span>
             )}

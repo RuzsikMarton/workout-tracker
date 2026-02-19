@@ -21,7 +21,7 @@ const ContactPage = () => {
   const t = useTranslations("Contact");
   return (
     <main className="page-main app-layout">
-      <div className="page-div max-w-7xl mx-auto gap-4 flex flex-col md:flex-row">
+      <div className="page-container max-w-7xl mx-auto gap-4 flex flex-col md:flex-row">
         <div className="flex-1 flex flex-col p-8 justify-center">
           <h1 className="text-4xl font-bold mb-8 text-red-700">{t("title")}</h1>
           <p className="text-lg text-muted-foreground mb-16">
@@ -38,7 +38,7 @@ const ContactPage = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://martonruzsik-port.vercel.app/sk"
+                  href="https://martonruzsik.sk"
                   className="p-2 rounded-lg bg-red-100 dark:bg-red-950 hover:bg-red-200 dark:hover:bg-red-900 transition-colors"
                 >
                   <FaGlobe className="text-xl" />

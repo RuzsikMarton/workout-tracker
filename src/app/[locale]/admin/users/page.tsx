@@ -1,9 +1,7 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import { redirect, forbidden } from "next/navigation";
 import UsersList from "@/components/admin/UsersList";
 import { getUsersAdmin } from "@/lib/data/get-admin-users";
 import { User } from "@/types";
+import { requireRole } from "@/lib/user-role";
 
 export const dynamic = "force-dynamic";
 
@@ -12,17 +10,7 @@ const UsersPage = async ({
 }: {
   searchParams: Promise<{ search?: string; page?: string; pageSize?: string }>;
 }) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session?.user) {
-    redirect("/signin");
-  }
-
-  if (session.role !== "ADMIN") {
-    forbidden();
-  }
+  await requireRole("ADMIN");
 
   const params = await searchParams;
   const search = params.search || "";

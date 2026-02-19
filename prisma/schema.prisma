@@ -95,6 +95,7 @@ model Workout {
   id               String            @id @default(cuid())
   title            String
   description      String?
+  duration         Int? // Duration in seconds
   status           WorkoutStatus     @default(IN_PROGRESS)
   userId           String
   user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -143,7 +144,7 @@ model ExerciseSet {
   setNumber         Int // 1st set, 2nd set, etc.
   reps              Int
   weight            Float
-  //completed         Boolean         @default(false)
+  completed         Boolean         @default(false)
   workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id], onDelete: Cascade)
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt

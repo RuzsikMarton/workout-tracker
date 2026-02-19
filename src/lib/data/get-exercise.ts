@@ -49,3 +49,27 @@ export async function getExercises(params: {
     },
   };
 }
+
+export async function getExercisesSheet() {
+  const exercises = await prisma.exercise.findMany({});
+
+  return exercises;
+}
+
+export async function getExercisesFiltered(params: {
+  equipment?: string;
+  muscle?: string;
+}) {
+  const equipment = (params.equipment ?? "").trim();
+  const muscle = (params.muscle ?? "").trim();
+
+  const where: Prisma.ExerciseWhereInput = {};
+  if (equipment) where.equipment = { has: equipment };
+  if (muscle) where.muscleGroup = { has: muscle };
+
+  const exercises = await prisma.exercise.findMany({
+    where,
+  });
+
+  return exercises;
+}

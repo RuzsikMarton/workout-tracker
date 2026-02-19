@@ -3,7 +3,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import ClientProviders from "@/components/providers/ClientProviders";
+import ClientProviders from "@/lib/providers/ClientProviders";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import { getMessages, getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";

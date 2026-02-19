@@ -8,6 +8,10 @@
     "signin": "WT | Prihlásiť sa",
     "signup": "WT | Registrovať sa"
   },
+  "errors": {
+    "title": "Niečo sa pokazilo",
+    "message": "Došlo k neočakávanej chybe. Skúste to prosím neskôr znova."
+  },
   "Nav": {
     "home": "Domov",
     "workouts": "Cvičenia",
@@ -126,5 +130,41 @@
     "repsLabel": "Opakovania",
     "weightLabel": "Váha (kg)",
     "volumeLabel": "Objem (kg)"
+  },
+  "workoutsTitle": {
+    "title": "Tréningy"
+  },
+  "ActiveWorkoutCard": {
+    "noActiveWorkoutTitle": "Žiadny aktívny tréning",
+    "noActiveWorkout": "Začnite nový tréning, aby sa tu zobrazil.",
+    "startButton": "Spustiť prázdny tréning",
+    "continueButton": "Pokračovať v tréningu",
+    "title": "Aktívny tréning",
+    "NameLabel": "Názov:",
+    "DateLabel": "Uplynulý čas:",
+    "ExercisesLabel": "Cviky:"
+  },
+  "WorkoutHistory": {
+    "title": "História tréningov",
+    "noWorkoutsTitle": "Žiadne tréningy",
+    "noWorkoutsMessage": "Ešte ste nezaznamenali žiadne tréningy. Začnite sledovať svoje tréningy, aby sa tu zobrazili.",
+    "nameLabel": "Názov",
+    "dateLabel": "Dátum",
+    "durationLabel": "Trvanie",
+    "detailsLabel": "Akcie",
+    "detailsButton": "Zobraziť detaily"
+  },
+  "workoutSheet": {
+    "title":"Pridať cviky",
+    "subtitle":"Pridajte cviky do svojho tréningu výberom z nižšie uvedeného zoznamu.",
+    "addButton":"Pridať vybrané cviky",
+    "adding":"Pridávanie cvikov..."
+  },
+  "workoutSheetFilter": {
+    "muscle": "Svalová skupina",
+    "musclePlaceholder": "Vyberte svalovú skupinu",
+    "equipment": "Vybavenie",
+    "equipmentPlaceholder": "Vyberte vybavenie",
+    "reset": "Obnoviť filtre"
   }
 }

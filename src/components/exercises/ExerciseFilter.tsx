@@ -40,7 +40,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   const isDisabled = disabled || isPending;
 
   return (
-    <section className="py-8 bg-subtitle">
+    <section className="py-8 bg-section-bg">
       <div
         className={`flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${isDisabled ? "opacity-60 pointer-events-none" : ""}`}
       >

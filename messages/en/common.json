@@ -8,6 +8,10 @@
     "signin": "WT | Sign In",
     "signup": "WT | Sign Up"
   },
+  "errors": {
+    "title": "Something went wrong",
+    "message": "An unexpected error has occurred. Please try again later."
+  },
   "Nav": {
     "home": "Home",
     "workouts": "Workouts",
@@ -126,5 +130,41 @@
     "repsLabel": "Reps",
     "weightLabel": "Weight",
     "volumeLabel": "Volume"
+  },
+  "workoutsTitle": {
+    "title": "Workouts"
+  },
+  "ActiveWorkoutCard": {
+    "title": "Active Workout",
+    "noActiveWorkoutTitle": "No Active Workout",
+    "noActiveWorkout": "Start a new workout to see it here.",
+    "startButton": "Start Empty Workout",
+    "continueButton": "Continue Workout",
+    "NameLabel": "Name:",
+    "DateLabel": "Elapsed Time:",
+    "ExercisesLabel": "Exercises:"
+  },
+  "WorkoutHistory": {
+    "title": "Workout History",
+    "noWorkoutsTitle": "No Workouts Found",
+    "noWorkoutsMessage": "You haven't logged any workouts yet. Start tracking your workouts to see them here.",
+    "nameLabel": "Name",
+    "dateLabel": "Date",
+    "durationLabel": "Duration",
+    "detailsLabel": "Actions",
+    "detailsButton": "View Details"
+  },
+  "workoutSheet": {
+    "title":"Add Exercises",
+    "subtitle":"Add exercises to your workout by selecting them from the list below.",
+    "addButton":"Add Selected Exercises",
+    "adding":"Adding exercises..."
+  },
+  "workoutSheetFilter": {
+    "muscle": "Muscle",
+    "musclePlaceholder": "Filter by muscle group",
+    "equipment": "Equipment",
+    "equipmentPlaceholder": "Filter by equipment",
+    "reset": "Reset Filters"
   }
 }

@@ -8,6 +8,10 @@
     "signin": "WT | Bejelentkezés",
     "signup": "WT | Regisztráció"
   },
+  "errors": {
+    "title": "Valami hiba történt",
+    "message": "Váratlan hiba történt. Kérjük, próbáld meg később újra."
+  },
   "Nav": {
     "home": "Kezdőlap",
     "workouts": "Edzések",
@@ -126,5 +130,41 @@
     "repsLabel": "Ismétlések",
     "weightLabel": "Súly",
     "volumeLabel": "Összmunka"
-  }
+  },
+  "workoutsTitle": {
+    "title": "Edzések"
+  },
+  "ActiveWorkoutCard": {
+    "noActiveWorkoutTitle": "Nincs aktív edzés",
+    "noActiveWorkout": "Indíts el egy új edzést, hogy itt megjelenjen.",
+    "startButton": "Üres edzés indítása",
+    "continueButton": "Edzés folytatása",
+    "title": "Aktív edzés",
+    "NameLabel": "Név:",
+    "DateLabel": "Eltelt idő:",
+    "ExercisesLabel": "Gyakorlatok:"
+  },
+  "WorkoutHistory": {
+    "title": "Edzés előzmények",
+    "noWorkoutsTitle": "Nincs edzés előzmény",
+    "noWorkoutsMessage": "Még nem rögzítettél egyetlen edzést sem. Kezdd el követni edzéseidet, hogy itt megjelenjenek.",
+    "nameLabel": "Név",
+    "dateLabel": "Dátum",
+    "durationLabel": "Időtartam",
+    "detailsLabel": "Műveletek",
+    "detailsButton": "Részletek"
+  },
+  "workoutSheet": {
+    "title":"Gyakorlatok hozzáadása",
+    "subtitle":"Válaszd ki a gyakorlatokat a listából, hogy hozzáadd őket az edzésedhez.",
+    "addButton":"Kiválasztott gyakorlatok hozzáadása",
+    "adding":"Gyakorlatok hozzáadása..."
+   },
+   "workoutSheetFilter": {
+     "muscle": "Célizom",
+     "musclePlaceholder": "Szűrés izomcsoport szerint",
+     "equipment": "Felszerelés",
+     "equipmentPlaceholder": "Szűrés felszerelés szerint",
+     "reset": "Szűrők visszaállítása"
+   }
 }

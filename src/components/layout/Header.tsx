@@ -58,7 +58,7 @@ const Header = ({ publicSession }: HeaderProps) => {
     <header
       className={`${
         headerActive ? "h-20" : "h-28"
-      } fixed top-0 w-full z-50 transition-all bg-primary-foreground backdrop-blur-sm border-b border-b-primary/10`}
+      } fixed top-0 w-full z-50 transition-all bg-surface backdrop-blur-sm border-b border-b-primary/10`}
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <Link href="/" className="flex items-center">
@@ -78,7 +78,7 @@ const Header = ({ publicSession }: HeaderProps) => {
             isOpen
               ? "max-h-max py-8 border-foreground border-y border-y-primary/10"
               : "max-h-0 overflow-hidden"
-          } flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-primary-foreground`}
+          } flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-surface`}
         />
         <div className="flex items-center gap-3">
           <ThemeToggle />
@@ -100,9 +100,7 @@ const Header = ({ publicSession }: HeaderProps) => {
                     {t("myaccount")}
                   </DropdownMenuLabel>
                   <DropdownMenuItem asChild>
-                    <Link href={`/profile/${publicSession.user.id}`}>
-                      {t("profile")}
-                    </Link>
+                    <Link href={"/profile"}>{t("profile")}</Link>
                   </DropdownMenuItem>
                   {publicSession.role === "ADMIN" && (
                     <>
