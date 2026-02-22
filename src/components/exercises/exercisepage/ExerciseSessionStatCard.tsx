@@ -6,7 +6,7 @@ const ExerciseSessionStatCard = ({
   workoutExercise,
 }: {
   type: string;
-  workoutExercise: ExerciseSet[];
+  workoutExercise?: ExerciseSet[];
 }) => {
   const t = useTranslations(type);
   if (!workoutExercise) {

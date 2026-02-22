@@ -1,5 +1,4 @@
 import SignInForm from "@/components/auth/SignInForm";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
@@ -15,8 +14,8 @@ export async function generateMetadata({
   };
 }
 
-export default function SignInPage() {
-  const t = useTranslations("SignIn");
+export default async function SignInPage() {
+  const t = await getTranslations("SignIn");
   const signInData = {
     title: t("title"),
     subtitle: t("subtitle"),

@@ -7,17 +7,18 @@ import { useTranslations } from "next-intl";
 import { createWorkoutAction } from "@/lib/actions/workouts";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { WorkoutWithPartialExercises } from "@/types";
 
 const ActiveWorkoutCard = ({
   activeWorkout,
 }: {
-  activeWorkout: any | null;
+  activeWorkout: WorkoutWithPartialExercises | null;
 }) => {
   const t = useTranslations("ActiveWorkoutCard");
+  const errorT = useTranslations("errors.codes");
   const router = useRouter();
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  console.log(activeWorkout);
 
   const createWorkout = async () => {
     setIsCreating(true);
@@ -26,7 +27,11 @@ const ActiveWorkoutCard = ({
     const result = await createWorkoutAction();
 
     if (!result.ok) {
-      setError(result.message);
+      setError(
+        result.code
+          ? errorT(result.code)
+          : "Failed to create workout. Please try again.",
+      );
       setIsCreating(false);
       return;
     }
@@ -51,7 +56,7 @@ const ActiveWorkoutCard = ({
             onClick={createWorkout}
             disabled={isCreating}
           >
-            {isCreating ? "Creating..." : t("startButton")}
+            {isCreating ? t("creating") : t("startButton")}
           </Button>
         </div>
       </div>
@@ -62,7 +67,7 @@ const ActiveWorkoutCard = ({
       <h1 className="mt-4 mb-2 text-xl font-semibold uppercase font-stretch-50% underline underline-offset-4 decoration-red-700">
         {t("title")}
       </h1>
-      <div className="p-4 border rounded-lg ">
+      <div className="p-4 border rounded-lg bg-muted-foreground/10">
         <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
           <div className="flex-1">
             <h2 className="text-xl">
@@ -91,8 +96,8 @@ const ActiveWorkoutCard = ({
           <div>
             <Link href={`/workouts/active`}>
               <Button
-                variant="default"
-                className="bg-red-700 dark:bg-red-800 dark:hover:bg-red-700 hover:bg-red-800 text-white"
+                variant="outline"
+                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
               >
                 {t("continueButton")}
               </Button>

@@ -10,7 +10,28 @@
   },
   "errors": {
     "title": "Niečo sa pokazilo",
-    "message": "Došlo k neočakávanej chybe. Skúste to prosím neskôr znova."
+    "message": "Došlo k neočakávanej chybe. Skúste to prosím neskôr znova.",
+    "codes": {
+      "INVALID_INPUT": "Neplatný vstup. Skontrolujte svoje údaje a skúste to znova.",
+      "SIGNUP_FAILED": "Registrácia sa nezdařila. Skontrolujte svoje údaje a skúste to znova.",
+      "SIGNUP_FAILED_GENERIC": "Registrácia sa nezdařila. Skúste to prosím neskôr znova.",
+      "SIGNIN_FAILED": "PPrihlásenie sa nezdařilo. Skontrolujte svoje údaje a skúste to znova.",
+      "SIGNIN_FAILED_GENERIC": "PPrihlásenie sa nezdařilo. Skúste to prosím neskôr znova.",
+      "NOT_AUTHENTICATED": "Musíte byť prihlásení, aby ste mohli vykonať túto akciu.",
+      "ACCESS_DENIED": "Nemáte oprávnenie vykonať túto akciu.",
+      "WORKOUT_NOT_FOUND": "Požadovaný tréning nebol nájdený.",
+      "FAILED_TO_CREATE_WORKOUT": "Nepodarilo sa vytvoriť tréning. Skúste to prosím neskôr znova.",
+      "FAILED_TO_UPDATE_WORKOUT_TITLE": "Nepodarilo sa aktualizovať názov tréningu. Skúste to prosím neskôr znova.",
+      "FAILED_TO_COMPLETE_WORKOUT": "Nepodarilo se dokončit tréning. Skúste to prosím neskôr znova.",
+      "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Nepodarilo sa pridať cviky do tréningu. Skúste to prosím neskôr znova.",
+      "FAILED_TO_REMOVE_EXERCISE_FROM_WORKOUT": "Nepodarilo se odstranit cvik z tréningu. Skúste to prosím neskôr znova.",
+      "EXERCISE_NOT_FOUND": "Požadovaný cvik nebol nájdený.",
+      "FAILED_TO_CREATE_EXERCISE": "Nepodarilo sa vytvoriť cvik. Skúste to prosím neskôr znova.",
+      "SET_NOT_FOUND": "Požadovaná séria cviku nebola nájdená.",
+      "FAILED_TO_CREATE_EXERCISE_SET": "Nepodarilo sa vytvoriť sériu cviku. Skúste to prosím neskôr znova.",
+      "FAILED_TO_UPDATE_EXERCISE_SET": "Nepodarilo sa aktualizovať sériu cviku. Skúste to prosím neskôr znova.",
+      "FAILED_TO_DELETE_EXERCISE_SET": "Nepodarilo sa vymazať sériu cviku. Skúste to prosím neskôr znova."
+    }
   },
   "Nav": {
     "home": "Domov",
@@ -19,7 +40,7 @@
     "contact": "Kontakt",
     "signin": "Prihlásiť sa",
     "signout": "Odhlásiť sa",
-    "myaccount": "Můj účet",
+    "myaccount": "Môj účet",
     "profile": "Profil"
   },
   "Footer": {
@@ -138,6 +159,7 @@
     "noActiveWorkoutTitle": "Žiadny aktívny tréning",
     "noActiveWorkout": "Začnite nový tréning, aby sa tu zobrazil.",
     "startButton": "Spustiť prázdny tréning",
+    "creating": "Vytváranie...",
     "continueButton": "Pokračovať v tréningu",
     "title": "Aktívny tréning",
     "NameLabel": "Názov:",
@@ -166,5 +188,27 @@
     "equipment": "Vybavenie",
     "equipmentPlaceholder": "Vyberte vybavenie",
     "reset": "Obnoviť filtre"
+  },
+  "workoutLoading": {
+    "title": "Načítává sa tréning...",
+    "error": "Nastala chyba pri načítavaní tréningu. Skúste to prosím znova."
+   },
+   "workoutLog": {
+     "title": "Tréningový denník",
+     "durationLabel": "Trvanie",
+     "volumeLabel": "Objem",
+     "exercisesLabel": "Cviky",
+     "backButton": "Späť",
+     "completeButton": "Dokončiť tréning",
+     "completing": "Dokončovanie tréningu...",
+     "workoutNamePlaceholder": "Názov tréningu",
+     "addExerciseButton": "Pridať cvik"
+   },
+  "selectedExerciseCard": {
+    "setsLabel": "Séria",
+    "repsLabel": "Opakovania",
+    "addSetButton": "Pridať sériu",
+    "addingSet": "Pridávanie série...",
+    "noSets": "Zatiaľ neboli pridané žiadne série."
   }
 }

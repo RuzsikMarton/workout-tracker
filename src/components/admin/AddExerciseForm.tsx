@@ -10,9 +10,11 @@ import { exerciseSchema } from "@/lib/validations";
 import { createExerciseAction } from "@/lib/actions/exercises";
 import { useState, useRef } from "react";
 import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
+import { useTranslations } from "next-intl";
 
 const AddExerciseForm = () => {
   const router = useRouter();
+  const errorT = useTranslations("errors.codes");
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -88,7 +90,7 @@ const AddExerciseForm = () => {
       // create exercise
       const res = await createExerciseAction(formData);
       if (!res.ok) {
-        setError("root", { message: res.message });
+        setError("root", { message: errorT(res.code) });
         return;
       }
 

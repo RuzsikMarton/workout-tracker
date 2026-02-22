@@ -192,6 +192,10 @@
     @apply w-full px-4 mx-auto max-w-7xl; 
   }
 
+  .brand-button {
+    @apply bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white;
+  }
+
   .input-label{
     @apply mt-4 text-sm text-muted-foreground mb-1 block;
   }

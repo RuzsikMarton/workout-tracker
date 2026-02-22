@@ -23,39 +23,6 @@ export async function generateMetadata({
   };
 }
 
-const exerciseSets = [
-  {
-    id: "1",
-    setNumber: 1,
-    reps: 10,
-    weight: 100,
-    workoutExerciseId: "we1",
-    completed: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "2",
-    setNumber: 2,
-    reps: 8,
-    weight: 120,
-    workoutExerciseId: "we1",
-    completed: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "3",
-    setNumber: 3,
-    reps: 6,
-    weight: 140,
-    workoutExerciseId: "we1",
-    completed: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
-
 const ExercisePage = async ({
   params,
 }: {
@@ -70,18 +37,17 @@ const ExercisePage = async ({
   return (
     <main className="min-h-screen font-sans app-layout">
       <ExercisePageCard {...exercise} />
+      {/* will need to implement personal best and last session data for exercises
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-16 py-6">
         <ExerciseSessionStatCard
           key={"personal-best"}
           type="PersonalBestCard"
-          workoutExercise={exerciseSets}
         />
         <ExerciseSessionStatCard
           key={"last-exercise"}
           type="LastExerciseCard"
-          workoutExercise={exerciseSets}
         />
-      </div>
+      </div>*/}
     </main>
   );
 };

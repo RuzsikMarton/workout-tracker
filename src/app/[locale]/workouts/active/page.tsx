@@ -3,14 +3,12 @@ import ActiveWorkoutClient from "@/components/workouts/activeworkout/ActiveWorko
 import { auth } from "@/lib/auth";
 import { getExercisesSheet } from "@/lib/data/get-exercise";
 import { getActiveWorkoutWithData } from "@/lib/data/get-workout";
+import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const ActiveWorkoutPage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ equipment: string; muscle: string }>;
-}) => {
+const ActiveWorkoutPage = async () => {
+  const t = await getTranslations("workoutLog");
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -19,9 +17,9 @@ const ActiveWorkoutPage = async ({
     redirect("/signin");
   }
 
-  const activeWorkout = await getActiveWorkoutWithData(session.user.id);
+  const data = await getActiveWorkoutWithData(session.user.id);
 
-  if (!activeWorkout) {
+  if (!data) {
     redirect("/workouts");
   }
 
@@ -29,9 +27,10 @@ const ActiveWorkoutPage = async ({
   return (
     <div className="page-main app-layout">
       <div className="w-full">
-        <PageTitle title="Workout log" />
+        <PageTitle title={t("title")} />
         <ActiveWorkoutClient
-          activeWorkout={activeWorkout}
+          activeWorkout={data.activeWorkout}
+          totalVolume={data.totalVolume}
           sheetExercises={sheetExercises}
         />
       </div>

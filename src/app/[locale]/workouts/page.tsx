@@ -7,31 +7,6 @@ import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const workoutHistorydev = [
-  {
-    id: "1",
-    userId: "1",
-    status: "COMPLETED",
-    description: null,
-    duration: 2700,
-    title: "Evening Workout - Strength and Conditioning",
-    workoutExercises: [],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "2",
-    userId: "1",
-    status: "COMPLETED",
-    description: null,
-    duration: 1800,
-    title: "Lunchtime Quick Cardio Blast",
-    workoutExercises: [],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
-
 export async function generateMetadata({
   params,
 }: {

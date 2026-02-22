@@ -10,14 +10,14 @@ import {
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-export type AuthActionResult = { ok: true } | { ok: false; message: string };
+export type AuthActionResult = { ok: true } | { ok: false; code: string };
 
 export async function signUpAction(
   formData: SignUpInput,
 ): Promise<AuthActionResult> {
   const parsed = signUpSchema.safeParse(formData);
   if (!parsed.success) {
-    return { ok: false, message: "Invalid input" };
+    return { ok: false, code: "INVALID_INPUT" };
   }
 
   const { email, password, name } = parsed.data;
@@ -31,20 +31,26 @@ export async function signUpAction(
       },
     });
 
-    if ((result as { error?: { message?: string } })?.error) {
+    if (result && typeof result === "object" && "error" in result) {
+      console.error("Sign-up error:", result.error);
       return {
         ok: false,
-        message: (result as any).error.message ?? "Failed to sign up.",
+        code: "SIGNUP_FAILED",
       };
     }
 
     return { ok: true };
   } catch (error: unknown) {
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : "Failed to sign up. Please try again.";
-    return { ok: false, message: errorMessage };
+    console.error("Sign-up error:", error);
+    if (
+      error &&
+      typeof error === "object" &&
+      "statusCode" in error &&
+      (error as any).statusCode === 401
+    ) {
+      return { ok: false, code: "SIGNUP_FAILED" };
+    }
+    return { ok: false, code: "SIGNUP_FAILED_GENERIC" };
   }
 }
 
@@ -53,7 +59,7 @@ export async function signInAction(
 ): Promise<AuthActionResult> {
   const parsed = signInSchema.safeParse(formData);
   if (!parsed.success) {
-    return { ok: false, message: "Invalid input" };
+    return { ok: false, code: "INVALID_INPUT" };
   }
 
   const { email, password } = parsed.data;
@@ -66,20 +72,26 @@ export async function signInAction(
       },
     });
 
-    if ((result as { error?: { message?: string } })?.error) {
+    if (result && typeof result === "object" && "error" in result) {
+      console.error("Sign-in error:", result.error);
       return {
         ok: false,
-        message: (result as any).error.message ?? "Failed to sign in.",
+        code: "SIGNIN_FAILED",
       };
     }
 
     return { ok: true };
   } catch (error: unknown) {
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : "Failed to sign in. Please try again.";
-    return { ok: false, message: errorMessage };
+    console.error("Sign-in error:", error);
+    if (
+      error &&
+      typeof error === "object" &&
+      "statusCode" in error &&
+      (error as any).statusCode === 401
+    ) {
+      return { ok: false, code: "SIGNIN_FAILED" };
+    }
+    return { ok: false, code: "SIGNIN_FAILED_GENERIC" };
   }
 }
 

@@ -10,7 +10,28 @@
   },
   "errors": {
     "title": "Valami hiba történt",
-    "message": "Váratlan hiba történt. Kérjük, próbáld meg később újra."
+    "message": "Váratlan hiba történt. Kérjük, próbáld meg később újra.",
+    "codes": {
+      "INVALID_INPUT": "Érvénytelen adat. Kérjük, ellenőrizd az adataidat és próbáld meg újra.",
+      "SIGNUP_FAILED": "Sikertelen regisztráció. Kérjük, ellenőrizd az adataidat és próbáld meg újra.",
+      "SIGNUP_FAILED_GENERIC": "Sikertelen regisztráció. Kérjük, próbáld meg később újra.",
+      "SIGNIN_FAILED": "Sikertelen bejelentkezés. Kérjük, ellenőrizd a hitelesítő adataidat és próbáld meg újra.",
+      "SIGNIN_FAILED_GENERIC": "Sikertelen bejelentkezés. Kérjük, próbáld meg később újra.",
+      "NOT_AUTHENTICATED": "A művelet végrehajtásához be kell jelentkezned.",
+      "ACCESS_DENIED": "Nincs jogosultságod a művelet végrehajtásához.",
+      "WORKOUT_NOT_FOUND": "A kért edzés nem található.",
+      "FAILED_TO_CREATE_WORKOUT": "Sikertelen edzés létrehozása. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_UPDATE_WORKOUT_TITLE": "Sikertelen edzés címének frissítése. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_COMPLETE_WORKOUT": "Sikertelen edzés befejezése. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Sikertelen gyakorlatok hozzáadása az edzéshez. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_REMOVE_EXERCISE_FROM_WORKOUT": "Sikertelen gyakorlat eltávolítása az edzésből. Kérjük, próbáld meg később újra.",
+      "EXERCISE_NOT_FOUND": "A kért gyakorlat nem található.",
+      "FAILED_TO_CREATE_EXERCISE": "Sikertelen gyakorlat létrehozása. Kérjük, próbáld meg később újra.",
+      "SET_NOT_FOUND": "A kért sorozat nem található.",
+      "FAILED_TO_CREATE_EXERCISE_SET": "Sikertelen gyakorlat sorozat létrehozása. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_UPDATE_EXERCISE_SET": "Sikertelen gyakorlat sorozat frissítése. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_DELETE_EXERCISE_SET": "Sikertelen gyakorlat sorozat törlése. Kérjük, próbáld meg később újra."
+    }
   },
   "Nav": {
     "home": "Kezdőlap",
@@ -138,6 +159,7 @@
     "noActiveWorkoutTitle": "Nincs aktív edzés",
     "noActiveWorkout": "Indíts el egy új edzést, hogy itt megjelenjen.",
     "startButton": "Üres edzés indítása",
+    "creating": "Létrehozás...",
     "continueButton": "Edzés folytatása",
     "title": "Aktív edzés",
     "NameLabel": "Név:",
@@ -166,5 +188,27 @@
      "equipment": "Felszerelés",
      "equipmentPlaceholder": "Szűrés felszerelés szerint",
      "reset": "Szűrők visszaállítása"
-   }
+   },
+   "workoutLoading": {
+     "title": "Edzés betöltése...",
+     "error": "Hiba történt az edzés betöltésekor. Kérjük, próbáld meg újra."
+   },
+   "workoutLog": {
+     "title": "Edzésnapló",
+     "durationLabel": "Időtartam",
+     "volumeLabel": "Összmunka",
+     "exercisesLabel": "Gyakorlatok",
+     "backButton": "Vissza",
+     "completeButton": "Edzés befejezése",
+     "completing": "Edzés befejezése...",
+     "workoutNamePlaceholder": "Edzés neve",
+     "addExerciseButton": "Gyakorlat hozzáadása"
+   },
+  "selectedExerciseCard": {
+    "setsLabel": "Sorozat",
+    "repsLabel": "Ismétlések",
+    "addSetButton": "Sorozat hozzáadása",
+    "addingSet": "Sorozat hozzáadása...",
+    "noSets": "Még nincs sorozat hozzáadva."
+  }
 }

@@ -10,7 +10,29 @@
   },
   "errors": {
     "title": "Something went wrong",
-    "message": "An unexpected error has occurred. Please try again later."
+    "message": "An unexpected error has occurred. Please try again later.",
+    "codes": {
+      "INVALID_INPUT": "Invalid input. Please check your data and try again.",
+      "SIGNUP_FAILED": "Failed to sign up. Please check your information and try again.",
+      "SIGNUP_FAILED_GENERIC": "Failed to sign up. Please try again later.",
+      "SIGNIN_FAILED": "Failed to sign in. Please check your credentials and try again.",
+      "SIGNIN_FAILED_GENERIC": "Failed to sign in. Please try again later.",
+      "NOT_AUTHENTICATED": "You must be signed in to perform this action.",
+      "ACCESS_DENIED": "You do not have permission to perform this action.",
+      "WORKOUT_NOT_FOUND": "The requested workout was not found.",
+      "FAILED_TO_CREATE_WORKOUT": "Failed to create workout. Please try again later.",
+      "FAILED_TO_UPDATE_WORKOUT_TITLE": "Failed to update workout title. Please try again later.",
+      "FAILED_TO_COMPLETE_WORKOUT": "Failed to complete workout. Please try again later.",
+      "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Failed to add exercises to workout. Please try again later.",
+      "FAILED_TO_REMOVE_EXERCISE_FROM_WORKOUT": "Failed to remove exercise from workout. Please try again later.",
+      "EXERCISE_NOT_FOUND": "The requested exercise was not found.",
+      "FAILED_TO_CREATE_EXERCISE": "Failed to create exercise. Please try again later.",
+      "SET_NOT_FOUND": "The requested exercise set was not found.",
+      "FAILED_TO_CREATE_EXERCISE_SET": "Failed to create exercise set. Please try again later.",
+      "FAILED_TO_UPDATE_EXERCISE_SET": "Failed to update exercise set. Please try again later.",
+      "FAILED_TO_DELETE_EXERCISE_SET": "Failed to delete exercise set. Please try again later."
+    },
+    "zod-errors": {}
   },
   "Nav": {
     "home": "Home",
@@ -139,6 +161,7 @@
     "noActiveWorkoutTitle": "No Active Workout",
     "noActiveWorkout": "Start a new workout to see it here.",
     "startButton": "Start Empty Workout",
+    "creating": "Creating...",
     "continueButton": "Continue Workout",
     "NameLabel": "Name:",
     "DateLabel": "Elapsed Time:",
@@ -166,5 +189,27 @@
     "equipment": "Equipment",
     "equipmentPlaceholder": "Filter by equipment",
     "reset": "Reset Filters"
+  },
+  "workoutLoading": {
+    "title": "Loading workout...",
+    "error": "Something went wrong while loading the workout. Please try again."
+  },
+  "workoutLog": {
+    "title": "Workout Log",
+    "durationLabel": "Duration",
+    "volumeLabel": "Volume",
+    "exercisesLabel": "Exercises",
+    "backButton": "Back",
+    "completeButton": "Complete Workout",
+    "completing": "Completing workout...",
+    "workoutNamePlaceholder": "Workout Name",
+    "addExerciseButton": "Add Exercise"
+  },
+  "selectedExerciseCard": {
+    "setsLabel": "Set",
+    "repsLabel": "Reps",
+    "addSetButton": "Add Set",
+    "addingSet": "Adding set...",
+    "noSets": "No sets added yet."
   }
 }

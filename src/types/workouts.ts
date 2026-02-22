@@ -13,3 +13,10 @@ export type WorkoutExerciseWithData = WorkoutExercise & {
 export type WorkoutWithExercises = Workout & {
   workoutExercises: WorkoutExerciseWithData[];
 };
+
+export type WorkoutWithPartialExercises = Workout & {
+  workoutExercises: {
+    exerciseId: string;
+    sets: ExerciseSet[];
+  }[];
+};

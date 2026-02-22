@@ -22,7 +22,7 @@ export async function getActiveWorkout(userId: string) {
 export async function getActiveWorkoutWithData(userId: string) {
   const activeWorkout = await prisma.workout.findFirst({
     where: {
-      userId: userId,
+      userId,
       status: "IN_PROGRESS",
     },
     include: {
@@ -30,19 +30,34 @@ export async function getActiveWorkoutWithData(userId: string) {
         include: {
           exercise: true,
           sets: {
-            orderBy: {
-              setNumber: "asc",
-            },
+            orderBy: { setNumber: "asc" },
           },
         },
-        orderBy: {
-          order: "asc",
-        },
+        orderBy: { order: "asc" },
       },
     },
   });
 
-  return activeWorkout;
+  if (!activeWorkout) return null;
+
+  const totalVolume = activeWorkout.workoutExercises.reduce(
+    (workoutAcc, we) => {
+      return (
+        workoutAcc +
+        we.sets.reduce(
+          (setAcc, set) =>
+            set.completed ? setAcc + set.reps * set.weight : setAcc,
+          0,
+        )
+      );
+    },
+    0,
+  );
+
+  return {
+    activeWorkout,
+    totalVolume,
+  };
 }
 
 export async function getWorkoutById(workoutId: string) {}
@@ -66,6 +81,9 @@ export async function getWorkoutHistory({
     where: {
       userId: userId,
       status: "COMPLETED",
+    },
+    orderBy: {
+      createdAt: "desc",
     },
     skip: (page - 1) * pageSize,
     take: pageSize,

@@ -52,6 +52,7 @@ export function ExercisePickerProvider({
   children: React.ReactNode;
 }) {
   const t = useTranslations("workoutSheet");
+  const errorT = useTranslations("errors.codes");
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState<Set<string>>(
@@ -122,14 +123,17 @@ export function ExercisePickerProvider({
       const exerciseIds = Array.from(selectedExercises);
       const res = await createWorkoutExerciseAction(exerciseIds);
       if (!res?.ok) {
-        setError(res?.message || "Failed to add exercises. Please try again.");
+        setError(
+          res.code
+            ? errorT(res.code)
+            : "Failed to add exercises. Please try again.",
+        );
         return;
       }
       setSelectedExercises(new Set());
-      router.refresh();
       close();
     } catch (err) {
-      console.error("Failed to add exercises to workout:", err);
+      setError("Something went wrong. Please try again.");
     } finally {
       setPending(false);
     }

@@ -1,5 +1,4 @@
 import RegisterForm from "@/components/auth/RegisterForm";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
@@ -15,8 +14,8 @@ export async function generateMetadata({
   };
 }
 
-export default function RegisterPage() {
-  const t = useTranslations("SignUp");
+export default async function RegisterPage() {
+  const t = await getTranslations("SignUp");
   const signUpData = {
     title: t("title"),
     fullNameLabel: t("fullNameLabel"),

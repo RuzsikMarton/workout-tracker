@@ -1,6 +1,5 @@
 import ContactForm from "@/components/ContactForm";
 import { Link, Mail } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { FaFacebook, FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa";
 
@@ -17,8 +16,8 @@ export async function generateMetadata({
   };
 }
 
-const ContactPage = () => {
-  const t = useTranslations("Contact");
+const ContactPage = async () => {
+  const t = await getTranslations("Contact");
   return (
     <main className="page-main app-layout">
       <div className="page-container max-w-7xl mx-auto gap-4 flex flex-col md:flex-row">

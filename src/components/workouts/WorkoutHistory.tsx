@@ -1,9 +1,11 @@
 "use client";
+
 import { Info, SearchX } from "lucide-react";
 import { PaginationWithLinks } from "../ui/pagination-with-links";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { Workout } from "@prisma/client";
 
 const WorkoutHistory = ({
   workoutHistory,
@@ -11,7 +13,7 @@ const WorkoutHistory = ({
   page,
   pageSize,
 }: {
-  workoutHistory: any[];
+  workoutHistory: Workout[];
   totalCount: number;
   page: number;
   pageSize: number;
@@ -74,7 +76,7 @@ const WorkoutHistory = ({
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-red-700/75 dark:bg-red-800/50 dark:hover:bg-red-700 hover:bg-red-800 text-white hover:text-white"
+                      className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
                     >
                       <Info className="h-4 w-4" />
                       <span className="hidden md:inline ml-1">

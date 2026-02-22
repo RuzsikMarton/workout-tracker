@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
 import { signUpAction } from "@/lib/actions/auth";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface SignUpFormProps {
   data: {
@@ -24,6 +25,7 @@ interface SignUpFormProps {
 
 export default function RegisterForm({ data }: SignUpFormProps) {
   const router = useRouter();
+  const errorT = useTranslations("errors.codes");
   const {
     register,
     handleSubmit,
@@ -36,7 +38,9 @@ export default function RegisterForm({ data }: SignUpFormProps) {
     clearErrors("root");
     const res = await signUpAction(formData);
     if (!res.ok) {
-      setError("root", { message: res.message });
+      setError("root", {
+        message: errorT(res.code) || "An error occurred. Please try again.",
+      });
       return;
     }
     router.push("/");

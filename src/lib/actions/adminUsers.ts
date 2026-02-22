@@ -1,28 +1,19 @@
 "use server";
 
-import { auth } from "../auth";
-import { headers } from "next/headers";
 import { prisma } from "../prisma";
 import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { requireAdmin } from "../auth-helpers";
 
 export type ActionResult = { ok: true } | { ok: false; message: string };
-
-async function requireAdmin(): Promise<ActionResult> {
-  const session = await auth.api.getSession({ headers: await headers() });
-
-  if (!session?.user) return { ok: false, message: "Unauthorized" };
-  if (session.role !== "ADMIN") return { ok: false, message: "Forbidden" };
-
-  return { ok: true };
-}
 
 type Role = "USER" | "ADMIN";
 
 export async function updateUserRolesAdmin(
   updates: Array<{ userId: string; newRole: Role }>,
 ) {
-  await requireAdmin();
+  const admin = await requireAdmin();
+  if (!admin.ok) return admin;
 
   if (!Array.isArray(updates) || updates.length === 0) {
     throw new Error(
@@ -53,7 +44,7 @@ export async function updateUserRolesAdmin(
     return { ok: true as const, updated: results.length };
   } catch (err: unknown) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      throw new Error(err.message);
+      console.error("Prisma error updating user roles:", err);
     }
     if (err instanceof Error) throw err;
     throw new Error("Internal Server Error");
@@ -61,7 +52,8 @@ export async function updateUserRolesAdmin(
 }
 
 export async function deleteUsersAdmin(userIds: string[]) {
-  await requireAdmin();
+  const admin = await requireAdmin();
+  if (!admin.ok) return admin;
 
   if (!Array.isArray(userIds) || userIds.length === 0) {
     throw new Error("Invalid userIds format. Expected array of user IDs.");
@@ -89,7 +81,7 @@ export async function deleteUsersAdmin(userIds: string[]) {
     return { ok: true as const };
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      throw new Error(err.message);
+      console.error("Prisma error deleting users:", err);
     }
     throw err instanceof Error ? err : new Error("Internal Server Error");
   }

@@ -102,6 +102,7 @@ model Workout {
   workoutExercises WorkoutExercise[]
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
+  //to add totalVolume, we can either calculate it on the fly or store it in the workout table and update it whenever a set is completed/updated. For now, let's calculate it on the fly.
 
   @@index([userId])
   @@index([userId, status])
@@ -125,14 +126,14 @@ model WorkoutExercise {
   id         String        @id @default(cuid())
   workoutId  String
   exerciseId String
-  order      Int // Order of exercise in the workout
+  order      Int // order of exercise in the workout
   workout    Workout       @relation(fields: [workoutId], references: [id], onDelete: Cascade)
   exercise   Exercise      @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
   sets       ExerciseSet[]
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
 
-  @@unique([workoutId, exerciseId])
+  @@unique([workoutId, order]) // ensure unique order of exercises within a workout
   @@index([workoutId])
   @@index([exerciseId])
   @@map("workout_exercise")
@@ -141,7 +142,7 @@ model WorkoutExercise {
 model ExerciseSet {
   id                String          @id @default(cuid())
   workoutExerciseId String
-  setNumber         Int // 1st set, 2nd set, etc.
+  setNumber         Int
   reps              Int
   weight            Float
   completed         Boolean         @default(false)
