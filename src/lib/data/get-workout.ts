@@ -44,7 +44,11 @@ export async function getActiveWorkoutWithData(userId: string) {
     (workoutAcc, we) => {
       return (
         workoutAcc +
-        we.sets.reduce((setAcc, set) => setAcc + set.reps * set.weight, 0)
+        we.sets.reduce(
+          (setAcc, set) =>
+            set.completed ? setAcc + set.reps * set.weight : setAcc,
+          0,
+        )
       );
     },
     0,
