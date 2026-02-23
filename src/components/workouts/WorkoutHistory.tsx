@@ -46,7 +46,7 @@ const WorkoutHistory = ({
             <tr className="border-b">
               <th className="p-3 text-left font-semibold">{t("nameLabel")}</th>
               <th className="p-3 text-left font-semibold">{t("dateLabel")}</th>
-              <th className="p-3 text-center font-semibold">
+              <th className="hidden md:table-cell p-3 text-center font-semibold">
                 {t("durationLabel")}
               </th>
               <th className="p-3 text-center font-semibold">
@@ -66,7 +66,7 @@ const WorkoutHistory = ({
                     : workout.title}
                 </td>
                 <td className="p-3">{workout.createdAt.toDateString()}</td>
-                <td className="p-3 text-center">
+                <td className="hidden md:table-cell p-3 text-center">
                   {workout.duration
                     ? `${Math.floor(workout.duration / 60)} min`
                     : "N/A"}
@@ -90,7 +90,7 @@ const WorkoutHistory = ({
           </tbody>
         </table>
       </div>
-      <div className="mt-4">
+      <div className="my-4">
         {" "}
         <PaginationWithLinks
           page={page}

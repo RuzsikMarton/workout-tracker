@@ -96,13 +96,13 @@ model Workout {
   title            String
   description      String?
   duration         Int? // Duration in seconds
+  totalVolume      Float?            @default(0) // Total volume lifted (weight * reps)
   status           WorkoutStatus     @default(IN_PROGRESS)
   userId           String
   user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   workoutExercises WorkoutExercise[]
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-  //to add totalVolume, we can either calculate it on the fly or store it in the workout table and update it whenever a set is completed/updated. For now, let's calculate it on the fly.
 
   @@index([userId])
   @@index([userId, status])

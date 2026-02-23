@@ -84,7 +84,24 @@ export async function finishWorkoutAction(
         userId: session.user.id,
         status: "IN_PROGRESS",
       },
+      include: {
+        workoutExercises: {
+          include: {
+            sets: true,
+          },
+        },
+      },
     });
+
+    const totalVolume = workout?.workoutExercises.reduce(
+      (workoutTotal, exercise) =>
+        workoutTotal +
+        exercise.sets?.reduce(
+          (exerciseTotal, set) => exerciseTotal + set.reps * set.weight,
+          0,
+        ),
+      0,
+    );
 
     if (!workout) return { ok: false, code: "WORKOUT_NOT_FOUND" };
 
@@ -97,6 +114,7 @@ export async function finishWorkoutAction(
       data: {
         status: "COMPLETED",
         duration,
+        totalVolume,
       },
     });
 
