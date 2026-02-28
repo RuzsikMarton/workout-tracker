@@ -11,13 +11,14 @@ import {
 import SheetExerciseCard from "@/components/workouts/activeworkout/SheetExerciseCard";
 import SheetExerciseFilter from "@/components/workouts/activeworkout/SheetExerciseFilter";
 import { ExercisePrisma } from "@/types";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
   createContext,
   useCallback,
   useContext,
   useMemo,
   useState,
+  useTransition,
 } from "react";
 import { createWorkoutExerciseAction } from "../actions/workouts";
 import { CircleAlert } from "lucide-react";
@@ -30,6 +31,8 @@ type Ctx = {
   toggleSelectExercise: (id: string) => void;
   selectedExercises: Set<string>;
   isSelected: (id: string) => boolean;
+  isFilterPending: boolean;
+  startFilterTransition: (callback: () => void) => void;
 };
 
 const ExercisePickerContext = createContext<Ctx | null>(null);
@@ -53,13 +56,13 @@ export function ExercisePickerProvider({
 }) {
   const t = useTranslations("workoutSheet");
   const errorT = useTranslations("errors.codes");
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState<Set<string>>(
     new Set(),
   );
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isFilterPending, startFilterTransition] = useTransition();
 
   const searchParams = useSearchParams();
   const equipment = searchParams.get("equipment") || "";
@@ -96,6 +99,8 @@ export function ExercisePickerProvider({
       toggleSelectExercise,
       selectedExercises,
       isSelected,
+      isFilterPending,
+      startFilterTransition,
     };
   }, [
     open,
@@ -104,6 +109,7 @@ export function ExercisePickerProvider({
     toggleSelectExercise,
     selectedExercises,
     isSelected,
+    isFilterPending,
   ]);
 
   const filteredExercises = useMemo(() => {
@@ -143,7 +149,10 @@ export function ExercisePickerProvider({
     <ExercisePickerContext.Provider value={value}>
       {children}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent className="bg-zinc-50 dark:bg-secondary max-h-screen overflow-y-scroll">
+        <SheetContent
+          className="bg-zinc-50 dark:bg-secondary max-h-screen overflow-y-scroll"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
           <SheetHeader className="text-center">
             <SheetTitle className="text-xl text-muted-foreground dark:text-white uppercase underline underline-offset-4 decoration-red-700 font-stretch-50%">
               {t("title")}
@@ -162,9 +171,15 @@ export function ExercisePickerProvider({
             )}
             <SheetExerciseFilter />
             <div className="flex flex-col items-center mt-4">
-              {filteredExercises.map((exercise) => (
-                <SheetExerciseCard key={exercise.id} exercise={exercise} />
-              ))}
+              {isFilterPending ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+              ) : (
+                filteredExercises.map((exercise) => (
+                  <SheetExerciseCard key={exercise.id} exercise={exercise} />
+                ))
+              )}
             </div>
           </div>
           {!!selectedExercises.size && (

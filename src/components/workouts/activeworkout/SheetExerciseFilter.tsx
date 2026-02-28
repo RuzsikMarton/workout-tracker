@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useExercisePicker } from "@/lib/providers/ExercisePickerProvider";
 
 const SheetExerciseFilter = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { startFilterTransition, isFilterPending } = useExercisePicker();
   const t = useTranslations("workoutSheetFilter");
   const tM = useTranslations("muscleGroups");
   const tE = useTranslations("equipment");
@@ -17,11 +19,15 @@ const SheetExerciseFilter = () => {
     const params = new URLSearchParams(searchParams.toString());
     console.log(params);
     params.set(param, value);
-    router.push(`${pathname}?${params.toString()}`);
+    startFilterTransition(() => {
+      router.push(`${pathname}?${params.toString()}`);
+    });
   };
 
   const handleReset = () => {
-    router.push(pathname);
+    startFilterTransition(() => {
+      router.push(pathname);
+    });
   };
 
   return (
@@ -32,8 +38,9 @@ const SheetExerciseFilter = () => {
         </span>
         <select
           value={searchParams.get("muscleGroup") || ""}
-          className="appearance-none w-full bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
+          className="appearance-none w-full bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm disabled:bg-input/50 disabled:text-primary/50 disabled:cursor-not-allowed"
           onChange={(e) => handleChange("muscleGroup", e.target.value)}
+          disabled={isFilterPending}
         >
           <option value="" disabled hidden>
             {t("musclePlaceholder")}
@@ -51,7 +58,8 @@ const SheetExerciseFilter = () => {
         </span>
         <select
           value={searchParams.get("equipment") || ""}
-          className="appearance-none w-full bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm"
+          className="appearance-none w-full bg-input ring-1 ring-ring py-1 px-2 rounded-md shadow-sm disabled:bg-input/50 disabled:text-primary/50 disabled:cursor-not-allowed"
+          disabled={isFilterPending}
           onChange={(e) => handleChange("equipment", e.target.value)}
         >
           <option value="" disabled hidden>
