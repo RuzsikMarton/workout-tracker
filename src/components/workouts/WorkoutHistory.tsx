@@ -65,7 +65,9 @@ const WorkoutHistory = ({
                     ? workout.title.substring(0, 15) + "..."
                     : workout.title}
                 </td>
-                <td className="p-3">{workout.createdAt.toDateString()}</td>
+                <td className="p-3">
+                  {workout.createdAt.toLocaleDateString()}
+                </td>
                 <td className="hidden md:table-cell p-3 text-center">
                   {workout.duration
                     ? `${Math.floor(workout.duration / 60)} min`

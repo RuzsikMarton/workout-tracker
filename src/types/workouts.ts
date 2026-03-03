@@ -17,6 +17,5 @@ export type WorkoutWithExercises = Workout & {
 export type WorkoutWithPartialExercises = Workout & {
   workoutExercises: {
     exerciseId: string;
-    sets: ExerciseSet[];
   }[];
 };

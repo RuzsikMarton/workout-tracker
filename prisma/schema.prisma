@@ -96,7 +96,7 @@ model Workout {
   title            String
   description      String?
   duration         Int? // Duration in seconds
-  totalVolume      Float?            @default(0) // Total volume lifted (weight * reps)
+  totalVolume      Float             @default(0) // Total volume lifted (weight * reps)
   status           WorkoutStatus     @default(IN_PROGRESS)
   userId           String
   user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)

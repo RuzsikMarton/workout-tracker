@@ -1,21 +1,14 @@
 import PageTitle from "@/components/PageTitle";
 import ActiveWorkoutClient from "@/components/workouts/activeworkout/ActiveWorkoutClient";
-import { auth } from "@/lib/auth";
+import { requireSessionOrRedirect } from "@/lib/auth-helpers";
 import { getExercisesSheet } from "@/lib/data/get-exercise";
 import { getActiveWorkoutWithData } from "@/lib/data/get-workout";
 import { getTranslations } from "next-intl/server";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 const ActiveWorkoutPage = async () => {
   const t = await getTranslations("workoutLog");
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) {
-    redirect("/signin");
-  }
+  const session = await requireSessionOrRedirect();
 
   const data = await getActiveWorkoutWithData(session.user.id);
 

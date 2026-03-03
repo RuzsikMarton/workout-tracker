@@ -30,14 +30,6 @@ const ExercisePage = async ({
     pageSize?: string;
   }>;
 }) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session?.user) {
-    redirect("/signin");
-  }
-
   const params = await searchParams;
   const equipment = params?.equipment ?? "";
   const muscle = params?.muscle ?? "";

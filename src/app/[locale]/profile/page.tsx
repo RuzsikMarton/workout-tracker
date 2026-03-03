@@ -1,15 +1,7 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { requireSessionOrRedirect } from "@/lib/auth-helpers";
 
 const ProfilePage = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) {
-    redirect("/signin");
-  }
+  const session = await requireSessionOrRedirect();
   return (
     <main className="page-main app-layout">
       <div className="page-container flex flex-col justify-center items-center">

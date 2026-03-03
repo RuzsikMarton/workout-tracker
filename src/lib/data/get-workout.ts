@@ -1,3 +1,4 @@
+import { requireSession } from "../auth-helpers";
 import { prisma } from "../prisma";
 
 export async function getActiveWorkout(userId: string) {
@@ -10,7 +11,6 @@ export async function getActiveWorkout(userId: string) {
       workoutExercises: {
         select: {
           exerciseId: true,
-          sets: true,
         },
       },
     },
@@ -60,7 +60,27 @@ export async function getActiveWorkoutWithData(userId: string) {
   };
 }
 
-export async function getWorkoutById(workoutId: string) {}
+export async function getUserWorkoutById(workoutId: string, userId: string) {
+  const workout = await prisma.workout.findFirst({
+    where: {
+      id: workoutId,
+      userId: userId,
+    },
+    include: {
+      workoutExercises: {
+        include: {
+          exercise: true,
+          sets: {
+            orderBy: { setNumber: "asc" },
+          },
+        },
+        orderBy: { order: "asc" },
+      },
+    },
+  });
+
+  return workout;
+}
 
 export async function getWorkoutHistory({
   userId,
