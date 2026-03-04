@@ -3,6 +3,7 @@
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { requireSession } from "../auth-helpers";
+import { redirect } from "next/navigation";
 
 type WorkoutActionResult =
   | { ok: true; workoutId?: string }
@@ -29,6 +30,36 @@ export async function createWorkoutAction(): Promise<WorkoutActionResult> {
     return {
       ok: false,
       code: "FAILED_TO_CREATE_WORKOUT",
+    };
+  }
+}
+
+export async function deleteWorkoutAction(
+  workoutId: string,
+): Promise<WorkoutActionResult> {
+  const session = await requireSession();
+
+  if (!session) {
+    return { ok: false, code: "NOT_AUTHENTICATED" };
+  }
+
+  try {
+    const res = await prisma.workout.deleteMany({
+      where: {
+        id: workoutId,
+        userId: session.user.id,
+      },
+    });
+
+    if (res.count === 0) return { ok: false, code: "WORKOUT_NOT_FOUND" };
+
+    revalidatePath("/workouts");
+    return { ok: true };
+  } catch (error: unknown) {
+    console.error("Error deleting workout:", error);
+    return {
+      ok: false,
+      code: "FAILED_TO_DELETE_WORKOUT",
     };
   }
 }

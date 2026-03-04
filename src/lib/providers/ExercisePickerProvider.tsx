@@ -183,9 +183,9 @@ export function ExercisePickerProvider({
             </div>
           </div>
           {!!selectedExercises.size && (
-            <div className="sticky bottom-10 left-0 right-0 dark:bg-secondary px-4">
+            <div className="sticky bottom-10 left-0 right-0 px-4">
               <Button
-                className="w-full"
+                className="w-full hover:bg-primary disabled:opacity-100 disabled:bg-foreground"
                 size={"lg"}
                 onClick={handleAddSelected}
                 disabled={pending}

@@ -18,7 +18,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
   const [reps, setReps] = useState<number | "">(set.reps);
   const [weight, setWeight] = useState<number | "">(set.weight);
   const [isCompleted, setIsCompleted] = useState(set.completed);
-  const [isSaving, setIsSaving] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
     if (reps === set.reps && weight === set.weight) return;
     reps = Math.max(0, reps);
     weight = Math.max(0, weight);
-    setIsSaving(true);
+    setIsPending(true);
     setError(null);
     const result = await updateExerciseSetAction(set.id, { reps, weight });
     if (!result.ok) {
@@ -41,7 +41,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
           : "Failed to update set. Please try again.",
       );
     }
-    setIsSaving(false);
+    setIsPending(false);
   }, 1000);
 
   const handleToggleCompleted = async () => {
@@ -64,6 +64,8 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
   };
 
   const handleDelete = async () => {
+    setIsPending(true);
+    setError(null);
     try {
       setError(null);
       const result = await deleteExerciseSetAction(set.id);
@@ -77,6 +79,8 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
+    } finally {
+      setIsPending(false);
     }
   };
 
@@ -86,7 +90,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
         className={cn(
           "grid grid-cols-4 gap-2 md:gap-3 border-b py-3 transition-opacity px-1 md:px-2",
           isCompleted && "opacity-65 bg-green-500/10",
-          isSaving && "opacity-65",
+          isPending && "opacity-65",
           error && "border-destructive/50 bg-destructive/5",
         )}
       >
@@ -155,7 +159,9 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
             className={cn(
               "h-6 w-6 md:h-7 md:w-7 hover:bg-success/75!",
               isCompleted && "bg-success hover:bg-green-800",
+              isPending && "pointer-events-none opacity-70",
             )}
+            disabled={isPending}
             onClick={handleToggleCompleted}
             title={isCompleted ? "Mark as incomplete" : "Mark as complete"}
           >
@@ -166,9 +172,9 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
             size="icon"
             className={cn(
               "h-6 w-6 md:h-7 md:w-7 hover:bg-brand-hover/75!",
-              isSaving && "pointer-events-none opacity-70",
+              isPending && "pointer-events-none opacity-70",
             )}
-            disabled={isSaving}
+            disabled={isPending}
             onClick={handleDelete}
             title="Delete set"
           >

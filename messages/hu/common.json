@@ -21,6 +21,7 @@
       "ACCESS_DENIED": "Nincs jogosultságod a művelet végrehajtásához.",
       "WORKOUT_NOT_FOUND": "A kért edzés nem található.",
       "FAILED_TO_CREATE_WORKOUT": "Sikertelen edzés létrehozása. Kérjük, próbáld meg később újra.",
+      "FAILED_TO_DELETE_WORKOUT": "Sikertelen edzés törlése. Kérjük, próbáld meg később újra.",
       "FAILED_TO_UPDATE_WORKOUT_TITLE": "Sikertelen edzés címének frissítése. Kérjük, próbáld meg később újra.",
       "FAILED_TO_COMPLETE_WORKOUT": "Sikertelen edzés befejezése. Kérjük, próbáld meg később újra.",
       "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Sikertelen gyakorlatok hozzáadása az edzéshez. Kérjük, próbáld meg később újra.",

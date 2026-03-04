@@ -15,11 +15,11 @@ export async function requireSession() {
   return session;
 }
 
-export async function requireAdmin(): Promise<ActionResult> {
+export async function requireAdmin() {
   const session = await requireSession();
 
   if (!session?.user) return { ok: false, message: "Unauthorized" };
   if (session.role !== "ADMIN") return { ok: false, message: "Forbidden" };
 
-  return { ok: true };
+  return { ok: true, id: session.user.id };
 }

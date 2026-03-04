@@ -30,15 +30,45 @@ export async function updateUserRolesAdmin(
     }
   }
 
+  // Check if trying to change own role to USER
+  const changingSelfToUser = updates.some(
+    (u) => u.userId === admin.id && u.newRole === "USER",
+  );
+  if (changingSelfToUser) {
+    throw new Error("You cannot change your own role to USER.");
+  }
+
   try {
-    const results = await prisma.$transaction(
-      updates.map(({ userId, newRole }) =>
-        prisma.user.update({
-          where: { id: userId },
-          data: { role: newRole },
-        }),
-      ),
-    );
+    const results = await prisma.$transaction(async (tx) => {
+      // Check if changing admins to users
+      const adminToUserChanges = updates.filter((u) => u.newRole === "USER");
+
+      if (adminToUserChanges.length > 0) {
+        const affectedUserIds = adminToUserChanges.map((u) => u.userId);
+        const adminsBeingChanged = await tx.user.count({
+          where: { id: { in: affectedUserIds }, role: "ADMIN" },
+        });
+
+        if (adminsBeingChanged > 0) {
+          const totalAdmins = await tx.user.count({ where: { role: "ADMIN" } });
+          if (totalAdmins - adminsBeingChanged < 1) {
+            throw new Error(
+              "Cannot change the last admin to USER. At least one admin must remain.",
+            );
+          }
+        }
+      }
+
+      // Perform the updates
+      return Promise.all(
+        updates.map(({ userId, newRole }) =>
+          tx.user.update({
+            where: { id: userId },
+            data: { role: newRole },
+          }),
+        ),
+      );
+    });
 
     revalidatePath("/admin/users");
     return { ok: true as const, updated: results.length };
