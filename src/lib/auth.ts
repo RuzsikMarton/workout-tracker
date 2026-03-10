@@ -10,9 +10,9 @@ async function findUserRoles(userId: string) {
   try {
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { role: true }
+      select: { role: true },
     });
-    
+
     return user?.role || "USER";
   } catch (error) {
     console.error("Error finding user role:", error);
@@ -24,16 +24,25 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  user: {
+    changeEmail: {
+      enabled: true,
+      updateEmailWithoutVerification: true,
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [customSession(async ({user, session}) => {
-    const role = await findUserRoles(session.userId);
-   
-    return {
-      role,
-      session, 
-      user
-    }
-  }), nextCookies()]
+  plugins: [
+    customSession(async ({ user, session }) => {
+      const role = await findUserRoles(session.userId);
+
+      return {
+        role,
+        session,
+        user,
+      };
+    }),
+    nextCookies(),
+  ],
 });

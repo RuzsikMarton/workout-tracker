@@ -23,7 +23,7 @@ interface SignInFormProps {
 }
 
 export default function SignInForm({ data }: SignInFormProps) {
-  const errorT = useTranslations("errors.codes");
+  const errorT = useTranslations("errors");
   const router = useRouter();
   const {
     register,
@@ -39,7 +39,8 @@ export default function SignInForm({ data }: SignInFormProps) {
 
     if (!res.ok) {
       setError("root", {
-        message: errorT(res.code) || "An error occurred. Please try again.",
+        message:
+          errorT(`codes.${res.code}`) || "An error occurred. Please try again.",
       });
       return;
     }
@@ -65,7 +66,9 @@ export default function SignInForm({ data }: SignInFormProps) {
           className="input-primary"
         />
         {errors.email && (
-          <p className="text-destructive mt-1">{errors.email.message}</p>
+          <p className="text-destructive mt-1">
+            {errorT(`zod-errors.${errors.email.message}`)}
+          </p>
         )}
         <label className="input-label">{data.passwordLabel}</label>
         <input
@@ -75,7 +78,9 @@ export default function SignInForm({ data }: SignInFormProps) {
           className="input-primary"
         />
         {errors.password && (
-          <p className="text-destructive mt-1">{errors.password.message}</p>
+          <p className="text-destructive mt-1">
+            {errorT(`zod-errors.${errors.password.message}`)}
+          </p>
         )}
         {errors.root && (
           <p className="text-destructive mt-2">{errors.root.message}</p>

@@ -25,7 +25,7 @@ interface SignUpFormProps {
 
 export default function RegisterForm({ data }: SignUpFormProps) {
   const router = useRouter();
-  const errorT = useTranslations("errors.codes");
+  const errorT = useTranslations("errors");
   const {
     register,
     handleSubmit,
@@ -39,7 +39,8 @@ export default function RegisterForm({ data }: SignUpFormProps) {
     const res = await signUpAction(formData);
     if (!res.ok) {
       setError("root", {
-        message: errorT(res.code) || "An error occurred. Please try again.",
+        message:
+          errorT(`codes.${res.code}`) || "An error occurred. Please try again.",
       });
       return;
     }
@@ -62,7 +63,9 @@ export default function RegisterForm({ data }: SignUpFormProps) {
           className="input-primary"
         />
         {errors.name && (
-          <p className="text-destructive mt-1">{errors.name.message}</p>
+          <p className="text-destructive mt-1">
+            {errorT(`zod-errors.${errors.name.message}`)}
+          </p>
         )}
         <label className="input-label">{data.emailLabel}</label>
         <input
@@ -72,7 +75,9 @@ export default function RegisterForm({ data }: SignUpFormProps) {
           className="input-primary"
         />
         {errors.email && (
-          <p className="text-destructive mt-1">{errors.email.message}</p>
+          <p className="text-destructive mt-1">
+            {errorT(`zod-errors.${errors.email.message}`)}
+          </p>
         )}
         <label className="input-label">{data.passwordLabel}</label>
         <input
@@ -82,7 +87,9 @@ export default function RegisterForm({ data }: SignUpFormProps) {
           className="input-primary"
         />
         {errors.password && (
-          <p className="text-destructive mt-1">{errors.password.message}</p>
+          <p className="text-destructive mt-1">
+            {errorT(`zod-errors.${errors.password.message}`)}
+          </p>
         )}
         <label className="input-label">{data.confirmPasswordLabel}</label>
         <input
@@ -93,7 +100,7 @@ export default function RegisterForm({ data }: SignUpFormProps) {
         />
         {errors.confirmPassword && (
           <p className="text-destructive mt-1">
-            {errors.confirmPassword.message}
+            {errorT(`zod-errors.${errors.confirmPassword.message}`)}
           </p>
         )}
         {errors.root && (

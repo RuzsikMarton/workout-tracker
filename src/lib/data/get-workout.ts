@@ -1,4 +1,3 @@
-import { requireSession } from "../auth-helpers";
 import { prisma } from "../prisma";
 
 export async function getActiveWorkout(userId: string) {

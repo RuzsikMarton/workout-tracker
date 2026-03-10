@@ -19,3 +19,10 @@ export type WorkoutWithPartialExercises = Workout & {
     exerciseId: string;
   }[];
 };
+
+export type ChartWorkout = {
+  id: string;
+  createdAt: Date;
+  duration: number | null;
+  totalVolume: number | null;
+};

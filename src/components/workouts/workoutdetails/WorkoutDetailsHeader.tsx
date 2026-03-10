@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { deleteWorkoutAction } from "@/lib/actions/workouts";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const WorkoutDetailsHeader = ({
   id,
@@ -19,6 +20,8 @@ const WorkoutDetailsHeader = ({
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
+  const t = useTranslations("workoutDetails");
+  const tError = useTranslations("error");
 
   const handleDelete = async () => {
     setIsPending(true);
@@ -26,14 +29,16 @@ const WorkoutDetailsHeader = ({
     try {
       const res = await deleteWorkoutAction(id);
       if (!res.ok) {
-        setError(res.code || "An error occurred while deleting the workout.");
+        setError(
+          res.code ? tError(res.code) : tError("FAILED_TO_DELETE_WORKOUT"),
+        );
       }
       if (res.ok) {
         router.push("/workouts");
       }
     } catch (err) {
       console.error("Error deleting workout:", err);
-      setError("An error occurred while deleting the workout.");
+      setError(tError("FAILED_TO_DELETE_WORKOUT"));
     } finally {
       setIsPending(false);
     }
@@ -45,7 +50,7 @@ const WorkoutDetailsHeader = ({
           {error && <p className="text-sm text-red-500">{error}</p>}
           {/* Need to implement edit workout functionality */}
           <Button size={"lg"} variant={"outline"} disabled={isPending}>
-            Edit
+            {t("editButton")}
           </Button>
           <Button
             size={"lg"}
@@ -54,24 +59,30 @@ const WorkoutDetailsHeader = ({
             onClick={handleDelete}
             disabled={isPending}
           >
-            {isPending ? "Deleting..." : "Delete"}
+            {isPending ? t("deleting") : t("deleteButton")}
           </Button>
         </div>
         <div className="flex items-center justify-between md:justify-start md:gap-16 lg:gap-32 md:order-1">
           <div>
-            <span className="text-sm text-muted-foreground">Time</span>
+            <span className="text-sm text-muted-foreground">
+              {t("durationLabel")}
+            </span>
             <p className="text-lg font-medium">
               {duration != null ? `${Math.round(duration / 60)} min` : "N/A"}
             </p>
           </div>
           <div>
-            <span className="text-sm text-muted-foreground">Volume</span>
+            <span className="text-sm text-muted-foreground">
+              {t("volumeLabel")}
+            </span>
             <p className="text-lg font-medium">
               {volume != null ? `${volume} kg` : "N/A"}
             </p>
           </div>
           <div>
-            <span className="text-sm text-muted-foreground">Sets</span>
+            <span className="text-sm text-muted-foreground">
+              {t("setsLabel")}
+            </span>
             <p className="text-lg font-medium">{sets}</p>
           </div>
         </div>

@@ -12,6 +12,7 @@ const WorkoutDetailsCard = ({
   sets: ExerciseSet[];
 }) => {
   const tExercise = useTranslations(exercise.name);
+  const t = useTranslations("workoutDetailsCard");
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-4 border-b ">
       <div className="flex items-center gap-3">
@@ -29,9 +30,9 @@ const WorkoutDetailsCard = ({
       </div>
       <div>
         <div className="grid grid-cols-3">
-          <span className="uppercase text-muted-foreground">Set </span>
-          <span className="uppercase text-muted-foreground">Reps </span>
-          <span className="uppercase text-muted-foreground">Weight</span>
+          <span className="uppercase text-muted-foreground">{t("set")}</span>
+          <span className="uppercase text-muted-foreground">{t("reps")}</span>
+          <span className="uppercase text-muted-foreground">{t("weight")}</span>
         </div>
         {sets.map((set) => (
           <div key={set.id} className="grid grid-cols-3 py-2">

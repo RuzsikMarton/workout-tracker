@@ -192,6 +192,10 @@
     @apply w-full px-4 mx-auto max-w-7xl; 
   }
 
+  .profile-card {
+    @apply bg-primary-foreground p-6 text-card-foreground rounded-xl border shadow-sm hover:shadow-md transition-shadow dark:border-0;
+  }
+
   .brand-button {
     @apply bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white;
   }

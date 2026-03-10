@@ -33,7 +33,16 @@
       "FAILED_TO_UPDATE_EXERCISE_SET": "Failed to update exercise set. Please try again later.",
       "FAILED_TO_DELETE_EXERCISE_SET": "Failed to delete exercise set. Please try again later."
     },
-    "zod-errors": {}
+    "zod-errors": {
+      "INVALID_INPUT": "Invalid input. Please check your data and try again.",
+      "INVALID_EMAIL_ADDRESS": "Invalid email address.",
+      "MUST_BE_AT_LEAST_3_CHARACTERS": "Must be at least 3 characters.",
+      "MUST_BE_LESS_THAN_50_CHARACTERS": "Must be less than 50 characters.",
+      "MUST_BE_AT_LEAST_8_CHARACTERS": "Password must be at least 8 characters.",
+      "PASSWORD_MUST_CONTAIN_UPPERCASE_LOWERCASE_NUMBER": "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+      "PLEASE_CONFIRM_YOUR_PASSWORD": "Please confirm your password.",
+      "PASSWORDS_DONT_MATCH": "Passwords don't match."
+    }
   },
   "Nav": {
     "home": "Home",
@@ -212,5 +221,53 @@
     "addSetButton": "Add Set",
     "addingSet": "Adding set...",
     "noSets": "No sets added yet."
+  },
+  "workoutDetails": {
+    "durationLabel": "Duration",
+    "volumeLabel": "Volume",
+    "setsLabel": "Sets Performed",
+    "editButton": "Edit",
+    "editing": "Editing...",
+    "deleteButton": "Delete",
+    "deleting": "Deleting workout..."
+  },
+  "workoutDetailsCard": {
+    "set": "Set",
+    "reps": "Reps",
+    "weight": "Weight (kg)"
+  },
+  "profile": {
+    "userCard": {
+      "title": "User Information",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "joinedLabel": "Joined",
+      "totalWorkoutsLabel": "Total Workouts",
+      "editButton": "Edit",
+      "editing": "Editing..."
+    },
+    "workoutChart": {
+      "title": "Workout Activity",
+      "week1": "Week 1",
+      "week2": "Week 2",
+      "week3": "Week 3",
+      "week4": "Week 4",
+      "countLabel": "Workouts"
+    },
+    "last28Days": {
+      "title": "Last 28 Days",
+      "noData": "No workouts logged in the last 28 days.",
+      "workoutLabel": "Workouts",
+      "volumeLabel": "Volume",
+      "durationLabel": "Duration",
+      "exercisesLabel": "Exercises"
+    },
+    "workoutTrendsChart": {
+      "title": "Workout Trends",
+      "noData": "No data available",
+      "description": "There's no data to display in this chart yet.<br></br>Data will appear here once it's available.",
+      "volume": "Volume (kg)",
+      "duration": "Duration (min)"
+    }
   }
 }

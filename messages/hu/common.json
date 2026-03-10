@@ -32,6 +32,16 @@
       "FAILED_TO_CREATE_EXERCISE_SET": "Sikertelen gyakorlat sorozat létrehozása. Kérjük, próbáld meg később újra.",
       "FAILED_TO_UPDATE_EXERCISE_SET": "Sikertelen gyakorlat sorozat frissítése. Kérjük, próbáld meg később újra.",
       "FAILED_TO_DELETE_EXERCISE_SET": "Sikertelen gyakorlat sorozat törlése. Kérjük, próbáld meg később újra."
+    },
+    "zod-errors": {
+      "INVALID_INPUT": "Érvénytelen adat. Kérjük, ellenőrizd az adataidat és próbáld meg újra.",
+      "INVALID_EMAIL_ADDRESS": "Érvénytelen email cím.",
+      "MUST_BE_AT_LEAST_3_CHARACTERS": "Legalább 3 karakternek kell lennie.",
+      "MUST_BE_LESS_THAN_50_CHARACTERS": "Kevesebb, mint 50 karakternek kell lennie.",
+      "MUST_BE_AT_LEAST_8_CHARACTERS": "A jelszónak legalább 8 karakter hosszúnak kell lennie.",
+      "PASSWORD_MUST_CONTAIN_UPPERCASE_LOWERCASE_NUMBER": "A jelszónak legalább egy nagybetűt, egy kisbetűt és egy számot kell tartalmaznia.",
+      "PLEASE_CONFIRM_YOUR_PASSWORD": "Kérjük, erősítsd meg a jelszavad.",
+      "PASSWORDS_DONT_MATCH": "A jelszavak nem egyeznek."
     }
   },
   "Nav": {
@@ -211,5 +221,53 @@
     "addSetButton": "Sorozat hozzáadása",
     "addingSet": "Sorozat hozzáadása...",
     "noSets": "Még nincs sorozat hozzáadva."
+  },
+  "workoutDetails":{
+    "durationLabel": "Időtartam",
+    "volumeLabel": "Összmunka (kg)",
+    "setsLabel": "Sorozatok",
+    "editButton": "Edzés szerkesztése",
+    "editing": "Edzés szerkesztése...",
+    "deleteButton": "Edzés törlése",
+    "deleting": "Törlés..."
+  },
+  "workoutDetailsCard": {
+    "set": "Sorozat",
+    "reps": "Ismétlések",
+    "weight": "Súly (kg)"
+  },
+  "profile": {
+    "userCard": {
+      "title": "Felhasználói adatok",
+      "nameLabel": "Név",
+      "emailLabel": "Email cím",
+      "joinedLabel": "Csatlakozás dátuma",
+      "totalWorkoutsLabel": "Összes edzés",
+      "editButton": "Szerkesztés",
+      "editing": "Szerkesztés..."
+    },
+    "workoutChart": {
+      "title": "Edzés aktivitás",
+      "week1": "1. hét",
+      "week2": "2. hét",
+      "week3": "3. hét",
+      "week4": "4. hét",
+      "countLabel": "Edzések"
+    },
+     "last28Days": {
+      "title": "Az elmúlt 28 nap",
+      "noData": "Az elmúlt 28 napban nem rögzítettél edzést.",
+      "workoutLabel": "Edzések",
+      "volumeLabel": "Összmunka",
+      "durationLabel": "Időtartam",
+      "exercisesLabel": "Gyakorlatok"
+    },
+     "workoutTrendsChart": {
+      "title": "Edzés trendek",
+      "noData": "Nincs elérhető adat",
+      "description": "Ebben a diagramon még nincs megjeleníthető adat.<br></br>Az adatok itt fognak megjelenni, amint elérhetővé válnak.",
+      "volume": "Összmunka (kg)",
+      "duration": "Időtartam (perc)"
+    }
   }
 }

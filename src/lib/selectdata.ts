@@ -18,7 +18,6 @@ const EQUIPMENT_OPTIONS = [
   "machine",
   "pull-up-bar",
   "cable",
-  "none",
 ];
 
 export { MUSCLE_GROUPS, EQUIPMENT_OPTIONS };

@@ -32,6 +32,16 @@
       "FAILED_TO_CREATE_EXERCISE_SET": "Nepodarilo sa vytvoriť sériu cviku. Skúste to prosím neskôr znova.",
       "FAILED_TO_UPDATE_EXERCISE_SET": "Nepodarilo sa aktualizovať sériu cviku. Skúste to prosím neskôr znova.",
       "FAILED_TO_DELETE_EXERCISE_SET": "Nepodarilo sa vymazať sériu cviku. Skúste to prosím neskôr znova."
+    },
+    "zod-errors": {
+      "INVALID_INPUT": "Neplatný vstup. Skontrolujte svoje údaje a skúste to znova.",
+      "INVALID_EMAIL_ADDRESS": "Neplatná emailová adresa.",
+      "MUST_BE_AT_LEAST_3_CHARACTERS": "Musí byť aspoň 3 znaky.",
+      "MUST_BE_LESS_THAN_50_CHARACTERS": "Musí byť menej ako 50 znakov.",
+      "MUST_BE_AT_LEAST_8_CHARACTERS": "Heslo musí byť aspoň 8 znakov dlhé.",
+      "PASSWORD_MUST_CONTAIN_UPPERCASE_LOWERCASE_NUMBER": "Heslo musí obsahovať aspoň jedno veľké písmeno, jedno malé písmeno a jedno číslo.",
+      "PLEASE_CONFIRM_YOUR_PASSWORD": "Prosím potvrďte svoje heslo.",
+      "PASSWORDS_DONT_MATCH": "Heslá sa nezhodujú."
     }
   },
   "Nav": {
@@ -211,5 +221,53 @@
     "addSetButton": "Pridať sériu",
     "addingSet": "Pridávanie série...",
     "noSets": "Zatiaľ neboli pridané žiadne série."
+  },
+  "workoutDetails": {
+    "durationLabel": "Trvanie",
+    "volumeLabel": "Objem",
+    "setsLabel": "Série",
+    "editButton": "Upraviť",
+    "editing": "Úprava...",
+    "deleteButton": "Odstrániť",
+    "deleting": "Odstraňovanie..."
+  },
+  "workoutDetailsCard": {
+    "set": "Série",
+    "reps": "Opakovania",
+    "weight": "Váha (kg)"
+  },
+  "profile": {
+    "userCard": {
+      "title": "Užívateľské informácie",
+      "nameLabel": "Názov",
+      "emailLabel": "Emailová adresa",
+      "joinedLabel": "Dátum pripojenia",
+      "totalWorkoutsLabel": "Celkový počet tréningov",
+      "editButton": "Upraviť",
+      "editing": "Úprava..."
+    },
+    "workoutChart": {
+      "title": "Aktivita tréningu",
+      "week1": "1. týždeň",
+      "week2": "2. týždeň",
+      "week3": "3. týždeň",
+      "week4": "4. týždeň",
+      "countLabel": "Tréningy"
+    },
+     "last28Days": {
+      "title": "Posledných 28 dní",
+      "noData": "V posledných 28 dňoch neboli zaznamenané žiadne tréningy.",
+      "workoutLabel": "Tréningy",
+      "volumeLabel": "Objem",
+      "durationLabel": "Trvanie",
+      "exercisesLabel": "Cviky"
+    },
+     "workoutTrendsChart": {
+      "title": "Trendy v tréningu",
+      "noData": "Žiadne dostupné údaje",
+      "description": "V tomto grafe ešte nie sú žiadne údaje na zobrazenie.<br></br>Údaje sa tu zobrazia, keď budú k dispozícii.",
+      "volume": "Objem (kg)",
+      "duration": "Trvanie (min)"
+    }
   }
 }
