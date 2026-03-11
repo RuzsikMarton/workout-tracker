@@ -12,6 +12,7 @@ const basePublicRoutes = [
   "/signin",
   "/signup",
   "/contact",
+  "/exercises",
   "/privacy-policy",
   "/terms-of-service",
 ];
@@ -25,12 +26,20 @@ const publicRoutes = [
   ),
 ];
 
+function isPublicRoute(path: string) {
+  if (publicRoutes.includes(path)) return true;
+  if (path.startsWith("/api/auth/")) return true;
+  if (path.startsWith("/exercises/")) return true;
+
+  return locales.some((locale) => path.startsWith(`/${locale}/exercises/`));
+}
+
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
   const intlResponse = intlMiddleware(req);
 
-  if (publicRoutes.includes(path) || path.startsWith("/api/auth/")) {
+  if (isPublicRoute(path)) {
     return intlResponse;
   }
 

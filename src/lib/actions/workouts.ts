@@ -3,7 +3,6 @@
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { requireSession } from "../auth-helpers";
-import { redirect } from "next/navigation";
 
 type WorkoutActionResult =
   | { ok: true; workoutId?: string }

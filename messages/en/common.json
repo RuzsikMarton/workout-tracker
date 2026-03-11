@@ -24,7 +24,7 @@
       "FAILED_TO_DELETE_WORKOUT": "Failed to delete workout. Please try again later.",
       "FAILED_TO_UPDATE_WORKOUT_TITLE": "Failed to update workout title. Please try again later.",
       "FAILED_TO_COMPLETE_WORKOUT": "Failed to complete workout. Please try again later.",
-      "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Failed to add exercises to workout. Please try again later.",
+      "FAILED_TO_ADD_EXERCISES_TO_WORKOUT": "Failed to add exercise(s) to workout. Please try again later.",
       "FAILED_TO_REMOVE_EXERCISE_FROM_WORKOUT": "Failed to remove exercise from workout. Please try again later.",
       "EXERCISE_NOT_FOUND": "The requested exercise was not found.",
       "FAILED_TO_CREATE_EXERCISE": "Failed to create exercise. Please try again later.",
@@ -133,8 +133,10 @@
   "ExerciseCard": {
     "details": "Details",
     "add": "Add",
+    "adding": "Adding...",
     "muscle": "Target Muscle:",
-    "equipment": "Equipment:"
+    "equipment": "Equipment:",
+    "toastAdded": "Workout exercise has been created"
   },
   "ExercisePage": {
     "loading": "Loading exercise...",
@@ -143,7 +145,9 @@
     "equipmentLabel": "Equipment:",
     "descriptionLabel": "Overview",
     "imgAlt": "Exercise demonstration IMG",
-    "button": "Add to Workout"
+    "button": "Add to Workout",
+    "buttonAdding": "Adding...",
+    "toastAdded": "Workout exercise has been created"
   },
   "PersonalBestCard": {
     "title": "Personal Bests",

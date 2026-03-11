@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { ExercisePrisma } from "@/types";
 import { useExercisesTransition } from "./ExercisesContainer";
 import { LoadingSpinner } from "../ui/loading-spinner";
+import { useSession } from "@/lib/client";
+import { useActiveWorkoutStore } from "@/lib/stores/active-workout-store";
 
 const ExerciseList = ({
   exercises,
@@ -16,6 +18,10 @@ const ExerciseList = ({
 }) => {
   const t = useTranslations("ExerciseList");
   const { isPending } = useExercisesTransition();
+
+  const { data: session } = useSession();
+  const workoutId = useActiveWorkoutStore((state) => state.workoutId);
+  const canAddToWorkout = !!session && !!workoutId;
 
   if (error) {
     return (
@@ -50,7 +56,11 @@ const ExerciseList = ({
       )}
       <div className={isPending ? "opacity-50 pointer-events-none" : ""}>
         {exercises.map((exercise) => (
-          <ExerciseCard key={exercise.id} exercise={exercise} />
+          <ExerciseCard
+            key={exercise.id}
+            exercise={exercise}
+            canAddToWorkout={canAddToWorkout}
+          />
         ))}
       </div>
     </div>

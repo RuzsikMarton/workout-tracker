@@ -68,78 +68,6 @@ A modern, full-featured workout tracking application built with Next.js 15, Type
 - **Linting**: ESLint
 - **Type Checking**: TypeScript
 
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/), or [bun](https://bun.sh/)
-- [PostgreSQL](https://www.postgresql.org/) database
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone <repository-url>
-cd workout-tracker
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-### 3. Set up environment variables
-
-Create a `.env` file in the root directory:
-
-```env
-# Database
-DATABASE_URL="postgresql://username:password@localhost:5432/workout_tracker"
-
-# Better Auth
-BETTER_AUTH_SECRET="your-secret-key-here"
-BETTER_AUTH_URL="http://localhost:3000"
-
-# Optional: Email configuration for verification
-# EMAIL_SERVER_HOST="smtp.example.com"
-# EMAIL_SERVER_PORT=587
-# EMAIL_SERVER_USER="your-email@example.com"
-# EMAIL_SERVER_PASSWORD="your-password"
-# EMAIL_FROM="noreply@example.com"
-```
-
-### 4. Set up the database
-
-```bash
-# Generate Prisma Client
-npx prisma generate
-
-# Run database migrations
-npx prisma migrate deploy
-
-# (Optional) Seed the database
-npx prisma db seed
-```
-
-### 5. Run the development server
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
 ## 📁 Project Structure
 
 ```
@@ -174,14 +102,6 @@ workout-tracker/
 ├── messages/           # Translation files (en, hu, sk)
 └── public/             # Static assets
 ```
-
-## 📜 Available Scripts
-
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint for code linting
-- `npm run type-check` - Run TypeScript type checking
 
 ## 🗃 Database Schema
 
@@ -224,44 +144,12 @@ The application uses the following main models:
 - Profile customization
 - Language preferences
 
-## 🌐 Internationalization
-
-The app supports multiple languages through next-intl. Language files are located in the `messages/` directory. To add a new language:
-
-1. Create a new folder in `messages/` with the language code
-2. Add translation files (`common.json`, `exercises.json`, etc.)
-3. Update the i18n configuration in `src/i18n/routing.ts`
-
-## 🚢 Deployment
-
-### Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new):
-
-1. Push your code to a Git repository
-2. Import your repository on Vercel
-3. Configure environment variables
-4. Deploy!
-
-### Deploy on Other Platforms
-
-1. Build the application: `npm run build`
-2. Set up PostgreSQL database
-3. Configure environment variables
-4. Start the production server: `npm run start`
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
 
 For questions or support, please use the contact form in the application or reach out through the repository.
 
 ---
 
-Built with ❤️ using Next.js and modern web technologies.
+Built using Next.js and modern web technologies.

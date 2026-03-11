@@ -34,13 +34,11 @@ const WorkoutDetailsHeader = ({
         );
       }
       if (res.ok) {
-        router.push("/workouts");
+        router.replace("/workouts");
       }
     } catch (err) {
       console.error("Error deleting workout:", err);
       setError(tError("FAILED_TO_DELETE_WORKOUT"));
-    } finally {
-      setIsPending(false);
     }
   };
   return (

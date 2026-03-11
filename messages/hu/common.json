@@ -133,8 +133,10 @@
   "ExerciseCard": {
     "details": "Részletek",
     "add": "Hozzáadás",
+    "adding": "Hozzáadás...",
     "muscle": "Izomcsoport:",
-    "equipment": "Felszerelés:"
+    "equipment": "Felszerelés:",
+    "toastAdded": "Gyakorlat hozzáadva az edzéshez"
   },
   "ExercisePage": {
     "loading": "Gyakorlat betöltése...",
@@ -143,7 +145,9 @@
     "equipmentLabel": "Felszerelés:",
     "descriptionLabel": "Leírás",
     "imgAlt": "Gyakorlat bemutató GIF",
-    "button": "Hozzáadás az edzéshez"
+    "button": "Hozzáadás az edzéshez",
+    "buttonAdding": "Hozzáadás...",
+    "toastAdded": "Gyakorlat hozzáadva az edzéshez"
   },
   "PersonalBestCard": {
     "title": "Személyes rekord",

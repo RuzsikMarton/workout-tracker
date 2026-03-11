@@ -3,3 +3,4 @@ export * from "./auth";
 export * from "./components";
 export * from "./exercises";
 export * from "./workouts";
+export * from "./store";

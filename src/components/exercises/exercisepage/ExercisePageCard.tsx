@@ -2,14 +2,42 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import AddToWorkoutButton from "../AddToWorkoutButton";
 import { ExercisePrisma } from "@/types";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
+import { useActiveWorkoutStore } from "@/lib/stores/active-workout-store";
+import { useSession } from "@/lib/client";
+import { useState } from "react";
 
 const ExercisePageCard = (exercise: ExercisePrisma) => {
   const t = useTranslations(exercise.name);
+  const tError = useTranslations("errors.codes");
   const tMuscle = useTranslations("muscleGroups");
   const tEquipment = useTranslations("equipment");
   const tPage = useTranslations("ExercisePage");
+
+  const workoutId = useActiveWorkoutStore((state) => state.workoutId);
+  const session = useSession();
+  const [isAdding, setIsAdding] = useState(false);
+
+  const canAddToWorkout = !!workoutId && !!session;
+
+  const handleAddToWorkout = async () => {
+    setIsAdding(true);
+    try {
+      const res = await createWorkoutExerciseAction([exercise.id]);
+      if (res.ok) {
+        toast.success(tPage("toastAdded"));
+      } else {
+        toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
+      }
+    } catch (error) {
+      toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
+    } finally {
+      setIsAdding(false);
+    }
+  };
   return (
     <>
       <div className="w-full">
@@ -41,7 +69,14 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
               />
             </div>
             <div className="lg:hidden">
-              <AddToWorkoutButton text={tPage("button")} />
+              <Button
+                variant="default"
+                className="w-full text-sm font-medium text-primary-foreground"
+                onClick={handleAddToWorkout}
+                disabled={!canAddToWorkout || isAdding}
+              >
+                {isAdding ? tPage("buttonAdding") : tPage("button")}
+              </Button>
             </div>
           </div>
           {/*Right column*/}
@@ -98,7 +133,14 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
             </div>
 
             <div className="hidden lg:block">
-              <AddToWorkoutButton text={tPage("button")} />
+              <Button
+                variant="default"
+                className="w-full text-sm font-medium text-primary-foreground"
+                onClick={handleAddToWorkout}
+                disabled={!canAddToWorkout || isAdding}
+              >
+                {isAdding ? tPage("buttonAdding") : tPage("button")}
+              </Button>
             </div>
           </div>
         </div>

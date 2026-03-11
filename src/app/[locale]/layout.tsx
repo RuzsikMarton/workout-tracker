@@ -9,6 +9,9 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { getActiveWorkout } from "@/lib/data/get-workout";
+import ActiveWorkoutSync from "@/components/active-workout-sync";
+import { Toaster } from "@/components/ui/sonner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -51,6 +54,9 @@ async function LayoutContent({
         role: session.role,
       }
     : null;
+  const activeWorkout = session?.user?.id
+    ? await getActiveWorkout(session.user.id)
+    : null;
   return (
     <body
       className="font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground"
@@ -67,6 +73,8 @@ async function LayoutContent({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientProviders>
+            <ActiveWorkoutSync workoutId={activeWorkout?.id ?? null} />
+            <Toaster />
             <ConditionalLayout publicSession={publicSession}>
               {children}
             </ConditionalLayout>
