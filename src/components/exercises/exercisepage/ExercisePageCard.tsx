@@ -2,15 +2,15 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { ExercisePrisma } from "@/types";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
 import { useActiveWorkoutStore } from "@/lib/stores/active-workout-store";
 import { useSession } from "@/lib/client";
 import { useState } from "react";
+import { Exercise } from "@prisma/client";
 
-const ExercisePageCard = (exercise: ExercisePrisma) => {
+const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
   const t = useTranslations(exercise.name);
   const tError = useTranslations("errors.codes");
   const tMuscle = useTranslations("muscleGroups");
@@ -18,10 +18,11 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
   const tPage = useTranslations("ExercisePage");
 
   const workoutId = useActiveWorkoutStore((state) => state.workoutId);
-  const session = useSession();
+  const { data: session, isPending: isSessionLoading } = useSession();
   const [isAdding, setIsAdding] = useState(false);
 
   const canAddToWorkout = !!workoutId && !!session;
+  const isButtonDisabled = !canAddToWorkout || isAdding || isSessionLoading;
 
   const handleAddToWorkout = async () => {
     setIsAdding(true);
@@ -73,7 +74,7 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
                 variant="default"
                 className="w-full text-sm font-medium text-primary-foreground"
                 onClick={handleAddToWorkout}
-                disabled={!canAddToWorkout || isAdding}
+                disabled={isButtonDisabled}
               >
                 {isAdding ? tPage("buttonAdding") : tPage("button")}
               </Button>
@@ -137,7 +138,7 @@ const ExercisePageCard = (exercise: ExercisePrisma) => {
                 variant="default"
                 className="w-full text-sm font-medium text-primary-foreground"
                 onClick={handleAddToWorkout}
-                disabled={!canAddToWorkout || isAdding}
+                disabled={isButtonDisabled}
               >
                 {isAdding ? tPage("buttonAdding") : tPage("button")}
               </Button>

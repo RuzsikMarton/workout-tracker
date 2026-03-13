@@ -153,3 +153,31 @@ model ExerciseSet {
   @@index([workoutExerciseId])
   @@map("exercise_set")
 }
+
+model UserExerciseStats {
+  userId                String
+  exerciseId            String
+  // also store the workoutExerciseIds of the workouts where these records were achieved, so we can use it later for potentially showing the user the workout where they achieved their personal records
+  // date of the most recent workout that included this exercise
+  lastPerformed         DateTime?
+  lastWorkoutExerciseId String?
+
+  // best performance metrics for this exercise
+  bestSetWeight                Float?
+  bestSetReps                  Int?
+  heaviestSetWorkoutExerciseId String?
+
+  // best volume (weight * reps) for a single set
+  bestVolume                  Float?
+  bestVolumeWorkoutExerciseId String?
+
+  // best estimated 1-rep max using Epley formula: weight * (1 + reps / 30)
+  bestE1RM                  Float?
+  bestE1RMWorkoutExerciseId String?
+
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, exerciseId]) //ensure one record per user-exercise pair
+  @@index([exerciseId])
+  @@map("user_exercise_stats")
+}

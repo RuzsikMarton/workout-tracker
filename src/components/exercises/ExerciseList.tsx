@@ -19,9 +19,9 @@ const ExerciseList = ({
   const t = useTranslations("ExerciseList");
   const { isPending } = useExercisesTransition();
 
-  const { data: session } = useSession();
+  const { data: session, isPending: isSessionLoading } = useSession();
   const workoutId = useActiveWorkoutStore((state) => state.workoutId);
-  const canAddToWorkout = !!session && !!workoutId;
+  const canAddToWorkout = !!session && !!workoutId && !isSessionLoading;
 
   if (error) {
     return (

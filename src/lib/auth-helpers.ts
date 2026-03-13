@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { auth } from "./auth";
-import { ActionResult } from "./actions/adminUsers";
 import { redirect } from "next/navigation";
 
 export async function requireSessionOrRedirect() {

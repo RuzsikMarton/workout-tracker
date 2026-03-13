@@ -1,13 +1,37 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../prisma";
+import { auth } from "../auth";
+import { headers } from "next/headers";
 
 export async function getExercise(params: { slug: string }) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   const slug = params.slug.trim();
   const exercise = await prisma.exercise.findUnique({
     where: { name: slug },
   });
-  return exercise;
+
+  if (!exercise) {
+    return null;
+  }
+
+  let userStats = null;
+  if (session) {
+    userStats = await prisma.userExerciseStats.findUnique({
+      where: {
+        userId_exerciseId: {
+          userId: session.user.id,
+          exerciseId: exercise.id,
+        },
+      },
+    });
+  }
+
+  return { exercise, userStats };
 }
+
 export async function getExercises(params: {
   equipment: string;
   muscle: string;
