@@ -1,17 +1,18 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { useState, useTransition } from "react";
 import { ChevronDown } from "lucide-react";
 import { Locale } from "@/i18n/routing";
 import { FooterProps } from "@/types";
 
-const LanguageSelector = ({data} : FooterProps) => {
+const LanguageSelector = ({ data }: FooterProps) => {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const languages: { code: Locale; name: string }[] = [
     { code: "en", name: data.en },
@@ -20,11 +21,10 @@ const LanguageSelector = ({data} : FooterProps) => {
   ];
 
   const handleLanguageChange = (newLocale: Locale) => {
-    const pathWithoutLocale = pathname.replace(`/${locale}`, "");
-    const newPath = `/${newLocale}${pathWithoutLocale || "/"}`;
-    
-    router.push(newPath);
     setIsOpen(false);
+    startTransition(() => {
+      router.replace(pathname, { locale: newLocale });
+    });
   };
 
   const currentLanguage = languages.find((lang) => lang.code === locale)?.name;
@@ -36,7 +36,10 @@ const LanguageSelector = ({data} : FooterProps) => {
         className="w-full flex items-center justify-between gap-2 px-3 py-1 border-2 border-primary rounded hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300 cursor-pointer text-sm font-medium"
       >
         {currentLanguage}
-        <ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown
+          size={16}
+          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {isOpen && (
@@ -46,7 +49,9 @@ const LanguageSelector = ({data} : FooterProps) => {
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
               className={`block w-full text-left px-4 py-2 hover:bg-primary hover:text-white dark:hover:text-black transition-colors ${
-                locale === lang.code ? "bg-primary text-white dark:text-black font-semibold" : ""
+                locale === lang.code
+                  ? "bg-primary text-white dark:text-black font-semibold"
+                  : ""
               }`}
             >
               {lang.name}

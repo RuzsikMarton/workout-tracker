@@ -12,14 +12,19 @@ const ActiveWorkoutSync = ({ workoutId }: Props) => {
   const removeWorkoutId = useActiveWorkoutStore(
     (state) => state.removeWorkoutId,
   );
+  const hasHydrated = useActiveWorkoutStore((state) => state.hasHydrated);
 
   useEffect(() => {
+    // Only sync after hydration to prevent flash
+    if (!hasHydrated) return;
+
     if (workoutId) {
       setWorkoutId(workoutId);
     } else {
       removeWorkoutId();
     }
-  }, [workoutId, setWorkoutId, removeWorkoutId]);
+  }, [workoutId, setWorkoutId, removeWorkoutId, hasHydrated]);
+
   return null;
 };
 
