@@ -147,7 +147,19 @@
     "imgAlt": "Gyakorlat bemutató GIF",
     "button": "Hozzáadás az edzéshez",
     "buttonAdding": "Hozzáadás...",
-    "toastAdded": "Gyakorlat hozzáadva az edzéshez"
+    "toastAdded": "Gyakorlat hozzáadva az edzéshez",
+    "userStats": {
+      "signInTitle": "Jelentkezz be a statisztikáid megtekintéséhez",
+      "signInPrompt": "Jelentkezz be, hogy lásd a személyes rekordjaidat és az edzéselőzményeidet ehhez a gyakorlathoz.",
+      "noStatsTitle": "Még nincs rögzített statisztika",
+      "noStatsMessage": "Még nem rögzítettél egyetlen edzést sem ezzel a gyakorlattal. Kezdd el követni az edzéseidet, hogy itt megjelenjenek a statisztikáid.",
+      "yourStatsTitle": "A te gyakorlati statisztikáid",
+      "yourStatsDescription": "Íme egy összefoglaló a teljesítményedről ezzel a gyakorlattal az edzéselőzményeid alapján.",
+      "heaviestSetLabel": "Legnehezebb sorozat",
+      "bestVolumeLabel": "Legjobb összmunka",
+      "best1ERMLabel": "Legjobb 1RM",
+      "lastPerformedLabel": "Legutóbb végrehajtva"
+    }
   },
   "PersonalBestCard": {
     "title": "Személyes rekord",

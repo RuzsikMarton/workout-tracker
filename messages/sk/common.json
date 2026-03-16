@@ -147,7 +147,19 @@
     "imgAlt": "Ukážka cvičenia IMG",
     "button": "Pridať do tréningu",
     "buttonAdding": "Pridávanie...",
-    "toastAdded": "Cvik bol pridaný do tréningu"
+    "toastAdded": "Cvik bol pridaný do tréningu",
+    "userStats": {
+      "signInTitle": "Prihláste sa, aby ste videli svoje štatistiky",
+      "signInPrompt": "Prihláste sa, aby ste videli svoje osobné rekordy a históriu tréningov pre tento cvik.",
+      "noStatsTitle": "Ešte neboli zaznamenané žiadne štatistiky",
+      "noStatsMessage": "Ešte ste nezaznamenali žiadne tréningy s týmto cvikom. Začnite sledovať svoje tréningy, aby sa tu zobrazili vaše štatistiky.",
+      "yourStatsTitle": "Vaše štatistiky cviku",
+      "yourStatsDescription": "Tu je súhrn vášho výkonu s týmto cvikom na základe vašej histórie tréningov.",
+      "heaviestSetLabel": "Najťažšia séria",
+      "bestVolumeLabel": "Najlepší objem",
+      "best1ERMLabel": "Najlepší 1RM",
+      "lastPerformedLabel": "Naposledy vykonané"
+    }
   },
   "PersonalBestCard": {
     "title": "Osobné rekordy",

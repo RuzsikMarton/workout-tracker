@@ -37,7 +37,10 @@ const ExercisePage = async ({
   return (
     <main className="min-h-screen font-sans app-layout">
       <ExercisePageCard exercise={data.exercise} />
-      <UserExerciseStats stats={data.userStats} />
+      <UserExerciseStats
+        stats={data.userStats}
+        isAuthenticated={data.isAuthenticated}
+      />
     </main>
   );
 };

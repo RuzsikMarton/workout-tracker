@@ -147,7 +147,19 @@
     "imgAlt": "Exercise demonstration IMG",
     "button": "Add to Workout",
     "buttonAdding": "Adding...",
-    "toastAdded": "Workout exercise has been created"
+    "toastAdded": "Workout exercise has been created",
+    "userStats": {
+      "signInTitle": "Sign in to view your stats",
+      "signInPrompt": "Sign in to see your personal bests and workout history for this exercise.",
+      "noStatsTitle": "No stats recorded yet",
+      "noStatsMessage": "You haven't logged any workouts with this exercise yet. Start tracking your workouts to see your stats here.",
+      "yourStatsTitle": "Your Exercise Stats",
+      "yourStatsDescription": "Here's a summary of your performance with this exercise based on your workout history.",
+      "heaviestSetLabel": "Heaviest Set",
+      "bestVolumeLabel": "Best Volume",
+      "best1ERMLabel": "Best 1ERM",
+      "lastPerformedLabel": "Last Performed"
+    }
   },
   "PersonalBestCard": {
     "title": "Personal Bests",

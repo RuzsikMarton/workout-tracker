@@ -29,7 +29,7 @@ export async function getExercise(params: { slug: string }) {
     });
   }
 
-  return { exercise, userStats };
+  return { exercise, userStats, isAuthenticated: !!session };
 }
 
 export async function getExercises(params: {
