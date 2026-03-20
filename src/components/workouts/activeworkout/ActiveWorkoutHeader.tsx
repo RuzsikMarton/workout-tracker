@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import TimerWorkout from "../TimerWorkout";
 import { AlertCircle, ArrowBigLeft, SaveAll, SquarePen } from "lucide-react";
-import { redirect } from "next/navigation";
 import { WorkoutWithExercises } from "@/types";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useTransition } from "react";
@@ -46,7 +45,7 @@ const ActiveWorkoutHeader = ({
     <div className="bg-section-bg px-4 md:px-16 lg:px-32 py-4 space-y-4">
       {/* Top Action Bar */}
       <div className="flex items-center gap-4 md:gap-8 lg:gap-16">
-        <Button variant="outline" onClick={() => redirect("/workouts")}>
+        <Button variant="outline" onClick={() => router.push("/workouts")}>
           <ArrowBigLeft className="h-4 w-4 sm:hidden" />
           <span className="hidden sm:inline">← {t("backButton")}</span>
         </Button>

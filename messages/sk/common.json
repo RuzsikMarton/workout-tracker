@@ -52,7 +52,9 @@
     "signin": "Prihlásiť sa",
     "signout": "Odhlásiť sa",
     "myaccount": "Môj účet",
-    "profile": "Profil"
+    "profile": "Profil",
+     "signoutSuccess": "Úspešne ste sa odhlásili.",
+    "signoutError": "Pri odhlasovaní sa vyskytla chyba. Skúste to prosím znova."
   },
   "Footer": {
     "language": {

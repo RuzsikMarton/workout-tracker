@@ -1,7 +1,7 @@
 "use client";
 
 import { ExercisePickerProvider } from "@/lib/providers/ExercisePickerProvider";
-import WorkoutExerciseList from "./WorkoutExerciseList";
+import WorkoutExerciseList from "../shared/WorkoutExerciseList";
 import { ExercisePrisma, WorkoutWithExercises } from "@/types";
 import ActiveWorkoutHeader from "./ActiveWorkoutHeader";
 
@@ -15,7 +15,10 @@ const ActiveWorkoutClient = ({
   totalVolume: number;
 }) => {
   return (
-    <ExercisePickerProvider exercises={sheetExercises}>
+    <ExercisePickerProvider
+      workoutId={activeWorkout.id}
+      exercises={sheetExercises}
+    >
       <ActiveWorkoutHeader
         activeWorkout={activeWorkout}
         totalVolume={totalVolume}

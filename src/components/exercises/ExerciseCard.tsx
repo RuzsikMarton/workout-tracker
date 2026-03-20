@@ -12,9 +12,11 @@ import { useState } from "react";
 
 const ExerciseCard = ({
   exercise,
+  workoutId,
   canAddToWorkout,
 }: {
   exercise: Exercise;
+  workoutId: string | null;
   canAddToWorkout: boolean;
 }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -25,9 +27,10 @@ const ExerciseCard = ({
   const tEquipment = useTranslations("equipment");
 
   const handleAddToWorkout = async () => {
+    if (!workoutId) return;
     setIsAdding(true);
     try {
-      const res = await createWorkoutExerciseAction([exercise.id]);
+      const res = await createWorkoutExerciseAction(workoutId, [exercise.id]);
       if (res.ok) {
         toast.success(tCard("toastAdded"));
       } else {

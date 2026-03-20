@@ -1,5 +1,6 @@
 "use server";
 
+import { Prisma } from "@prisma/client";
 import { requireSession } from "../auth-helpers";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
@@ -7,6 +8,120 @@ import { revalidatePath } from "next/cache";
 type ExerciseSetActionResult =
   | { ok: true; setId?: string }
   | { ok: false; code: string };
+
+const recomputeStatsforExercise = async (
+  tx: Prisma.TransactionClient,
+  userId: string,
+  exerciseId: string,
+) => {
+  const remainingWorkoutExercises = await tx.workoutExercise.findMany({
+    where: {
+      exerciseId,
+      workout: {
+        userId,
+        status: "COMPLETED",
+      },
+    },
+    include: {
+      sets: true,
+      workout: {
+        select: {
+          createdAt: true,
+        },
+      },
+    },
+  });
+
+  if (
+    remainingWorkoutExercises.length === 0 ||
+    remainingWorkoutExercises.every((we) => we.sets.length === 0)
+  ) {
+    await tx.userExerciseStats.deleteMany({
+      where: {
+        userId,
+        exerciseId,
+      },
+    });
+    return;
+  }
+
+  let lastPerformed: Date | null = null;
+  let lastWorkoutExerciseId: string | null = null;
+  let bestSetWeight: number | null = null;
+  let bestSetReps: number | null = null;
+  let bestE1RM: number | null = null;
+  let bestVolume: number | null = null;
+  let heaviestSetWorkoutExerciseId: string | null = null;
+  let bestE1RMWorkoutExerciseId: string | null = null;
+  let bestVolumeWorkoutExerciseId: string | null = null;
+
+  for (const exercise of remainingWorkoutExercises) {
+    const workoutDate = exercise.workout.createdAt;
+    if (!lastPerformed || workoutDate > lastPerformed) {
+      lastPerformed = workoutDate;
+      lastWorkoutExerciseId = exercise.id;
+    }
+    for (const set of exercise.sets) {
+      const reps = set.reps ?? 0;
+      const weight = set.weight ?? 0;
+      const volume = reps * weight;
+
+      if (
+        bestSetWeight === null ||
+        weight > bestSetWeight ||
+        (weight === bestSetWeight && reps > (bestSetReps ?? 0))
+      ) {
+        bestSetWeight = weight;
+        bestSetReps = reps;
+        heaviestSetWorkoutExerciseId = exercise.id;
+      }
+      if (bestVolume === null || volume > bestVolume) {
+        bestVolume = volume;
+        bestVolumeWorkoutExerciseId = exercise.id;
+      }
+      if (weight > 0 && reps > 0) {
+        const e1RM = weight * (1 + reps / 30);
+        if (bestE1RM === null || e1RM > bestE1RM) {
+          bestE1RM = e1RM;
+          bestE1RMWorkoutExerciseId = exercise.id;
+        }
+      }
+    }
+  }
+
+  await tx.userExerciseStats.upsert({
+    where: {
+      userId_exerciseId: {
+        userId,
+        exerciseId,
+      },
+    },
+    update: {
+      lastPerformed,
+      lastWorkoutExerciseId,
+      bestSetWeight,
+      bestSetReps,
+      heaviestSetWorkoutExerciseId,
+      bestE1RM,
+      bestE1RMWorkoutExerciseId,
+      bestVolume,
+      bestVolumeWorkoutExerciseId,
+    },
+    create: {
+      userId,
+      exerciseId,
+      lastPerformed,
+      lastWorkoutExerciseId,
+      bestSetWeight,
+      bestSetReps,
+      heaviestSetWorkoutExerciseId,
+      bestE1RM,
+      bestE1RMWorkoutExerciseId,
+      bestVolume,
+      bestVolumeWorkoutExerciseId,
+    },
+  });
+};
 
 export async function createExerciseSetAction(
   exerciseId: string,
@@ -48,6 +163,7 @@ export async function createExerciseSetAction(
         weight: 0,
       },
     });
+
     revalidatePath("/workouts/active");
     return {
       ok: true,
@@ -70,31 +186,67 @@ export async function updateExerciseSetAction(
   if (!session) return { ok: false, code: "NOT_AUTHENTICATED" };
 
   try {
-    // Verify ownership
-    const existingSet = await prisma.exerciseSet.findFirst({
-      where: {
-        id: setId,
-        workoutExercise: {
-          workout: {
-            userId: session.user.id,
+    const result = await prisma.$transaction(async (tx) => {
+      // Verify ownership
+      const existingSet = await tx.exerciseSet.findFirst({
+        where: {
+          id: setId,
+          workoutExercise: {
+            workout: {
+              userId: session.user.id,
+            },
           },
         },
-      },
-    });
+        select: {
+          id: true,
+          workoutExercise: {
+            select: {
+              id: true,
+              exerciseId: true,
+              workout: {
+                select: {
+                  id: true,
+                  status: true,
+                },
+              },
+            },
+          },
+        },
+      });
 
-    if (!existingSet) {
+      if (!existingSet) {
+        throw new Error("SET_NOT_FOUND");
+      }
+
+      const workoutId = existingSet.workoutExercise.workout.id;
+      const workoutStatus = existingSet.workoutExercise.workout.status;
+
+      await tx.exerciseSet.update({
+        where: { id: setId },
+        data,
+      });
+
+      if (existingSet.workoutExercise.workout.status === "COMPLETED") {
+        await recomputeStatsforExercise(
+          tx,
+          session.user.id,
+          existingSet.workoutExercise.exerciseId,
+        );
+      }
       return {
-        ok: false,
-        code: "SET_NOT_FOUND",
+        workoutStatus,
+        workoutId,
       };
-    }
-
-    await prisma.exerciseSet.update({
-      where: { id: setId },
-      data,
     });
 
-    revalidatePath("/workouts/active");
+    revalidatePath("/workouts");
+
+    if (result.workoutStatus === "IN_PROGRESS") {
+      revalidatePath("/workouts/active");
+    } else {
+      revalidatePath(`/workouts/${result.workoutId}`);
+      revalidatePath(`/workouts/${result.workoutId}/edit`);
+    }
     return { ok: true };
   } catch (error) {
     console.error("Error updating exercise set:", error);
@@ -112,34 +264,75 @@ export async function toggleSetCompletedAction(
   if (!session) return { ok: false, code: "NOT_AUTHENTICATED" };
 
   try {
-    const existingSet = await prisma.exerciseSet.findFirst({
-      where: {
-        id: setId,
-        workoutExercise: {
-          workout: {
-            userId: session.user.id,
+    const result = await prisma.$transaction(async (tx) => {
+      const existingSet = await tx.exerciseSet.findFirst({
+        where: {
+          id: setId,
+          workoutExercise: {
+            workout: {
+              userId: session.user.id,
+            },
           },
         },
-      },
-    });
+        select: {
+          id: true,
+          completed: true,
+          workoutExercise: {
+            select: {
+              id: true,
+              exerciseId: true,
+              workout: {
+                select: {
+                  id: true,
+                  status: true,
+                },
+              },
+            },
+          },
+        },
+      });
 
-    if (!existingSet) {
+      if (!existingSet) {
+        throw new Error("SET_NOT_FOUND");
+      }
+
+      const workoutId = existingSet.workoutExercise.workout.id;
+      const workoutStatus = existingSet.workoutExercise.workout.status;
+
+      await tx.exerciseSet.update({
+        where: { id: setId },
+        data: {
+          completed: !existingSet.completed,
+        },
+      });
+
+      if (existingSet.workoutExercise.workout.status === "COMPLETED") {
+        await recomputeStatsforExercise(
+          tx,
+          session.user.id,
+          existingSet.workoutExercise.exerciseId,
+        );
+      }
+
       return {
-        ok: false,
-        code: "SET_NOT_FOUND",
+        workoutStatus,
+        workoutId,
       };
-    }
-
-    await prisma.exerciseSet.update({
-      where: { id: setId },
-      data: {
-        completed: !existingSet.completed,
-      },
     });
 
-    revalidatePath("/workouts/active");
+    revalidatePath("/workouts");
+
+    if (result.workoutStatus === "IN_PROGRESS") {
+      revalidatePath("/workouts/active");
+    } else {
+      revalidatePath(`/workouts/${result.workoutId}`);
+      revalidatePath(`/workouts/${result.workoutId}/edit`);
+    }
     return { ok: true };
   } catch (error) {
+    if (error instanceof Error && error.message === "SET_NOT_FOUND") {
+      return { ok: false, code: "SET_NOT_FOUND" };
+    }
     console.error("Error toggling exercise set completion:", error);
     return {
       ok: false,
@@ -155,32 +348,46 @@ export async function deleteExerciseSetAction(
   if (!session) return { ok: false, code: "NOT_AUTHENTICATED" };
 
   try {
-    const existingSet = await prisma.exerciseSet.findFirst({
-      where: {
-        id: setId,
-        workoutExercise: {
-          workout: {
-            userId: session.user.id,
+    const result = await prisma.$transaction(async (tx) => {
+      const existingSet = await tx.exerciseSet.findFirst({
+        where: {
+          id: setId,
+          workoutExercise: {
+            workout: {
+              userId: session.user.id,
+            },
           },
         },
-      },
-      select: { id: true, workoutExerciseId: true },
-    });
+        select: {
+          id: true,
+          workoutExercise: {
+            select: {
+              id: true,
+              exerciseId: true,
+              workout: {
+                select: {
+                  id: true,
+                  status: true,
+                },
+              },
+            },
+          },
+        },
+      });
 
-    if (!existingSet) {
-      return {
-        ok: false,
-        code: "SET_NOT_FOUND",
-      };
-    }
+      if (!existingSet) {
+        throw new Error("SET_NOT_FOUND");
+      }
 
-    await prisma.$transaction(async (tx) => {
-      await prisma.exerciseSet.delete({
+      const workoutId = existingSet.workoutExercise.workout.id;
+      const workoutStatus = existingSet.workoutExercise.workout.status;
+
+      await tx.exerciseSet.delete({
         where: { id: setId },
       });
 
-      const remaining = await prisma.exerciseSet.findMany({
-        where: { workoutExerciseId: existingSet.workoutExerciseId },
+      const remaining = await tx.exerciseSet.findMany({
+        where: { workoutExerciseId: existingSet.workoutExercise.id },
         orderBy: { setNumber: "asc" },
         select: { id: true },
       });
@@ -193,11 +400,33 @@ export async function deleteExerciseSetAction(
           }),
         ),
       );
+
+      if (existingSet.workoutExercise.workout.status === "COMPLETED") {
+        await recomputeStatsforExercise(
+          tx,
+          session.user.id,
+          existingSet.workoutExercise.exerciseId,
+        );
+      }
+      return {
+        workoutStatus,
+        workoutId,
+      };
     });
 
-    revalidatePath("/workouts/active");
+    revalidatePath("/workouts");
+
+    if (result.workoutStatus === "IN_PROGRESS") {
+      revalidatePath("/workouts/active");
+    } else {
+      revalidatePath(`/workouts/${result.workoutId}`);
+      revalidatePath(`/workouts/${result.workoutId}/edit`);
+    }
     return { ok: true };
   } catch (error) {
+    if (error instanceof Error && error.message === "SET_NOT_FOUND") {
+      return { ok: false, code: "SET_NOT_FOUND" };
+    }
     console.error("Error deleting exercise set:", error);
     return {
       ok: false,

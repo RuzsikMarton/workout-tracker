@@ -7,10 +7,8 @@ import Link from "next/link";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
-import { LogOut, Menu, User } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { signOutAction } from "@/lib/actions/auth";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Role } from "@prisma/client";
+import LogoutButton from "../LogoutButton";
 
 interface HeaderProps {
   publicSession: {
@@ -118,16 +117,7 @@ const Header = ({ publicSession }: HeaderProps) => {
                   )}
                 </DropdownMenuContent>
               </DropdownMenu>
-              <form action={signOutAction}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button type="submit" variant="outline">
-                      <LogOut />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>{t("signout")}</TooltipContent>
-                </Tooltip>
-              </form>
+              <LogoutButton />
             </>
           ) : (
             <Link href={"/signin"}>

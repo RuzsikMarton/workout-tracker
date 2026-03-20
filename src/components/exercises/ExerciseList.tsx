@@ -58,6 +58,7 @@ const ExerciseList = ({
         {exercises.map((exercise) => (
           <ExerciseCard
             key={exercise.id}
+            workoutId={workoutId}
             exercise={exercise}
             canAddToWorkout={canAddToWorkout}
           />

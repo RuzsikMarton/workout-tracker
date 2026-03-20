@@ -3,10 +3,126 @@
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
 import { requireSession } from "../auth-helpers";
+import { Prisma } from "@prisma/client";
 
 type WorkoutActionResult =
   | { ok: true; workoutId?: string }
   | { ok: false; code: string };
+
+const recomputeStatsForExercises = async (
+  tx: Prisma.TransactionClient,
+  userId: string,
+  exerciseIds: Set<string> | string[],
+) => {
+  for (const exerciseId of exerciseIds) {
+    const remainingWorkoutExercises = await tx.workoutExercise.findMany({
+      where: {
+        exerciseId,
+        workout: {
+          userId,
+          status: "COMPLETED",
+        },
+      },
+      include: {
+        sets: true,
+        workout: {
+          select: {
+            createdAt: true,
+          },
+        },
+      },
+    });
+
+    if (remainingWorkoutExercises.length === 0) {
+      await tx.userExerciseStats.delete({
+        where: {
+          userId_exerciseId: {
+            userId,
+            exerciseId,
+          },
+        },
+      });
+      continue;
+    }
+    let lastPerformed: Date | null = null;
+    let lastWorkoutExerciseId: string | null = null;
+    let bestSetWeight: number | null = null;
+    let bestSetReps: number | null = null;
+    let bestE1RM: number | null = null;
+    let bestVolume: number | null = null;
+    let heaviestSetWorkoutExerciseId: string | null = null;
+    let bestE1RMWorkoutExerciseId: string | null = null;
+    let bestVolumeWorkoutExerciseId: string | null = null;
+
+    for (const exercise of remainingWorkoutExercises) {
+      const workoutDate = exercise.workout.createdAt;
+      if (!lastPerformed || workoutDate > lastPerformed) {
+        lastPerformed = workoutDate;
+        lastWorkoutExerciseId = exercise.id;
+      }
+      for (const set of exercise.sets) {
+        const reps = set.reps ?? 0;
+        const weight = set.weight ?? 0;
+        const volume = reps * weight;
+
+        if (
+          bestSetWeight === null ||
+          weight > bestSetWeight ||
+          (weight === bestSetWeight && reps > (bestSetReps ?? 0))
+        ) {
+          bestSetWeight = weight;
+          bestSetReps = reps;
+          heaviestSetWorkoutExerciseId = exercise.id;
+        }
+        if (bestVolume === null || volume > bestVolume) {
+          bestVolume = volume;
+          bestVolumeWorkoutExerciseId = exercise.id;
+        }
+        if (weight > 0 && reps > 0) {
+          const e1RM = weight * (1 + reps / 30);
+          if (bestE1RM === null || e1RM > bestE1RM) {
+            bestE1RM = e1RM;
+            bestE1RMWorkoutExerciseId = exercise.id;
+          }
+        }
+      }
+    }
+
+    // upsert the recomputed stats
+    await tx.userExerciseStats.upsert({
+      where: {
+        userId_exerciseId: {
+          userId,
+          exerciseId,
+        },
+      },
+      update: {
+        lastPerformed,
+        lastWorkoutExerciseId,
+        bestSetWeight,
+        bestSetReps,
+        heaviestSetWorkoutExerciseId,
+        bestE1RM,
+        bestE1RMWorkoutExerciseId,
+        bestVolume,
+        bestVolumeWorkoutExerciseId,
+      },
+      create: {
+        userId,
+        exerciseId,
+        lastPerformed,
+        lastWorkoutExerciseId,
+        bestSetWeight,
+        bestSetReps,
+        heaviestSetWorkoutExerciseId,
+        bestE1RM,
+        bestE1RMWorkoutExerciseId,
+        bestVolume,
+        bestVolumeWorkoutExerciseId,
+      },
+    });
+  }
+};
 
 export async function createWorkoutAction(): Promise<WorkoutActionResult> {
   try {
@@ -104,115 +220,7 @@ export async function deleteWorkoutAction(
       });
 
       //recompute stats for affected exercises
-      for (const exerciseId of exercisesToUpdate) {
-        const remainingWorkoutExercises = await tx.workoutExercise.findMany({
-          where: {
-            exerciseId,
-            workout: {
-              userId: session.user.id,
-              status: "COMPLETED",
-            },
-          },
-          include: {
-            sets: true,
-            workout: {
-              select: {
-                createdAt: true,
-              },
-            },
-          },
-        });
-
-        if (remainingWorkoutExercises.length === 0) {
-          await tx.userExerciseStats.delete({
-            where: {
-              userId_exerciseId: {
-                userId: session.user.id,
-                exerciseId,
-              },
-            },
-          });
-          continue;
-        }
-
-        let lastPerformed: Date | null = null;
-        let lastWorkoutExerciseId: string | null = null;
-        let bestSetWeight: number | null = null;
-        let bestSetReps: number | null = null;
-        let bestE1RM: number | null = null;
-        let bestVolume: number | null = null;
-        let heaviestSetWorkoutExerciseId: string | null = null;
-        let bestE1RMWorkoutExerciseId: string | null = null;
-        let bestVolumeWorkoutExerciseId: string | null = null;
-
-        for (const exercise of remainingWorkoutExercises) {
-          const workoutDate = exercise.workout.createdAt;
-          if (!lastPerformed || workoutDate > lastPerformed) {
-            lastPerformed = workoutDate;
-            lastWorkoutExerciseId = exercise.id;
-          }
-          for (const set of exercise.sets) {
-            const reps = set.reps ?? 0;
-            const weight = set.weight ?? 0;
-            const volume = reps * weight;
-
-            if (
-              bestSetWeight === null ||
-              weight > bestSetWeight ||
-              (weight === bestSetWeight && reps > (bestSetReps ?? 0))
-            ) {
-              bestSetWeight = weight;
-              bestSetReps = reps;
-              heaviestSetWorkoutExerciseId = exercise.id;
-            }
-            if (bestVolume === null || volume > bestVolume) {
-              bestVolume = volume;
-              bestVolumeWorkoutExerciseId = exercise.id;
-            }
-            if (weight > 0 && reps > 0) {
-              const e1RM = weight * (1 + reps / 30);
-              if (bestE1RM === null || e1RM > bestE1RM) {
-                bestE1RM = e1RM;
-                bestE1RMWorkoutExerciseId = exercise.id;
-              }
-            }
-          }
-        }
-
-        // upsert the recomputed stats
-        await tx.userExerciseStats.upsert({
-          where: {
-            userId_exerciseId: {
-              userId: session.user.id,
-              exerciseId,
-            },
-          },
-          update: {
-            lastPerformed,
-            lastWorkoutExerciseId,
-            bestSetWeight,
-            bestSetReps,
-            heaviestSetWorkoutExerciseId,
-            bestE1RM,
-            bestE1RMWorkoutExerciseId,
-            bestVolume,
-            bestVolumeWorkoutExerciseId,
-          },
-          create: {
-            userId: session.user.id,
-            exerciseId,
-            lastPerformed,
-            lastWorkoutExerciseId,
-            bestSetWeight,
-            bestSetReps,
-            heaviestSetWorkoutExerciseId,
-            bestE1RM,
-            bestE1RMWorkoutExerciseId,
-            bestVolume,
-            bestVolumeWorkoutExerciseId,
-          },
-        });
-      }
+      await recomputeStatsForExercises(tx, session.user.id, exercisesToUpdate);
     });
 
     revalidatePath("/workouts");
@@ -244,7 +252,6 @@ export async function updateWorkoutTitleAction(
       where: {
         id: workoutId,
         userId: session.user.id,
-        status: "IN_PROGRESS",
       },
       data: {
         title: title.trim(),
@@ -279,7 +286,6 @@ export async function finishWorkoutAction(
       where: {
         id: workoutId,
         userId: session.user.id,
-        status: "IN_PROGRESS",
       },
       include: {
         workoutExercises: {
@@ -303,9 +309,12 @@ export async function finishWorkoutAction(
       0,
     );
 
-    const duration = Math.floor(
-      (Date.now() - workout.createdAt.getTime()) / 1000,
-    );
+    let duration = 0;
+    if (workout.status === "COMPLETED") {
+      duration = workout.duration ?? 0;
+    } else {
+      duration = Math.floor((Date.now() - workout.createdAt.getTime()) / 1000);
+    }
 
     // fetch existing user exercise stats for all exercises in the workout
     const exerciseIds = [
@@ -443,6 +452,7 @@ export async function finishWorkoutAction(
 }
 
 export async function createWorkoutExerciseAction(
+  workoutId: string,
   exerciseIds: string[],
 ): Promise<WorkoutActionResult> {
   const session = await requireSession();
@@ -455,7 +465,7 @@ export async function createWorkoutExerciseAction(
     const workout = await prisma.workout.findFirst({
       where: {
         userId: session.user.id,
-        status: "IN_PROGRESS",
+        id: workoutId,
       },
       include: {
         workoutExercises: {
@@ -490,7 +500,7 @@ export async function createWorkoutExerciseAction(
 }
 
 export async function removeWorkoutExerciseAction(
-  exerciseId: string,
+  workoutExerciseId: string,
 ): Promise<WorkoutActionResult> {
   const session = await requireSession();
 
@@ -499,19 +509,47 @@ export async function removeWorkoutExerciseAction(
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
-      await prisma.workoutExercise.deleteMany({
+    const result = await prisma.$transaction(async (tx) => {
+      const workoutExercise = await tx.workoutExercise.findFirst({
         where: {
-          id: exerciseId,
+          id: workoutExerciseId,
           workout: {
             userId: session.user.id,
           },
         },
+        include: {
+          workout: {
+            select: {
+              id: true,
+              status: true,
+            },
+          },
+        },
       });
 
-      const remaining = await prisma.workoutExercise.findMany({
+      if (!workoutExercise) {
+        throw new Error("EXERCISE_NOT_FOUND");
+      }
+
+      const workoutId = workoutExercise.workoutId;
+      const workoutStatus = workoutExercise.workout.status;
+
+      await tx.workoutExercise.delete({
         where: {
-          workoutId: exerciseId,
+          id: workoutExerciseId,
+        },
+      });
+
+      if (workoutStatus === "COMPLETED") {
+        await recomputeStatsForExercises(
+          tx,
+          session.user.id,
+          new Set([workoutExercise.exerciseId]),
+        );
+      }
+      const remaining = await tx.workoutExercise.findMany({
+        where: {
+          workoutId: workoutId,
         },
         orderBy: { order: "asc" },
         select: { id: true },
@@ -525,8 +563,17 @@ export async function removeWorkoutExerciseAction(
           }),
         ),
       );
+      return { workoutId, workoutStatus };
     });
-    revalidatePath("/workouts/active");
+
+    revalidatePath("/workouts");
+
+    if (result.workoutStatus === "IN_PROGRESS") {
+      revalidatePath("/workouts/active");
+    } else {
+      revalidatePath(`/workouts/${result.workoutId}`);
+      revalidatePath(`/workouts/${result.workoutId}/edit`);
+    }
     return { ok: true };
   } catch (error) {
     console.error("Error removing exercise from workout:", error);

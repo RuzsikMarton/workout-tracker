@@ -25,9 +25,11 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
   const isButtonDisabled = !canAddToWorkout || isAdding || isSessionLoading;
 
   const handleAddToWorkout = async () => {
+    if (!workoutId) return;
+
     setIsAdding(true);
     try {
-      const res = await createWorkoutExerciseAction([exercise.id]);
+      const res = await createWorkoutExerciseAction(workoutId, [exercise.id]);
       if (res.ok) {
         toast.success(tPage("toastAdded"));
       } else {

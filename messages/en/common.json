@@ -52,7 +52,9 @@
     "signin": "Sign In",
     "signout": "Sign Out",
     "myaccount": "My Account",
-    "profile": "Profile"
+    "profile": "Profile",
+    "signoutSuccess": "You have been signed out successfully.",
+    "signoutError": "An error occurred while signing out. Please try again."
   },
   "Footer": {
     "language": {

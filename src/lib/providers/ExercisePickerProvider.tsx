@@ -8,8 +8,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import SheetExerciseCard from "@/components/workouts/activeworkout/SheetExerciseCard";
-import SheetExerciseFilter from "@/components/workouts/activeworkout/SheetExerciseFilter";
+import SheetExerciseCard from "@/components/workouts/shared/SheetExerciseCard";
+import SheetExerciseFilter from "@/components/workouts/shared/SheetExerciseFilter";
 import { ExercisePrisma } from "@/types";
 import { useSearchParams } from "next/navigation";
 import {
@@ -48,9 +48,11 @@ export const useExercisePicker = () => {
 };
 
 export function ExercisePickerProvider({
+  workoutId,
   exercises,
   children,
 }: {
+  workoutId: string;
   exercises: ExercisePrisma[];
   children: React.ReactNode;
 }) {
@@ -127,7 +129,7 @@ export function ExercisePickerProvider({
     try {
       setPending(true);
       const exerciseIds = Array.from(selectedExercises);
-      const res = await createWorkoutExerciseAction(exerciseIds);
+      const res = await createWorkoutExerciseAction(workoutId, exerciseIds);
       if (!res?.ok) {
         setError(
           res.code

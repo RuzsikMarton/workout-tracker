@@ -52,7 +52,9 @@
     "signin": "Bejelentkezés",
     "signout": "Kijelentkezés",
     "myaccount": "Saját fiók",
-    "profile": "Profil"
+    "profile": "Profil",
+    "signoutSuccess": "Sikeresen kijelentkeztél.",
+    "signoutError": "Hiba történt a kijelentkezés során. Kérjük, próbáld meg újra."
   },
   "Footer": {
     "language": {

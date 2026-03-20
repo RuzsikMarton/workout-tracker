@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { deleteWorkoutAction } from "@/lib/actions/workouts";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 const WorkoutDetailsHeader = ({
@@ -21,7 +21,7 @@ const WorkoutDetailsHeader = ({
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
   const t = useTranslations("workoutDetails");
-  const tError = useTranslations("error");
+  const tError = useTranslations("errors.codes");
 
   const handleDelete = async () => {
     setIsPending(true);
@@ -37,7 +37,6 @@ const WorkoutDetailsHeader = ({
         router.replace("/workouts");
       }
     } catch (err) {
-      console.error("Error deleting workout:", err);
       setError(tError("FAILED_TO_DELETE_WORKOUT"));
     }
   };
@@ -47,7 +46,12 @@ const WorkoutDetailsHeader = ({
         <div className="flex justify-between gap-2 md:ml-auto md:order-2">
           {error && <p className="text-sm text-red-500">{error}</p>}
           {/* Need to implement edit workout functionality */}
-          <Button size={"lg"} variant={"outline"} disabled={isPending}>
+          <Button
+            size={"lg"}
+            variant={"outline"}
+            disabled={isPending}
+            onClick={() => router.push(`/workouts/${id}/edit`)}
+          >
             {t("editButton")}
           </Button>
           <Button

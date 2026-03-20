@@ -5,11 +5,11 @@ import { WorkoutExerciseWithData } from "@/types";
 import { AlertCircle, Check, Plus, Weight, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import SelectedExerciseSet from "./SelectedExerciseSet";
 import { useState, useTransition } from "react";
 import { createExerciseSetAction } from "@/lib/actions/exercise-set";
 import { cn } from "@/lib/utils";
 import { removeWorkoutExerciseAction } from "@/lib/actions/workouts";
+import SelectedExerciseSet from "./SelectedExerciseSet";
 
 const SelectedExerciseCard = ({
   workoutExercise,
