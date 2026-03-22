@@ -236,6 +236,8 @@
   "selectedExerciseCard": {
     "setsLabel": "Set",
     "repsLabel": "Reps",
+    "removeButton": "Remove Exercise",
+    "removing": "Removing...",
     "addSetButton": "Add Set",
     "addingSet": "Adding set...",
     "noSets": "No sets added yet."
@@ -253,6 +255,12 @@
     "set": "Set",
     "reps": "Reps",
     "weight": "Weight (kg)"
+  },
+  "workoutEditHeader": {
+    "backButton": "Back",
+    "nameLabel": "Workout Name",
+    "deleteButton": "Delete Workout",
+    "deleting": "Deleting workout..."
   },
   "profile": {
     "userCard": {

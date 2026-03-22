@@ -76,7 +76,7 @@ const SelectedExerciseCard = ({
           {tE("name")}
         </span>
         {/*Reorder will be implemented in the future, for now we only showing a placeholder button*/}
-        <Button variant="outline" size="sm" className="shrink-0">
+        <Button variant="outline" size="sm" className="shrink-0" disabled>
           ...
         </Button>
         <Button
@@ -88,17 +88,17 @@ const SelectedExerciseCard = ({
         >
           <X className="h-4 w-4 md:hidden" />
           <span className="hidden md:inline">
-            {isRemovingPending ? "Removing..." : "Remove Exercise"}
+            {isRemovingPending ? t("removing") : t("removeButton")}
           </span>
         </Button>
       </div>
       <div className="flex flex-col mt-4">
         <div className="grid grid-cols-4 gap-2 md:gap-3 border-b border-brand-primary/25 pb-2 px-1 md:px-2">
           <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase">
-            Set
+            {t("setsLabel")}
           </span>
           <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase">
-            Reps
+            {t("repsLabel")}
           </span>
           <div className="flex items-center text-xs md:text-sm font-medium text-muted-foreground uppercase">
             <Weight className="inline-block h-3 w-3 md:h-4 md:w-4" />

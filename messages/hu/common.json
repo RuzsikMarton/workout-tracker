@@ -236,6 +236,8 @@
   "selectedExerciseCard": {
     "setsLabel": "Sorozat",
     "repsLabel": "Ismétlések",
+    "removeButton": "Gyakorlat eltávolítása",
+    "removing": "Eltávolítás...",
     "addSetButton": "Sorozat hozzáadása",
     "addingSet": "Sorozat hozzáadása...",
     "noSets": "Még nincs sorozat hozzáadva."
@@ -253,6 +255,12 @@
     "set": "Sorozat",
     "reps": "Ismétlések",
     "weight": "Súly (kg)"
+  },
+   "workoutEditHeader": {
+    "backButton": "Vissza",
+    "nameLabel": "Edzés neve",
+    "deleteButton": "Edzés törlése",
+    "deleting": "Edzés törlése..."
   },
   "profile": {
     "userCard": {

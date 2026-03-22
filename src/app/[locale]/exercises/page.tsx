@@ -1,10 +1,7 @@
 import ExercisesClient from "@/components/exercises/ExercisesClient";
-import { auth } from "@/lib/auth";
 import { getExercises } from "@/lib/data/get-exercise";
 import { ExercisePrisma } from "@/types";
 import { getTranslations } from "next-intl/server";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function generateMetadata({
   params,

@@ -236,6 +236,8 @@
   "selectedExerciseCard": {
     "setsLabel": "Séria",
     "repsLabel": "Opakovania",
+    "removeButton": "Odstrániť cvik",
+    "removing": "Odstraňovanie...",
     "addSetButton": "Pridať sériu",
     "addingSet": "Pridávanie série...",
     "noSets": "Zatiaľ neboli pridané žiadne série."
@@ -253,6 +255,12 @@
     "set": "Série",
     "reps": "Opakovania",
     "weight": "Váha (kg)"
+  },
+   "workoutEditHeader": {
+    "backButton": "Späť",
+    "nameLabel": "Název tréningu",
+    "deleteButton": "Odstrániť tréning",
+    "deleting": "Odstraňovanie tréningu..."
   },
   "profile": {
     "userCard": {

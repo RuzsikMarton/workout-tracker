@@ -14,7 +14,8 @@ import { useDebouncedCallback } from "use-debounce";
 
 const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
   const router = useRouter();
-  const tError = useTranslations("error.codes");
+  const t = useTranslations("workoutEditHeader");
+  const tError = useTranslations("errors.codes");
   const [title, setTitle] = useState(workout.title);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,17 +41,21 @@ const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
   const handleTitleChange = useDebouncedCallback(async (newTitle: string) => {
     await updateWorkoutTitleAction(workout.id, newTitle);
   }, 1000);
+
   return (
     <div className="bg-section-bg px-4 md:px-16 lg:px-32 py-4 space-y-4">
       <div className="flex items-center gap-4 md:gap-8 lg:gap-16">
-        <Button variant="outline" onClick={() => router.push("/workouts")}>
+        <Button
+          variant="outline"
+          onClick={() => router.push(`/workouts/${workout.id}`)}
+        >
           <ArrowBigLeft className="h-4 w-4 sm:hidden" />
-          <span className="hidden sm:inline">← Back</span>
+          <span className="hidden sm:inline">← {t("backButton")}</span>
         </Button>
         <div className="relative flex-1">
           <input
             type="text"
-            placeholder="Workout name"
+            placeholder={t("nameLabel")}
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -69,7 +74,7 @@ const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
         >
           <SaveAll className="h-4 w-4 sm:hidden" />
           <span className="hidden sm:inline">
-            {isPending ? "Deleting..." : "Delete Workout"}
+            {isPending ? t("deleting") : t("deleteButton")}
           </span>
         </Button>
       </div>
