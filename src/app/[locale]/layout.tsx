@@ -12,6 +12,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { getActiveWorkout } from "@/lib/data/get-workout";
 import ActiveWorkoutSync from "@/components/active-workout-sync";
 import { Toaster } from "@/components/ui/sonner";
+import { Viewport } from "next";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,17 @@ interface MetadataProps {
   params: Promise<{ locale: string }>;
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "oklch(0.269 0 0)" },
+    { media: "(prefers-color-scheme: light)", color: "oklch(0.985 0 0)" },
+  ],
+};
+
 export async function generateMetadata({ params }: MetadataProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
@@ -30,6 +42,24 @@ export async function generateMetadata({ params }: MetadataProps) {
   return {
     title,
     description,
+    creator: "Marton Ruzsik",
+    icons: {
+      icon: [
+        {
+          url: "/favicon.ico",
+          sizes: "any",
+        },
+        {
+          url: "/favicon-32x32.png",
+          sizes: "32x32",
+        },
+        {
+          url: "/favicon-16x16.png",
+          sizes: "16x16",
+        },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
   };
 }
 

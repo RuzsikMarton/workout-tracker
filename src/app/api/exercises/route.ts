@@ -1,15 +1,7 @@
-import { auth } from "@/lib/auth";
 import { NextRequest } from "next/server";
 import { getExercises } from "@/lib/data/get-exercise";
 
 export async function GET(req: NextRequest) {
-  const session = await auth.api.getSession({ headers: req.headers });
-  if (!session?.user) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
   const searchParams = req.nextUrl.searchParams;
   const equipment = searchParams.get("equipment") || "";
   const muscleGroup = searchParams.get("muscle") || "";

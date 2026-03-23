@@ -1,4 +1,3 @@
-import { auth } from "@/lib/auth";
 import { getExercise } from "@/lib/data/get-exercise";
 import { NextRequest } from "next/server";
 
@@ -6,14 +5,6 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
 ) {
-  const session = await auth.api.getSession({ headers: req.headers });
-  if (!session?.user) {
-    return new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
   const { slug } = await params;
   slug.trim();
 
