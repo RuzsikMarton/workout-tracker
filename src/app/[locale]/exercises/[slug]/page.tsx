@@ -40,6 +40,8 @@ const ExercisePage = async ({
       <UserExerciseStats
         stats={data.userStats}
         isAuthenticated={data.isAuthenticated}
+        bestWorkoutExercise={data.bestWorkoutExercise}
+        lastWorkoutExercise={data.lastWorkoutExercise}
       />
     </main>
   );

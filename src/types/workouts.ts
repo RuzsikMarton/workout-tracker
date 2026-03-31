@@ -5,6 +5,10 @@ import {
   WorkoutExercise,
 } from "@prisma/client";
 
+export type WorkoutExerciseWithSets = WorkoutExercise & {
+  sets: ExerciseSet[];
+};
+
 export type WorkoutExerciseWithData = WorkoutExercise & {
   exercise: Exercise;
   sets: ExerciseSet[];

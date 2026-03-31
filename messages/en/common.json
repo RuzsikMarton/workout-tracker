@@ -160,7 +160,17 @@
       "heaviestSetLabel": "Heaviest Set",
       "bestVolumeLabel": "Best Volume",
       "best1ERMLabel": "Best 1ERM",
-      "lastPerformedLabel": "Last Performed"
+      "lastPerformedLabel": "Last Performed",
+      "bestLabel": "Best",
+      "lastLabel": "Last",
+      "statTable": {
+        "date": "en-US",
+        "sets": "Sets",
+        "reps": "Reps",
+        "weight": "Weight",
+        "volume": "Volume",
+        "noData": "No workout data available for this exercise."
+      }
     }
   },
   "PersonalBestCard": {

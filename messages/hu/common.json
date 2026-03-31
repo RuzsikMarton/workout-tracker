@@ -160,7 +160,17 @@
       "heaviestSetLabel": "Legnehezebb sorozat",
       "bestVolumeLabel": "Legjobb összmunka",
       "best1ERMLabel": "Legjobb 1RM",
-      "lastPerformedLabel": "Legutóbb végrehajtva"
+      "lastPerformedLabel": "Legutóbb végrehajtva",
+      "bestLabel": "Legjobb",
+      "lastLabel": "Legutóbbi",
+      "statTable": {
+        "date": "hu-HU",
+        "sets": "Sorozatok",
+        "reps": "Ismétlések",
+        "weight": "Súly",
+        "volume": "Összmunka",
+        "noData": "Nincs elérhető adat"
+      }
     }
   },
   "PersonalBestCard": {

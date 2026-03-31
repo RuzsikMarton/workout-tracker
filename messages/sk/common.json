@@ -160,7 +160,18 @@
       "heaviestSetLabel": "Najťažšia séria",
       "bestVolumeLabel": "Najlepší objem",
       "best1ERMLabel": "Najlepší 1RM",
-      "lastPerformedLabel": "Naposledy vykonané"
+      "lastPerformedLabel": "Naposledy vykonané",
+      "bestLabel": "Najlepší",
+      "lastLabel": "Najnovší",
+      "statTable": {
+        "date": "sk-SK",
+        "sets": "Série",
+        "reps": "Opakovania",
+        "weight": "Váha",
+        "volume": "Objem",
+        "noData": "Žiadne údaje o tréningu pre tento cvik."
+
+      }
     }
   },
   "PersonalBestCard": {

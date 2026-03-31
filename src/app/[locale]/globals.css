@@ -224,3 +224,42 @@
     @apply flex items-center justify-center p-1 border-2 rounded-full border-primary hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300;
   }
 }
+
+.cc--elegant-black {
+    color-scheme: dark;
+
+    --cc-bg: oklch(0.223 0 0);
+    --cc-primary-color: rgb(239, 244, 246);
+    --cc-secondary-color: #b1bdc3;
+
+    --cc-btn-primary-bg: oklch(0.50 0.219 27);
+    --cc-btn-primary-color: #000;
+    --cc-btn-primary-hover-bg: oklch(0.42 0.197 27);
+    --cc-btn-primary-hover-color: #000;
+
+    --cc-btn-secondary-bg: oklch(0.269 0 0);
+    --cc-btn-secondary-color: var(--cc-primary-color);
+    --cc-btn-secondary-border-color: oklch(0.500 0 0);
+    --cc-btn-secondary-hover-bg: oklch(0.450 0 0);
+    --cc-btn-secondary-hover-color: #000;
+    --cc-btn-secondary-hover-border-color: oklch(0.269 0 0);
+
+    --cc-cookie-category-block-bg: oklch(0.269 0 0);
+    --cc-cookie-category-block-border: #1e2428;
+    --cc-cookie-category-block-hover-bg: oklch(0.350 0 0);
+    --cc-cookie-category-block-hover-border: #242c31;
+    --cc-cookie-category-expanded-block-hover-bg: oklch(0.350 0 0);
+    --cc-cookie-category-expanded-block-bg: oklch(0.269 0 0);
+    --cc-toggle-readonly-bg: oklch(0.343 0 0);
+    --cc-overlay-bg: rgba(4, 6, 8, .85)!important;
+
+    --cc-toggle-on-bg: oklch(0.50 0.219 27);
+    --cc-toggle-off-bg: #667481;
+    --cc-toggle-on-knob-bg: var(--cc-bg);
+    --cc-toggle-readonly-knob-bg: var( --cc-cookie-category-block-bg);
+
+    --cc-separator-border-color: #222a30;
+
+    --cc-footer-border-color: #1e2428;
+    --cc-footer-bg: oklch(0.190 0 0);
+}

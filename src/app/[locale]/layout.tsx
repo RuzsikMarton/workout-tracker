@@ -13,6 +13,7 @@ import { getActiveWorkout } from "@/lib/data/get-workout";
 import ActiveWorkoutSync from "@/components/active-workout-sync";
 import { Toaster } from "@/components/ui/sonner";
 import { Viewport } from "next";
+import CookieBanner from "@/components/CookieBanner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -105,6 +106,7 @@ async function LayoutContent({
           <ClientProviders>
             <ActiveWorkoutSync workoutId={activeWorkout?.id ?? null} />
             <Toaster />
+
             <ConditionalLayout publicSession={publicSession}>
               {children}
             </ConditionalLayout>
@@ -137,7 +139,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </body>
         }
       >
-        <LayoutContent locale={locale}>{children}</LayoutContent>
+        <LayoutContent locale={locale}>
+          {children}
+          <CookieBanner locale={locale} />
+        </LayoutContent>
       </Suspense>
     </html>
   );

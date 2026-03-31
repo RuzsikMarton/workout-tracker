@@ -29,7 +29,53 @@ export async function getExercise(params: { slug: string }) {
     });
   }
 
-  return { exercise, userStats, isAuthenticated: !!session };
+  let bestWorkoutExercise = null;
+  let lastWorkoutExercise = null;
+  if (userStats) {
+    const lastId = userStats.lastWorkoutExerciseId;
+    const bestId = userStats.heaviestSetWorkoutExerciseId;
+    if (lastId && bestId && lastId === bestId) {
+      const workoutExercise = await prisma.workoutExercise.findUnique({
+        where: { id: lastId },
+        include: {
+          sets: {
+            orderBy: { setNumber: "asc" },
+          },
+        },
+      });
+      bestWorkoutExercise = workoutExercise;
+      lastWorkoutExercise = workoutExercise;
+    } else {
+      if (lastId) {
+        lastWorkoutExercise = await prisma.workoutExercise.findUnique({
+          where: { id: lastId },
+          include: {
+            sets: {
+              orderBy: { setNumber: "asc" },
+            },
+          },
+        });
+      }
+      if (bestId) {
+        bestWorkoutExercise = await prisma.workoutExercise.findUnique({
+          where: { id: bestId },
+          include: {
+            sets: {
+              orderBy: { setNumber: "asc" },
+            },
+          },
+        });
+      }
+    }
+  }
+
+  return {
+    exercise,
+    userStats,
+    isAuthenticated: !!session,
+    bestWorkoutExercise,
+    lastWorkoutExercise,
+  };
 }
 
 export async function getExercises(params: {

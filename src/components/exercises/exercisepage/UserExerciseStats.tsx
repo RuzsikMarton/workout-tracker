@@ -1,12 +1,27 @@
+"use client";
+
+import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserExerciseStats as UserExerciseStatsType } from "@prisma/client";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import WorkoutExerciseStatTable from "./WorkoutExerciseStatTable";
+import { WorkoutExerciseWithSets } from "@/types/workouts";
 
 type Props = {
   stats: UserExerciseStatsType | null;
   isAuthenticated: boolean;
+  bestWorkoutExercise: WorkoutExerciseWithSets | null;
+  lastWorkoutExercise: WorkoutExerciseWithSets | null;
 };
 
-const UserExerciseStats = ({ stats, isAuthenticated }: Props) => {
+const UserExerciseStats = ({
+  stats,
+  isAuthenticated,
+  bestWorkoutExercise,
+  lastWorkoutExercise,
+}: Props) => {
+  const [tabsValue, setTabsValue] = useState("last");
   const t = useTranslations("ExercisePage.userStats");
   if (!isAuthenticated) {
     return (
@@ -88,6 +103,34 @@ const UserExerciseStats = ({ stats, isAuthenticated }: Props) => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col items-center justify-center mt-12">
+        <Tabs value={tabsValue} onValueChange={setTabsValue}>
+          <TabsList
+            variant="default"
+            className="bg-secondary dark:bg-background/60 rounded-full py-5"
+          >
+            <TabsTrigger
+              value="last"
+              className="p-4 rounded-full text-lg font-light"
+            >
+              {t("lastLabel")}
+            </TabsTrigger>
+            <TabsTrigger
+              value="best"
+              className="p-4 rounded-full text-lg font-light"
+            >
+              {t("bestLabel")}
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <Card className="w-full mt-4">
+          <WorkoutExerciseStatTable
+            workout={
+              tabsValue === "last" ? lastWorkoutExercise : bestWorkoutExercise
+            }
+          />
+        </Card>
       </div>
     </div>
   );
