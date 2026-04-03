@@ -43,10 +43,7 @@ export default function FeatureSection() {
             </CardHeader>
 
             <CardContent>
-              <p className="mt-1 text-sm">
-                {t("feature2Desc")}
-                your workouts.
-              </p>
+              <p className="mt-1 text-sm">{t("feature2Desc")}</p>
             </CardContent>
           </Card>
 
@@ -60,10 +57,7 @@ export default function FeatureSection() {
             </CardHeader>
 
             <CardContent>
-              <p className="mt-1 text-sm">
-                {t("feature3Desc")}
-                analytics.
-              </p>
+              <p className="mt-1 text-sm">{t("feature3Desc")}</p>
             </CardContent>
           </Card>
         </div>

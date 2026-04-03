@@ -14,6 +14,7 @@ import ActiveWorkoutSync from "@/components/active-workout-sync";
 import { Toaster } from "@/components/ui/sonner";
 import { Viewport } from "next";
 import CookieBanner from "@/components/CookieBanner";
+import BackToTopButton from "@/components/BackToTopButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -106,10 +107,10 @@ async function LayoutContent({
           <ClientProviders>
             <ActiveWorkoutSync workoutId={activeWorkout?.id ?? null} />
             <Toaster />
-
             <ConditionalLayout publicSession={publicSession}>
               {children}
             </ConditionalLayout>
+            <BackToTopButton />
           </ClientProviders>
         </NextIntlClientProvider>
       </Suspense>
