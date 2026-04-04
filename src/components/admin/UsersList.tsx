@@ -4,12 +4,24 @@ import { useState } from "react";
 import { PaginationWithLinks } from "../ui/pagination-with-links";
 import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Save, Trash2 } from "lucide-react";
+import { Save, Trash2, Trash2Icon } from "lucide-react";
 import {
   deleteUsersAdmin,
   updateUserRolesAdmin,
 } from "@/lib/actions/adminUsers";
 import { User } from "@/types/auth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 
 const UsersList = ({
   users,
@@ -149,19 +161,47 @@ const UsersList = ({
               </span>
             )}
           </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDeleteUsers}
-            disabled={selectedUsers.size === 0 || deleting}
-          >
-            <Trash2 className="h-4 w-4" />
-            <span className="hidden md:block">Delete Selected</span>
-            {selectedUsers.size > 0 && (
-              <span className="ml-2 inline-block rounded-full bg-badge-bg text-primary px-2 py-0.5 text-xs font-semibold">
-                {selectedUsers.size}
-              </span>
-            )}
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="destructive"
+                disabled={selectedUsers.size === 0 || deleting}
+              >
+                <Trash2 className="h-4 w-4" />
+                <span className="hidden md:block">Delete Selected</span>
+                {selectedUsers.size > 0 && (
+                  <span className="ml-2 inline-block rounded-full bg-badge-bg text-primary px-2 py-0.5 text-xs font-semibold">
+                    {selectedUsers.size}
+                  </span>
+                )}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent size="sm" className="bg-card">
+              <AlertDialogHeader>
+                <AlertDialogMedia className="bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-destructive">
+                  <Trash2Icon />
+                </AlertDialogMedia>
+                <AlertDialogTitle>Delete User(s)?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will permanently delete the selected user(s) and all
+                  associated data. Are you sure you want to proceed?
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>
+                <AlertDialogAction asChild>
+                  <Button
+                    variant={"outline"}
+                    className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                    onClick={handleDeleteUsers}
+                    disabled={deleting}
+                  >
+                    {deleting ? "Deleting..." : "Delete Selected"}
+                  </Button>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
       <div className="py-4">

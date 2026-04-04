@@ -129,6 +129,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html
       lang={locale}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className="scroll-smooth relative"
     >
       <Suspense

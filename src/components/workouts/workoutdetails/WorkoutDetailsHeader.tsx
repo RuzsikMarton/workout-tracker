@@ -5,6 +5,19 @@ import { deleteWorkoutAction } from "@/lib/actions/workouts";
 import { useState } from "react";
 import { redirect, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Trash2Icon } from "lucide-react";
 
 const WorkoutDetailsHeader = ({
   id,
@@ -54,15 +67,44 @@ const WorkoutDetailsHeader = ({
           >
             {t("editButton")}
           </Button>
-          <Button
-            size={"lg"}
-            variant={"outline"}
-            className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
-            onClick={handleDelete}
-            disabled={isPending}
-          >
-            {isPending ? t("deleting") : t("deleteButton")}
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                size={"lg"}
+                variant={"outline"}
+                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                disabled={isPending}
+              >
+                {isPending ? t("deleting") : t("deleteButton")}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent size="sm" className="bg-card">
+              <AlertDialogHeader>
+                <AlertDialogMedia className="bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-destructive">
+                  <Trash2Icon />
+                </AlertDialogMedia>
+                <AlertDialogTitle>{t("confirmDeleteTitle")}</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {t("confirmDeleteDescription")}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel variant="outline">
+                  {t("cancelButton")}
+                </AlertDialogCancel>
+                <AlertDialogAction asChild>
+                  <Button
+                    variant={"outline"}
+                    className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                    onClick={handleDelete}
+                    disabled={isPending}
+                  >
+                    {isPending ? t("deleting") : t("deleteButton")}
+                  </Button>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         <div className="flex items-center justify-between md:justify-start md:gap-16 lg:gap-32 md:order-1">
           <div>

@@ -65,7 +65,7 @@ const Header = ({ publicSession }: HeaderProps) => {
             src="/logo.webp"
             alt="Workout Tracker"
             width={120}
-            height={50}
+            height={120}
             priority
           />
         </Link>

@@ -1,12 +1,24 @@
 "use client";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   deleteWorkoutAction,
   updateWorkoutTitleAction,
 } from "@/lib/actions/workouts";
 import { WorkoutWithExercises } from "@/types";
-import { ArrowBigLeft, SaveAll, SquarePen } from "lucide-react";
+import { ArrowBigLeft, SquarePen, Trash2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -66,17 +78,46 @@ const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
           <SquarePen className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         </div>
         {/* Buttons */}
-        <Button
-          variant="outline"
-          onClick={handleDelete}
-          disabled={isPending}
-          className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
-        >
-          <SaveAll className="h-4 w-4 sm:hidden" />
-          <span className="hidden sm:inline">
-            {isPending ? t("deleting") : t("deleteButton")}
-          </span>
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant={"outline"}
+              className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+              disabled={isPending}
+            >
+              <Trash2Icon className="h-4 w-4 sm:hidden" />
+              <span className="hidden sm:inline">
+                {isPending ? t("deleting") : t("deleteButton")}
+              </span>
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent size="sm" className="bg-card">
+            <AlertDialogHeader>
+              <AlertDialogMedia className="bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-destructive">
+                <Trash2Icon />
+              </AlertDialogMedia>
+              <AlertDialogTitle>{t("confirmDeleteTitle")}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {t("confirmDeleteDescription")}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel variant="outline">
+                {t("cancelButton")}
+              </AlertDialogCancel>
+              <AlertDialogAction asChild>
+                <Button
+                  variant={"outline"}
+                  className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                  onClick={handleDelete}
+                  disabled={isPending}
+                >
+                  {isPending ? t("deleting") : t("deleteButton")}
+                </Button>
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );

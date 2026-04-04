@@ -21,6 +21,11 @@ async function findUserRoles(userId: string) {
 }
 
 export const auth = betterAuth({
+  baseURL:
+    process.env.BETTER_AUTH_URL ||
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    "http://localhost:3000",
+  trustedOrigins: process.env.TRUSTED_ORIGINS?.split(",") || [],
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),

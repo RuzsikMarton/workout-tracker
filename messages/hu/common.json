@@ -259,7 +259,10 @@
     "editButton": "Edzés szerkesztése",
     "editing": "Edzés szerkesztése...",
     "deleteButton": "Edzés törlése",
-    "deleting": "Törlés..."
+    "deleting": "Törlés...",
+    "confirmDeleteTitle": "Edzés törlése?",
+    "confirmDeleteDescription": "Ez véglegesen törli ezt az edzést és az összes kapcsolódó adatot. Biztosan folytatni szeretnéd?",
+    "cancelButton": "Mégse"
   },
   "workoutDetailsCard": {
     "set": "Sorozat",
@@ -270,7 +273,10 @@
     "backButton": "Vissza",
     "nameLabel": "Edzés neve",
     "deleteButton": "Edzés törlése",
-    "deleting": "Edzés törlése..."
+    "deleting": "Edzés törlése...",
+    "confirmDeleteTitle": "Edzés törlése?",
+    "confirmDeleteDescription": "Ez véglegesen törli ezt az edzést és az összes kapcsolódó adatot. Biztosan folytatni szeretnéd?",
+    "cancelButton": "Mégse"
   },
   "profile": {
     "userCard": {

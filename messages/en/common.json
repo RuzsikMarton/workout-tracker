@@ -259,7 +259,10 @@
     "editButton": "Edit",
     "editing": "Editing...",
     "deleteButton": "Delete",
-    "deleting": "Deleting workout..."
+    "deleting": "Deleting workout...",
+    "confirmDeleteTitle": "Delete Workout?",
+    "confirmDeleteDescription": "This will permanently delete this workout and all associated data. Are you sure you want to proceed?",
+    "cancelButton": "Cancel"
   },
   "workoutDetailsCard": {
     "set": "Set",
@@ -270,7 +273,10 @@
     "backButton": "Back",
     "nameLabel": "Workout Name",
     "deleteButton": "Delete Workout",
-    "deleting": "Deleting workout..."
+    "deleting": "Deleting workout...",
+    "confirmDeleteTitle": "Delete Workout?",
+    "confirmDeleteDescription": "This will permanently delete this workout and all associated data. Are you sure you want to proceed?",
+    "cancelButton": "Cancel"
   },
   "profile": {
     "userCard": {

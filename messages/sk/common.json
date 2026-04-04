@@ -260,7 +260,10 @@
     "editButton": "Upraviť",
     "editing": "Úprava...",
     "deleteButton": "Odstrániť",
-    "deleting": "Odstraňovanie..."
+    "deleting": "Odstraňovanie...",
+    "confirmDeleteTitle": "Odstrániť tréning?",
+    "confirmDeleteDescription": "Týmto sa trvalo odstráni tento tréning a všetky súvisiace údaje. Ste si istí, že chcete pokračovať?",
+    "cancelButton": "Zrušiť"
   },
   "workoutDetailsCard": {
     "set": "Série",
@@ -269,9 +272,12 @@
   },
    "workoutEditHeader": {
     "backButton": "Späť",
-    "nameLabel": "Název tréningu",
+    "nameLabel": "Názov tréningu",
     "deleteButton": "Odstrániť tréning",
-    "deleting": "Odstraňovanie tréningu..."
+    "deleting": "Odstraňovanie tréningu...",
+    "confirmDeleteTitle": "Odstrániť tréning?",
+    "confirmDeleteDescription": "Týmto sa trvalo odstráni tento tréning a všetky súvisiace údaje. Ste si istí, že chcete pokračovať?",
+    "cancelButton": "Zrušiť"
   },
   "profile": {
     "userCard": {
