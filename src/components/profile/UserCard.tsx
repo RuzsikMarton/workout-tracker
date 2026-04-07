@@ -21,7 +21,11 @@ const UserCard = ({
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              className="active:scale-95 transition-transform duration-150"
+            >
               {t("editButton")}
             </Button>
           </SheetTrigger>

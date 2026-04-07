@@ -85,7 +85,11 @@ export default function SignInForm({ data }: SignInFormProps) {
         {errors.root && (
           <p className="text-destructive mt-2">{errors.root.message}</p>
         )}
-        <Button type="submit" className="w-full mt-6" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          className="w-full mt-6 active:scale-95 transition-transform duration-150"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? data.signingIn : data.submitButton}
         </Button>
       </form>

@@ -25,13 +25,14 @@ export function ThemeToggle() {
   const isDark = theme === "dark" || resolvedTheme === "dark";
 
   return (
-    <Button 
-      variant="outline" 
-      size="icon" 
+    <Button
+      variant="outline"
+      size="icon"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      className="active:scale-90 transition-transform duration-150"
     >
-      <Sun className="absolute h-[1.2rem] w-[1.2rem] scale-100 dark:scale-0" />
+      <Sun className="absolute h-[1.2rem] w-[1.2rem] scale-100 dark:scale-0 " />
       <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
     </Button>

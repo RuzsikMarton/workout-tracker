@@ -2,7 +2,7 @@
 
 import { Exercise } from "@/types";
 import { Button } from "../ui/button";
-import { Info, Plus } from "lucide-react";
+import { Info, Loader2, Plus } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -86,12 +86,21 @@ const ExerciseCard = ({
         </Link>
         <Button
           variant="outline"
-          className="h-10 w-30 rounded-md border-red-700 dark:border-red-700 hover:bg-red-700/10 dark:hover:bg-red-700/10 cursor-pointer"
+          className="h-10 w-30 rounded-md border-red-700 dark:border-red-700 hover:bg-red-700/10 dark:hover:bg-red-700/10 cursor-pointer active:scale-95 transition-transform duration-150"
           disabled={!canAddToWorkout || isAdding}
           onClick={handleAddToWorkout}
         >
-          {isAdding ? tCard("adding") : tCard("add")}
-          <Plus />
+          {isAdding ? (
+            <>
+              <Loader2 className="h-5 w-5 animate-spin" />
+              {tCard("adding")}
+            </>
+          ) : (
+            <>
+              <Plus className="h-5 w-5" />
+              {tCard("add")}
+            </>
+          )}
         </Button>
       </div>
     </div>

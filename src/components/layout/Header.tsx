@@ -87,8 +87,11 @@ const Header = ({ publicSession }: HeaderProps) => {
                 <DropdownMenuTrigger asChild>
                   {/* Mobile: icon only */}
                   {/* Desktop: name */}
-                  <Button variant="outline">
-                    <User className="h-4 w-4 md:hidden" />
+                  <Button
+                    variant="outline"
+                    className="active:scale-90 md:active:scale-100 transition-transform duration-150"
+                  >
+                    <User className="h-4 w-4 md:hidden " />
                     <span className="hidden md:inline ml-2 font-medium">
                       {publicSession.user.name}
                     </span>
@@ -126,7 +129,7 @@ const Header = ({ publicSession }: HeaderProps) => {
           )}
           <Button
             variant={"outline"}
-            className="xl:hidden"
+            className="xl:hidden active:scale-90 transition-transform duration-150"
             onClick={() => setIsOpen(!isOpen)}
           >
             <Menu />

@@ -52,7 +52,7 @@ const ActiveWorkoutCard = ({
         <div className="mt-4">
           <Button
             variant="default"
-            className="w-full md:w-auto bg-red-700 hover:bg-red-800"
+            className="w-full md:w-auto bg-red-700 hover:bg-red-800 active:scale-95 transition-transform duration-150"
             onClick={createWorkout}
             disabled={isCreating}
           >
@@ -97,7 +97,7 @@ const ActiveWorkoutCard = ({
             <Link href={`/workouts/active`}>
               <Button
                 variant="outline"
-                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
               >
                 {t("continueButton")}
               </Button>

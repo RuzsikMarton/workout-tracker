@@ -34,9 +34,9 @@ const MobileNav = ({ data, ComponentStyles, setIsOpen }: MobileNavProps) => {
           <Link
             key={link.name}
             href={link.href}
-            className={
+            className={`font-medium uppercase transition-colors active:scale-95 duration-150 ${
               isActive(link.href) ? "text-red-700" : "hover:text-red-700"
-            }
+            }`}
           >
             {link.name}
           </Link>

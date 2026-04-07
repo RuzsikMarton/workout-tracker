@@ -9,6 +9,7 @@ import { useActiveWorkoutStore } from "@/lib/stores/active-workout-store";
 import { useSession } from "@/lib/client";
 import { useState } from "react";
 import { Exercise } from "@prisma/client";
+import { Plus, Dumbbell, Loader2 } from "lucide-react";
 
 const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
   const t = useTranslations(exercise.name);
@@ -74,11 +75,23 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
             <div className="lg:hidden">
               <Button
                 variant="default"
-                className="w-full text-sm font-medium text-primary-foreground"
+                size="lg"
+                className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 onClick={handleAddToWorkout}
                 disabled={isButtonDisabled}
               >
-                {isAdding ? tPage("buttonAdding") : tPage("button")}
+                {isAdding ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    {tPage("buttonAdding")}
+                  </>
+                ) : (
+                  <>
+                    <Plus className="mr-2 h-5 w-5" />
+                    <Dumbbell className="mr-2 h-5 w-5" />
+                    {tPage("button")}
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -138,11 +151,23 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
             <div className="hidden lg:block">
               <Button
                 variant="default"
-                className="w-full text-sm font-medium text-primary-foreground"
+                size="lg"
+                className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 onClick={handleAddToWorkout}
                 disabled={isButtonDisabled}
               >
-                {isAdding ? tPage("buttonAdding") : tPage("button")}
+                {isAdding ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    {tPage("buttonAdding")}
+                  </>
+                ) : (
+                  <>
+                    <Plus className="mr-2 h-5 w-5" />
+                    <Dumbbell className="mr-2 h-5 w-5" />
+                    {tPage("button")}
+                  </>
+                )}
               </Button>
             </div>
           </div>

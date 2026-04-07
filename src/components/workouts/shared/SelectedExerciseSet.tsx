@@ -157,7 +157,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
             variant={isCompleted ? "default" : "outline"}
             size="icon"
             className={cn(
-              "h-6 w-6 md:h-7 md:w-7 hover:bg-success/75!",
+              "h-6 w-6 md:h-7 md:w-7 hover:bg-success/75! active:scale-90 transition-transform duration-150",
               isCompleted && "bg-success hover:bg-green-800",
               isPending && "pointer-events-none opacity-70",
             )}
@@ -171,7 +171,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
             variant="outline"
             size="icon"
             className={cn(
-              "h-6 w-6 md:h-7 md:w-7 hover:bg-brand-hover/75!",
+              "h-6 w-6 md:h-7 md:w-7 hover:bg-brand-hover/75! active:scale-90 transition-transform duration-150",
               isPending && "pointer-events-none opacity-70",
             )}
             disabled={isPending}

@@ -83,7 +83,7 @@ const SelectedExerciseCard = ({
           variant="outline"
           size="sm"
           disabled={isRemovingPending || isAddingPending}
-          className="shrink-0 bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+          className="shrink-0 bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
           onClick={handleRemoveExercise}
         >
           <X className="h-4 w-4 md:hidden" />

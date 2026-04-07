@@ -63,6 +63,7 @@ const WorkoutDetailsHeader = ({
             size={"lg"}
             variant={"outline"}
             disabled={isPending}
+            className="active:scale-95 transition-transform duration-150"
             onClick={() => router.push(`/workouts/${id}/edit`)}
           >
             {t("editButton")}
@@ -72,7 +73,7 @@ const WorkoutDetailsHeader = ({
               <Button
                 size={"lg"}
                 variant={"outline"}
-                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
                 disabled={isPending}
               >
                 {isPending ? t("deleting") : t("deleteButton")}

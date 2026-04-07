@@ -97,7 +97,7 @@ const ContactForm = () => {
         {error && <p className="text-red-600 font-semibold">{error}</p>}
         <Button
           variant="default"
-          className="w-full bg-red-700 hover:bg-red-800"
+          className="w-full bg-red-700 hover:bg-red-800 active:scale-95 transition-transform duration-150"
           type="submit"
         >
           {t("submitButton")}

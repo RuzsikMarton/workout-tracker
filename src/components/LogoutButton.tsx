@@ -34,6 +34,7 @@ const LogoutButton = () => {
           variant="outline"
           disabled={pending}
           onClick={handleSignOut}
+          className="active:scale-90 transition-transform duration-150"
         >
           {pending ? <Loader2 className="animate-spin" /> : <LogOut />}
         </Button>

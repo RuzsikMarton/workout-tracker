@@ -1,3 +1,5 @@
+"use client";
+
 const PageTitle = ({ title, date }: { title: string; date?: Date }) => {
   return (
     <div className="block py-8 lg:py-16 bg-header-bg">

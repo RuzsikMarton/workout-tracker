@@ -20,13 +20,13 @@ const SheetExerciseFilter = () => {
     console.log(params);
     params.set(param, value);
     startFilterTransition(() => {
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
     });
   };
 
   const handleReset = () => {
     startFilterTransition(() => {
-      router.push(pathname);
+      router.push(pathname, { scroll: false });
     });
   };
 

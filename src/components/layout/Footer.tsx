@@ -1,3 +1,5 @@
+"use client";
+
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import LanguageSelector from "../LanguageSelector";
 import { useTranslations } from "next-intl";

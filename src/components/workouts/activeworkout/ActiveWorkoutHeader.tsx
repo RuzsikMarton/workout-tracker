@@ -45,7 +45,11 @@ const ActiveWorkoutHeader = ({
     <div className="bg-section-bg px-4 md:px-16 lg:px-32 py-4 space-y-4">
       {/* Top Action Bar */}
       <div className="flex items-center gap-4 md:gap-8 lg:gap-16">
-        <Button variant="outline" onClick={() => router.push("/workouts")}>
+        <Button
+          variant="outline"
+          className="active:scale-95 transition-transform duration-150"
+          onClick={() => router.push("/workouts")}
+        >
           <ArrowBigLeft className="h-4 w-4 sm:hidden" />
           <span className="hidden sm:inline">← {t("backButton")}</span>
         </Button>
@@ -67,7 +71,7 @@ const ActiveWorkoutHeader = ({
           variant="outline"
           onClick={handleFinishWorkout}
           disabled={isPending}
-          className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+          className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
         >
           <SaveAll className="h-4 w-4 sm:hidden" />
           <span className="hidden sm:inline">

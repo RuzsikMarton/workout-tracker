@@ -24,7 +24,7 @@ const Nav = ({ data }: NavigationProps) => {
           <Link
             key={link.href}
             href={link.href}
-            className={`font-medium uppercase transition-colors ${
+            className={`font-medium uppercase transition-colors active:scale-95 duration-150 ${
               isActive(link.href) ? "text-red-700" : "hover:text-red-700"
             }`}
           >
