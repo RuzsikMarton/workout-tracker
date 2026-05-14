@@ -20,7 +20,7 @@ export const MUSCLE_GROUPS = [
   "forearms",
   "abs",
   "legs",
-] as const;
+];
 
 export const EQUIPMENT_OPTIONS = [
   "bodyweight",
@@ -31,7 +31,7 @@ export const EQUIPMENT_OPTIONS = [
   "machine",
   "pull-up-bar",
   "cable",
-] as const;
+];
 
 // ============================================
 // WORKOUT STATUS
