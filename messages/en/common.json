@@ -113,7 +113,7 @@
     "feature2Title": "Exercises List",
     "feature2Desc": "List of exercises with detailed descriptions and images to guide your workouts.",
     "feature3Title": "Progress Tracking",
-    "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics." 
+    "feature3Desc": "Monitor your fitness journey with PR tracking and performance analytics."
   },
   "ExercisesPage": {
     "title": "Exercises",
@@ -216,10 +216,10 @@
     "detailsButton": "View Details"
   },
   "workoutSheet": {
-    "title":"Add Exercises",
-    "subtitle":"Add exercises to your workout by selecting them from the list below.",
-    "addButton":"Add Selected Exercises",
-    "adding":"Adding exercises..."
+    "title": "Add Exercises",
+    "subtitle": "Add exercises to your workout by selecting them from the list below.",
+    "addButton": "Add Selected Exercises",
+    "adding": "Adding exercises..."
   },
   "workoutSheetFilter": {
     "muscle": "Muscle",
@@ -250,7 +250,9 @@
     "removing": "Removing...",
     "addSetButton": "Add Set",
     "addingSet": "Adding set...",
-    "noSets": "No sets added yet."
+    "noSets": "No sets added yet.",
+    "visitPageButton": "Visit Exercise Page",
+    "reorderButton": "Reorder Exercise"
   },
   "workoutDetails": {
     "durationLabel": "Duration",

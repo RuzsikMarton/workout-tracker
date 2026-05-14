@@ -24,7 +24,7 @@ export default function HeroSection() {
                 {t("description")}
               </p>
 
-              <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
+              <div className="mt-12 col-center gap-2 sm:flex-row lg:justify-start">
                 <Button
                   asChild
                   size="lg"

@@ -13,7 +13,7 @@ const Last28Days = ({
 
   if (!data.length)
     return (
-      <div className="profile-card h-full flex items-center justify-center">
+      <div className="profile-card h-full flex-center">
         <span className="text-muted-foreground text-center">{t("noData")}</span>
       </div>
     );

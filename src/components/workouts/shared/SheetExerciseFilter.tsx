@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useExercisePicker } from "@/lib/providers/ExercisePickerProvider";
+import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/const";
 
 const SheetExerciseFilter = () => {
   const searchParams = useSearchParams();

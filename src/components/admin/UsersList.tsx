@@ -129,7 +129,7 @@ const UsersList = ({
   return (
     <div className="w-full px-4 py-6 md:px-16">
       <div className="flex justify-between md:justify-around mb-4 flex-row md:flex-col gap-4">
-        <div className="flex flex-col md:flex-row gap-2 justify-between items-start md:items-center">
+        <div className="col-between gap-2 md:flex-row md:items-center">
           <h1 className="text-2xl font-bold">User Management</h1>
           <input
             type="text"
@@ -141,7 +141,7 @@ const UsersList = ({
             }}
           />
         </div>
-        <div className="flex flex-col md:flex-row justify-center md:justify-end items-center gap-2">
+        <div className="col-center md:flex-row md:justify-end gap-2">
           {error && <div className="text-red-600 text-sm">{error}</div>}
           {success && (
             <div className="text-green-600 text-sm font-medium">{success}</div>

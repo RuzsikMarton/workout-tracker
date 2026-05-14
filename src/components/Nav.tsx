@@ -1,17 +1,11 @@
 "use client";
 
+import { navLinks } from "@/const";
 import { NavigationProps } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Nav = ({ data }: NavigationProps) => {
-  const navLinks = [
-    { name: data.home, href: "/" },
-    { name: data.workouts, href: "/workouts" },
-    { name: data.exercises, href: "/exercises" },
-    { name: data.contact, href: "/contact" },
-  ];
-
   const pathname = usePathname().slice(3) || "/";
   const isActive = (href: string) => {
     return pathname === href;
@@ -28,7 +22,7 @@ const Nav = ({ data }: NavigationProps) => {
               isActive(link.href) ? "text-red-700" : "hover:text-red-700"
             }`}
           >
-            {link.name}
+            {data[link.name as keyof typeof data]}
             {isActive(link.href) && (
               <span className="block h-0.5 w-full bg-red-700"></span>
             )}

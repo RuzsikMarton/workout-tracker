@@ -59,7 +59,7 @@ const WorkoutTrendsChart = ({ workouts }: { workouts: ChartWorkout[] }) => {
   } satisfies ChartConfig;
   if (workouts.length === 0) {
     return (
-      <div className="profile-card h-full flex flex-col text-center items-center justify-center text-muted-foreground">
+      <div className="profile-card h-full col-center text-muted-foreground">
         <BarChart3 className="mx-auto mb-4" size={48} />
         <h1 className="text-primary font-semibold">{t("noData")}</h1>
         <p>{t.rich("description", { br: () => <br /> })}</p>

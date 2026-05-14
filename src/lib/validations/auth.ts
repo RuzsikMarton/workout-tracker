@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { VALIDATION_LIMITS } from "@/const";
 
 // Sign in validation schema
 export const signInSchema = z.object({
@@ -11,12 +12,18 @@ export const signUpSchema = z
   .object({
     name: z
       .string()
-      .min(3, { error: "MUST_BE_AT_LEAST_3_CHARACTERS" })
-      .max(50, { error: "MUST_BE_LESS_THAN_50_CHARACTERS" }),
+      .min(VALIDATION_LIMITS.NAME_MIN_LENGTH, {
+        error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.NAME_MIN_LENGTH}_CHARACTERS`,
+      })
+      .max(VALIDATION_LIMITS.NAME_MAX_LENGTH, {
+        error: `MUST_BE_LESS_THAN_${VALIDATION_LIMITS.NAME_MAX_LENGTH}_CHARACTERS`,
+      }),
     email: z.email({ error: "INVALID_EMAIL_ADDRESS" }),
     password: z
       .string()
-      .min(8, { error: "MUST_BE_AT_LEAST_8_CHARACTERS" })
+      .min(VALIDATION_LIMITS.PASSWORD_MIN_LENGTH, {
+        error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.PASSWORD_MIN_LENGTH}_CHARACTERS`,
+      })
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
         error: "PASSWORD_MUST_CONTAIN_UPPERCASE_LOWERCASE_NUMBER",
       }),
@@ -45,7 +52,9 @@ export const resetPasswordSchema = z
   .object({
     password: z
       .string()
-      .min(8, { error: "MUST_BE_AT_LEAST_8_CHARACTERS" })
+      .min(VALIDATION_LIMITS.PASSWORD_MIN_LENGTH, {
+        error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.PASSWORD_MIN_LENGTH}_CHARACTERS`,
+      })
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
         error: "PASSWORD_MUST_CONTAIN_UPPERCASE_LOWERCASE_NUMBER",
       }),

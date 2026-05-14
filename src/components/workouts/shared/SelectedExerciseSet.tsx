@@ -94,9 +94,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
           error && "border-destructive/50 bg-destructive/5",
         )}
       >
-        <p className="flex items-center text-sm md:text-base">
-          {set.setNumber}
-        </p>
+        <p className="flex-start text-sm md:text-base">{set.setNumber}</p>
         <input
           type="number"
           className={cn(
@@ -152,7 +150,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
           }}
           disabled={isCompleted}
         />
-        <div className="flex justify-end items-center gap-1 md:gap-2">
+        <div className="flex-end gap-1 md:gap-2">
           <Button
             variant={isCompleted ? "default" : "outline"}
             size="icon"

@@ -44,7 +44,7 @@ const ActiveWorkoutHeader = ({
   return (
     <div className="bg-section-bg px-4 md:px-16 lg:px-32 py-4 space-y-4">
       {/* Top Action Bar */}
-      <div className="flex items-center gap-4 md:gap-8 lg:gap-16">
+      <div className="flex-center gap-4 md:gap-8 lg:gap-16">
         <Button
           variant="outline"
           className="active:scale-95 transition-transform duration-150"
@@ -83,21 +83,15 @@ const ActiveWorkoutHeader = ({
       {/* Stats Row */}
       <div className="grid grid-cols-3 gap-4 py-2">
         <div className="text-center md:text-left">
-          <p className="text-xs text-muted-foreground uppercase">
-            {t("durationLabel")}
-          </p>
+          <p className="text-small-uppercase">{t("durationLabel")}</p>
           <TimerWorkout createdAt={activeWorkout.createdAt} />
         </div>
         <div className="text-center md:text-left">
-          <p className="text-xs text-muted-foreground uppercase">
-            {t("volumeLabel")}
-          </p>
+          <p className="text-small-uppercase">{t("volumeLabel")}</p>
           <p className="text-lg font-semibold">{totalVolume} kg</p>
         </div>
         <div className="text-center md:text-left">
-          <p className="text-xs text-muted-foreground uppercase">
-            {t("exercisesLabel")}
-          </p>
+          <p className="text-small-uppercase">{t("exercisesLabel")}</p>
           <p className="text-lg font-semibold">
             {activeWorkout?.workoutExercises?.length || 0}
           </p>

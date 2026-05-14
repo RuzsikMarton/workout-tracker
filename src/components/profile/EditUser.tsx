@@ -54,7 +54,7 @@ const EditUser = ({
         This is the edit profile form. You can edit your name and email here.
       </SheetDescription>
       <form
-        className="flex flex-col items-center gap-4 w-full"
+        className="col-center gap-4 w-full"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-2 w-full">

@@ -33,7 +33,7 @@ interface HeaderProps {
 const Header = ({ publicSession }: HeaderProps) => {
   const [headerActive, setHeaderActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  //const [isMobile, setIsMobile] = useState(false);
 
   const t = useTranslations("Nav");
   const navData = {
@@ -57,10 +57,10 @@ const Header = ({ publicSession }: HeaderProps) => {
     <header
       className={`${
         headerActive ? "h-20" : "h-28"
-      } fixed top-0 w-full z-50 transition-all bg-surface backdrop-blur-sm border-b border-b-primary/10`}
+      } fixed top-0 w-full z-50 transition-base bg-surface backdrop-blur-sm border-b border-b-primary/10`}
     >
-      <div className="container mx-auto h-full flex items-center justify-between px-4">
-        <Link href="/" className="flex items-center">
+      <div className="flex-between container mx-auto h-full px-4">
+        <Link href="/" className="inline-block">
           <Image
             src="/logo.webp"
             alt="Workout Tracker"
@@ -77,7 +77,7 @@ const Header = ({ publicSession }: HeaderProps) => {
             isOpen
               ? "max-h-max py-8 border-foreground border-y border-y-primary/10"
               : "max-h-0 overflow-hidden"
-          } flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-all bg-surface`}
+          } flex flex-col w-full xl:hidden text-center gap-8 fixed left-0 transition-base bg-surface`}
         />
         <div className="flex items-center gap-3">
           <ThemeToggle />

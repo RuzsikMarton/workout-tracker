@@ -100,8 +100,8 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
             <div className="grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-2 md:gap-4">
               {/* Muscle */}
               <div className="rounded-xl border bg-background/60 dark:bg-background/35 p-4 shadow-sm">
-                <div className="mb-3 flex items-center justify-between border-b pb-2 bg-secondary dark:bg-background/25 -mx-4 px-4 -mt-4 pt-4 rounded-t-xl">
-                  <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                <div className="mb-3 flex-between border-b pb-2 bg-secondary dark:bg-background/25 -mx-4 px-4 -mt-4 pt-4 rounded-t-xl">
+                  <span className="text-small-uppercase tracking-wide">
                     {tPage("muscleLabel")}
                   </span>
                 </div>
@@ -120,8 +120,8 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
 
               {/* Equipment */}
               <div className="rounded-xl border bg-background/60 dark:bg-background/35 p-4 shadow-sm">
-                <div className="mb-3 flex items-center justify-between border-b pb-2 bg-secondary dark:bg-background/25 -mx-4 px-4 -mt-4 pt-4 rounded-t-xl">
-                  <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                <div className="mb-3 flex-between border-b pb-2 bg-secondary dark:bg-background/25 -mx-4 px-4 -mt-4 pt-4 rounded-t-xl">
+                  <span className="text-small-uppercase tracking-wide">
                     {tPage("equipmentLabel")}
                   </span>
                 </div>
@@ -140,10 +140,10 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
             </div>
 
             <div className="space-y-2">
-              <span className="text-base md:text-sm uppercase tracking-wide text-muted-foreground">
+              <span className="text-small-uppercase tracking-wide md:text-sm">
                 {tPage("descriptionLabel")}
               </span>
-              <p className="text-base leading-relaxed text-foreground/90">
+              <p className="text-base leading-relaxed text-foreground/90 text-balance">
                 {t("description")}
               </p>
             </div>

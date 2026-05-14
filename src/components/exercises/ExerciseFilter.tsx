@@ -1,10 +1,10 @@
 "use client";
 
-import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 import { useExercisesTransition } from "./ExercisesContainer";
+import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/const";
 
 const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("FilterBar");
@@ -42,10 +42,10 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
   return (
     <section className="py-8 bg-section-bg">
       <div
-        className={`flex flex-col md:flex-row items-center justify-center md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${isDisabled ? "opacity-60 pointer-events-none" : ""}`}
+        className={`col-center md:flex-row md:justify-between w-4/5 mx-auto lg:max-w-5xl gap-4 ${isDisabled ? "opacity-60 pointer-events-none" : ""}`}
       >
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
+          <div className="col-center sm:flex-row gap-2 text-foreground/65 text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
               {t("muscle")}
             </span>
@@ -65,7 +65,7 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
               ))}
             </select>
           </div>
-          <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
+          <div className="col-center sm:flex-row gap-2 text-foreground/65 text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
               {t("equipment")}
             </span>
@@ -86,8 +86,8 @@ const ExerciseFilter = ({ disabled = false }: { disabled?: boolean }) => {
             </select>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-2">
-          <div className="flex flex-col sm:flex-row gap-2 text-foreground/65 items-center text-lg md:text-base">
+        <div className="col-center md:flex-row gap-2">
+          <div className="col-center sm:flex-row gap-2 text-foreground/65 text-lg md:text-base">
             <span className="uppercase font-stretch-50% font-medium">
               {t("order")}
             </span>

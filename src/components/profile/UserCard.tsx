@@ -17,7 +17,7 @@ const UserCard = ({
   return (
     <div className="profile-card h-full">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex-between mb-6">
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <Sheet>
           <SheetTrigger asChild>

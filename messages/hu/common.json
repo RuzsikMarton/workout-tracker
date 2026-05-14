@@ -119,7 +119,7 @@
     "title": "Gyakorlatok",
     "imgAlt": "Gyakorlatok illusztráció IMG",
     "loading": "Gyakorlatok betöltése..."
-  },  
+  },
   "FilterBar": {
     "showall": "Összes mutatása",
     "muscle": "Célizom:",
@@ -216,33 +216,33 @@
     "detailsButton": "Részletek"
   },
   "workoutSheet": {
-    "title":"Gyakorlatok hozzáadása",
-    "subtitle":"Válaszd ki a gyakorlatokat a listából, hogy hozzáadd őket az edzésedhez.",
-    "addButton":"Kiválasztott gyakorlatok hozzáadása",
-    "adding":"Gyakorlatok hozzáadása..."
-   },
-   "workoutSheetFilter": {
-     "muscle": "Célizom",
-     "musclePlaceholder": "Szűrés izomcsoport szerint",
-     "equipment": "Felszerelés",
-     "equipmentPlaceholder": "Szűrés felszerelés szerint",
-     "reset": "Szűrők visszaállítása"
-   },
-   "workoutLoading": {
-     "title": "Edzés betöltése...",
-     "error": "Hiba történt az edzés betöltésekor. Kérjük, próbáld meg újra."
-   },
-   "workoutLog": {
-     "title": "Edzésnapló",
-     "durationLabel": "Időtartam",
-     "volumeLabel": "Összmunka",
-     "exercisesLabel": "Gyakorlatok",
-     "backButton": "Vissza",
-     "completeButton": "Edzés befejezése",
-     "completing": "Edzés befejezése...",
-     "workoutNamePlaceholder": "Edzés neve",
-     "addExerciseButton": "Gyakorlat hozzáadása"
-   },
+    "title": "Gyakorlatok hozzáadása",
+    "subtitle": "Válaszd ki a gyakorlatokat a listából, hogy hozzáadd őket az edzésedhez.",
+    "addButton": "Kiválasztott gyakorlatok hozzáadása",
+    "adding": "Gyakorlatok hozzáadása..."
+  },
+  "workoutSheetFilter": {
+    "muscle": "Célizom",
+    "musclePlaceholder": "Szűrés izomcsoport szerint",
+    "equipment": "Felszerelés",
+    "equipmentPlaceholder": "Szűrés felszerelés szerint",
+    "reset": "Szűrők visszaállítása"
+  },
+  "workoutLoading": {
+    "title": "Edzés betöltése...",
+    "error": "Hiba történt az edzés betöltésekor. Kérjük, próbáld meg újra."
+  },
+  "workoutLog": {
+    "title": "Edzésnapló",
+    "durationLabel": "Időtartam",
+    "volumeLabel": "Összmunka",
+    "exercisesLabel": "Gyakorlatok",
+    "backButton": "Vissza",
+    "completeButton": "Edzés befejezése",
+    "completing": "Edzés befejezése...",
+    "workoutNamePlaceholder": "Edzés neve",
+    "addExerciseButton": "Gyakorlat hozzáadása"
+  },
   "selectedExerciseCard": {
     "setsLabel": "Sorozat",
     "repsLabel": "Ismétlések",
@@ -250,9 +250,11 @@
     "removing": "Eltávolítás...",
     "addSetButton": "Sorozat hozzáadása",
     "addingSet": "Sorozat hozzáadása...",
-    "noSets": "Még nincs sorozat hozzáadva."
+    "noSets": "Még nincs sorozat hozzáadva.",
+    "visitPageButton": "Gyakorlat információk",
+    "reorderButton": "Gyakorlat átrendezése"
   },
-  "workoutDetails":{
+  "workoutDetails": {
     "durationLabel": "Időtartam",
     "volumeLabel": "Összmunka (kg)",
     "setsLabel": "Sorozatok",
@@ -269,7 +271,7 @@
     "reps": "Ismétlések",
     "weight": "Súly (kg)"
   },
-   "workoutEditHeader": {
+  "workoutEditHeader": {
     "backButton": "Vissza",
     "nameLabel": "Edzés neve",
     "deleteButton": "Edzés törlése",
@@ -296,7 +298,7 @@
       "week4": "4. hét",
       "countLabel": "Edzések"
     },
-     "last28Days": {
+    "last28Days": {
       "title": "Az elmúlt 28 nap",
       "noData": "Az elmúlt 28 napban nem rögzítettél edzést.",
       "workoutLabel": "Edzések",
@@ -304,7 +306,7 @@
       "durationLabel": "Időtartam",
       "exercisesLabel": "Gyakorlatok"
     },
-     "workoutTrendsChart": {
+    "workoutTrendsChart": {
       "title": "Edzés trendek",
       "noData": "Nincs elérhető adat",
       "description": "Ebben a diagramon még nincs megjeleníthető adat.<br></br>Az adatok itt fognak megjelenni, amint elérhetővé válnak.",

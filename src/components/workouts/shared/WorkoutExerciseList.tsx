@@ -25,7 +25,7 @@ const WorkoutExerciseList = ({
           onClick={picker.open}
           className="group w-full rounded-lg border-2 border-dashed border-muted-foreground/30 bg-background dark:bg-secondary hover:bg-muted/40 hover:border-muted-foreground/50 transition-all duration-200 py-6 px-4 flex flex-col items-center justify-center gap-2"
         >
-          <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
+          <div className="flex-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
             <Plus className="h-5 w-5" />
             <Dumbbell className="h-5 w-5" />
           </div>

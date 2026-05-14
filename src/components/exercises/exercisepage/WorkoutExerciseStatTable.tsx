@@ -29,16 +29,16 @@ const WorkoutExerciseStatTable = ({
       <table className="w-full">
         <thead className="border-b">
           <tr>
-            <th className="py-3 text-center text-sm font-medium text-muted-foreground">
+            <th className="py-3 text-center text-medium text-muted-foreground">
               {t("sets")}
             </th>
-            <th className="py-3 text-center text-sm font-medium text-muted-foreground">
+            <th className="py-3 text-center text-medium text-muted-foreground">
               {t("weight")}
             </th>
-            <th className="py-3 text-center text-sm font-medium text-muted-foreground">
+            <th className="py-3 text-center text-medium text-muted-foreground">
               {t("reps")}
             </th>
-            <th className="py-3 text-center text-sm font-medium text-muted-foreground">
+            <th className="py-3 text-center text-medium text-muted-foreground">
               {t("volume")}
             </th>
           </tr>
@@ -59,7 +59,7 @@ const WorkoutExerciseStatTable = ({
                 <td className="py-3 text-center text-sm font-semibold">
                   {set.reps}
                 </td>
-                <td className="py-3 text-center text-sm font-medium text-muted-foreground">
+                <td className="py-3 text-center text-medium text-muted-foreground">
                   {(set.weight * set.reps).toFixed(1)}{" "}
                   <span className="text-muted-foreground/70">kg</span>
                 </td>

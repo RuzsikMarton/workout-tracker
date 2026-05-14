@@ -16,13 +16,13 @@ const SheetExerciseCard = ({ exercise }: { exercise: ExercisePrisma }) => {
       className="w-full border-b last:border-0 cursor-pointer"
     >
       <div
-        className={`flex justify-start items-center p-4 gap-4 transition-colors ${
+        className={`flex-start p-4 gap-4 transition-colors ${
           selected
             ? "bg-red-700/5 hover:bg-red-700/15 border-l-4 border-l-red-700 ml-1"
             : "hover:bg-muted-foreground/10"
         }`}
       >
-        <div className="flex items-center justify-center w-16 h-16 shrink-0 rounded-full overflow-hidden bg-border">
+        <div className="flex-center w-16 h-16 shrink-0 rounded-full overflow-hidden bg-border">
           {" "}
           <Image
             src={exercise.imgUrl || "/logo.webp"}

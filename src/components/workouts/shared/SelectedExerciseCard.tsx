@@ -10,6 +10,13 @@ import { createExerciseSetAction } from "@/lib/actions/exercise-set";
 import { cn } from "@/lib/utils";
 import { removeWorkoutExerciseAction } from "@/lib/actions/workouts";
 import SelectedExerciseSet from "./SelectedExerciseSet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const SelectedExerciseCard = ({
   workoutExercise,
@@ -76,9 +83,25 @@ const SelectedExerciseCard = ({
           {tE("name")}
         </span>
         {/*Reorder will be implemented in the future, for now we only showing a placeholder button*/}
-        <Button variant="outline" size="sm" className="shrink-0" disabled>
-          ...
-        </Button>
+        <DropdownMenu modal={false}>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="shrink-0">
+              ...
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-surface" align="end">
+            <DropdownMenuItem>
+              <Link href={`/exercises/${workoutExercise.exercise.name}`}>
+                {t("visitPageButton")}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled>
+              <Link href={`/exercises/${workoutExercise.exercise.name}`}>
+                {t("reorderButton")}
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Button
           variant="outline"
           size="sm"
@@ -94,13 +117,13 @@ const SelectedExerciseCard = ({
       </div>
       <div className="flex flex-col mt-4">
         <div className="grid grid-cols-4 gap-2 md:gap-3 border-b border-brand-primary/25 pb-2 px-1 md:px-2">
-          <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase">
+          <span className="text-small-uppercase md:text-sm font-medium">
             {t("setsLabel")}
           </span>
-          <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase">
+          <span className="text-small-uppercase md:text-sm font-medium">
             {t("repsLabel")}
           </span>
-          <div className="flex items-center text-xs md:text-sm font-medium text-muted-foreground uppercase">
+          <div className="flex-start text-small-uppercase md:text-sm font-medium">
             <Weight className="inline-block h-3 w-3 md:h-4 md:w-4" />
             <span className="ml-1">Kg</span>
           </div>
@@ -120,7 +143,7 @@ const SelectedExerciseCard = ({
           </div>
         )}
         {workoutExercise.sets.length === 0 ? (
-          <div className="flex items-center justify-center py-8 text-muted-foreground">
+          <div className="flex-center py-8 text-muted-foreground">
             <div className="text-center">
               <p className="text-sm">{t("noSets")}</p>
             </div>

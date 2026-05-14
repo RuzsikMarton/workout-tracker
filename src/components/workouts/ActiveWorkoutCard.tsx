@@ -68,7 +68,7 @@ const ActiveWorkoutCard = ({
         {t("title")}
       </h1>
       <div className="p-4 border rounded-lg bg-muted-foreground/10">
-        <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
+        <div className="col-between md:flex-row md:items-center gap-4">
           <div className="flex-1">
             <h2 className="text-xl">
               <span className="font-semibold">{t("NameLabel")} </span>

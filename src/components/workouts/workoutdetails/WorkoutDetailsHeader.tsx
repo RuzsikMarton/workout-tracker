@@ -56,7 +56,7 @@ const WorkoutDetailsHeader = ({
   return (
     <div className="bg-section-bg py-4">
       <div className="page-container flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div className="flex justify-between gap-2 md:ml-auto md:order-2">
+        <div className="flex-between gap-2 md:ml-auto md:order-2">
           {error && <p className="text-sm text-red-500">{error}</p>}
           {/* Need to implement edit workout functionality */}
           <Button
@@ -107,27 +107,21 @@ const WorkoutDetailsHeader = ({
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="flex items-center justify-between md:justify-start md:gap-16 lg:gap-32 md:order-1">
+        <div className="flex-between md:justify-start md:gap-16 lg:gap-32 md:order-1">
           <div>
-            <span className="text-sm text-muted-foreground">
-              {t("durationLabel")}
-            </span>
+            <span className="text-small-uppercase">{t("durationLabel")}</span>
             <p className="text-lg font-medium">
               {duration != null ? `${Math.round(duration / 60)} min` : "N/A"}
             </p>
           </div>
           <div>
-            <span className="text-sm text-muted-foreground">
-              {t("volumeLabel")}
-            </span>
+            <span className="text-small-uppercase">{t("volumeLabel")}</span>
             <p className="text-lg font-medium">
               {volume != null ? `${volume} kg` : "N/A"}
             </p>
           </div>
           <div>
-            <span className="text-sm text-muted-foreground">
-              {t("setsLabel")}
-            </span>
+            <span className="text-small-uppercase">{t("setsLabel")}</span>
             <p className="text-lg font-medium">{sets}</p>
           </div>
         </div>

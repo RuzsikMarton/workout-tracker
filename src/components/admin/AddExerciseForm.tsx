@@ -9,8 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { exerciseSchema } from "@/lib/validations";
 import { createExerciseAction } from "@/lib/actions/exercises";
 import { useState, useRef } from "react";
-import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/lib/selectdata";
 import { useTranslations } from "next-intl";
+import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/const";
 
 const AddExerciseForm = () => {
   const router = useRouter();
