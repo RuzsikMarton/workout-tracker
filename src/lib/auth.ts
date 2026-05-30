@@ -3,6 +3,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { customSession } from "better-auth/plugins";
+import { expo } from "@better-auth/expo";
 
 const prisma = new PrismaClient();
 
@@ -20,12 +21,33 @@ async function findUserRoles(userId: string) {
   }
 }
 
+const envTrustedOrigins =
+  process.env.TRUSTED_ORIGINS?.split(",")
+    .map((o) => o.trim())
+    .filter(Boolean) ?? [];
+
 export const auth = betterAuth({
   baseURL:
     process.env.BETTER_AUTH_URL ||
     process.env.NEXT_PUBLIC_BASE_URL ||
     "http://localhost:3000",
-  trustedOrigins: process.env.TRUSTED_ORIGINS?.split(",") || [],
+  trustedOrigins: [
+    ...envTrustedOrigins,
+    "workouttrackermobileapp://",
+    ...(process.env.NODE_ENV === "development"
+      ? [
+          "exp://",
+
+          "exp://**",
+
+          "exp://192.168.*.*:*/**",
+
+          "exp://10.0.0.*:*/**",
+
+          "exp://172.16.*.*:*/**",
+        ]
+      : []),
+  ],
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
@@ -39,6 +61,7 @@ export const auth = betterAuth({
     enabled: true,
   },
   plugins: [
+    expo(),
     customSession(async ({ user, session }) => {
       const role = await findUserRoles(session.userId);
 
