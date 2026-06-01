@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getExercises } from "@/lib/data/get-exercise";
+import { getExercisesFiltered } from "@/lib/data/get-exercise";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
@@ -15,23 +15,14 @@ export async function GET(req: NextRequest) {
   );
 
   try {
-    const res = await getExercises({
+    const res = await getExercisesFiltered({
       equipment,
       muscle: muscleGroup,
-      sort: orderBy,
-      page,
-      pageSize,
     });
 
     return new Response(
       JSON.stringify({
-        data: res.exercises,
-        pagination: {
-          total: res.pagination.total,
-          page,
-          pageSize: pageSize,
-          totalPages: Math.ceil(res.pagination.total / pageSize),
-        },
+        data: res,
       }),
       {
         status: 200,

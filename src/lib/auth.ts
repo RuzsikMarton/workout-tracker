@@ -34,19 +34,11 @@ export const auth = betterAuth({
   trustedOrigins: [
     ...envTrustedOrigins,
     "workouttrackermobileapp://",
-    ...(process.env.NODE_ENV === "development"
-      ? [
-          "exp://",
-
-          "exp://**",
-
-          "exp://192.168.*.*:*/**",
-
-          "exp://10.0.0.*:*/**",
-
-          "exp://172.16.*.*:*/**",
-        ]
-      : []),
+    "exp://",
+    "exp://**",
+    "exp://192.168.*.*:*/**",
+    "exp://10.0.0.*:*/**",
+    "exp://172.16.*.*:*/**",
   ],
   database: prismaAdapter(prisma, {
     provider: "postgresql",
