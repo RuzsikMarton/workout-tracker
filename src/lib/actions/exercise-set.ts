@@ -9,7 +9,7 @@ type ExerciseSetActionResult =
   | { ok: true; setId?: string }
   | { ok: false; code: string };
 
-const recomputeStatsforExercise = async (
+export const recomputeStatsforExercise = async (
   tx: Prisma.TransactionClient,
   userId: string,
   exerciseId: string,

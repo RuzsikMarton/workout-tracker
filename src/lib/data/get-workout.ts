@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+import { auth } from "../auth";
 import { prisma } from "../prisma";
 
 export async function getActiveWorkout(userId: string) {
@@ -32,7 +34,7 @@ export async function getActiveWorkoutWithData(userId: string) {
             orderBy: { setNumber: "asc" },
           },
         },
-        orderBy: { order: "asc" },
+        orderBy: { order: "desc" },
       },
     },
   });
@@ -90,6 +92,10 @@ export async function getWorkoutHistory({
   page: number;
   pageSize: number;
 }) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   const totalCount = await prisma.workout.count({
     where: {
       userId: userId,

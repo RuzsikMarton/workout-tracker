@@ -9,7 +9,7 @@ type WorkoutActionResult =
   | { ok: true; workoutId?: string }
   | { ok: false; code: string };
 
-const recomputeStatsForExercises = async (
+export const recomputeStatsForExercises = async (
   tx: Prisma.TransactionClient,
   userId: string,
   exerciseIds: Set<string> | string[],
@@ -238,6 +238,7 @@ export async function deleteWorkoutAction(
   }
 }
 
+//UPDATE WORKOUT TITLE ACTION
 export async function updateWorkoutTitleAction(
   workoutId: string,
   title: string,
