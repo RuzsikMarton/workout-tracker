@@ -4,10 +4,26 @@ import { Button } from "../ui/button";
 import TimerWorkout from "./TimerWorkout";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { createWorkoutAction } from "@/lib/actions/workouts";
+import {
+  createWorkoutAction,
+  deleteWorkoutAction,
+} from "@/lib/actions/workouts";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { WorkoutWithPartialExercises } from "@/types";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import { Trash2Icon } from "lucide-react";
 
 const ActiveWorkoutCard = ({
   activeWorkout,
@@ -15,9 +31,11 @@ const ActiveWorkoutCard = ({
   activeWorkout: WorkoutWithPartialExercises | null;
 }) => {
   const t = useTranslations("ActiveWorkoutCard");
+  const tDialog = useTranslations("workoutLog");
   const errorT = useTranslations("errors.codes");
   const router = useRouter();
   const [isCreating, setIsCreating] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const createWorkout = async () => {
@@ -37,6 +55,24 @@ const ActiveWorkoutCard = ({
     }
     router.push("/workouts/active");
     router.refresh();
+  };
+
+  const handleCancelWorkout = async () => {
+    setIsPending(true);
+    setError(null);
+    try {
+      const res = await deleteWorkoutAction(activeWorkout?.id || "");
+      if (!res.ok) {
+        setError(
+          res.code ? errorT(res.code) : errorT("FAILED_TO_DELETE_WORKOUT"),
+        );
+      }
+      if (res.ok) {
+        router.replace("/workouts");
+      }
+    } catch (err) {
+      setError(errorT("FAILED_TO_DELETE_WORKOUT"));
+    }
   };
 
   if (!activeWorkout) {
@@ -93,7 +129,7 @@ const ActiveWorkoutCard = ({
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex flex-row gap-2 mt-4 md:mt-0">
             <Link href={`/workouts/active`}>
               <Button
                 variant="outline"
@@ -102,6 +138,47 @@ const ActiveWorkoutCard = ({
                 {t("continueButton")}
               </Button>
             </Link>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
+                  disabled={isPending}
+                >
+                  <Trash2Icon className="h-4 w-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent size="sm" className="bg-card">
+                <AlertDialogHeader>
+                  <AlertDialogMedia className="bg-brand-primary/10 text-brand-primary dark:bg-brand-primary/20 dark:text-destructive">
+                    <Trash2Icon />
+                  </AlertDialogMedia>
+                  <AlertDialogTitle>
+                    {tDialog("confirmCancelTitle")}
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {tDialog("confirmCancelDescription")}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel variant="outline">
+                    {tDialog("cancelButton")}
+                  </AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Button
+                      variant={"outline"}
+                      className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
+                      onClick={handleCancelWorkout}
+                      disabled={isPending}
+                    >
+                      {isPending
+                        ? tDialog("cancelingWorkout")
+                        : tDialog("cancelWorkoutButton")}
+                    </Button>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
       </div>

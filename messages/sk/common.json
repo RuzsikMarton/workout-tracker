@@ -240,8 +240,15 @@
     "backButton": "Späť",
     "completeButton": "Dokončiť tréning",
     "completing": "Dokončovanie tréningu...",
+    "confirmCompleteTitle": "Dokončiť tréning?",
+    "confirmCompleteDescription": "Ste si istí, že chcete dokončiť tento tréning? Túto akciu nie je možné vrátiť späť. Stále budete môcť zobraziť a upraviť tento tréning vo svojej histórii.",
+    "cancelButton": "Zrušiť",
     "workoutNamePlaceholder": "Názov tréningu",
-    "addExerciseButton": "Pridať cvik"
+    "addExerciseButton": "Pridať cvik",
+    "cancelWorkoutButton": "Zrušiť tréning",
+    "cancelingWorkout": "Zrušovanie tréningu...",
+    "confirmCancelTitle": "Zrušiť tréning?",
+    "confirmCancelDescription": "Ste si istí, že chcete zrušiť tento tréning? Túto akciu nie je možné vrátiť späť. Všetok pokrok bude stratený."
   },
   "selectedExerciseCard": {
     "setsLabel": "Séria",

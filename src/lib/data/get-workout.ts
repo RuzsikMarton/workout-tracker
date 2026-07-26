@@ -34,7 +34,7 @@ export async function getActiveWorkoutWithData(userId: string) {
             orderBy: { setNumber: "asc" },
           },
         },
-        orderBy: { order: "desc" },
+        orderBy: { order: "asc" },
       },
     },
   });

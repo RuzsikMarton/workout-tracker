@@ -240,8 +240,15 @@
     "backButton": "Back",
     "completeButton": "Complete Workout",
     "completing": "Completing workout...",
+    "confirmCompleteTitle": "Complete Workout?",
+    "confirmCompleteDescription": "Are you sure you want to complete this workout? This action cannot be undone. You will still be able to view and edit this workout in your history.",
+    "cancelButton": "Cancel",
     "workoutNamePlaceholder": "Workout Name",
-    "addExerciseButton": "Add Exercise"
+    "addExerciseButton": "Add Exercise",
+    "cancelWorkoutButton": "Cancel Workout",
+    "cancelingWorkout": "Canceling workout...",
+    "confirmCancelTitle": "Cancel Workout?",
+    "confirmCancelDescription": "Are you sure you want to cancel this workout? This action cannot be undone. All progress will be lost."
   },
   "selectedExerciseCard": {
     "setsLabel": "Set",

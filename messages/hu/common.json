@@ -240,8 +240,15 @@
     "backButton": "Vissza",
     "completeButton": "Edzés befejezése",
     "completing": "Edzés befejezése...",
+    "confirmCompleteTitle": "Edzés befejezése?",
+    "confirmCompleteDescription": "Biztosan be akarod fejezni ezt az edzést? Ez a művelet nem vonható vissza. Az edzésedet továbbra is megtekintheted és szerkesztheted a történetedben.",
+    "cancelButton": "Mégse",
     "workoutNamePlaceholder": "Edzés neve",
-    "addExerciseButton": "Gyakorlat hozzáadása"
+    "addExerciseButton": "Gyakorlat hozzáadása",
+    "cancelWorkoutButton": "Edzés megszakítása",
+    "cancelingWorkout": "Edzés megszakítása...",
+    "confirmCancelTitle": "Edzés megszakítása?",
+    "confirmCancelDescription": "Biztosan meg akarod szakítani ezt az edzést? Ez a művelet nem vonható vissza. Minden előrehaladás elveszik."
   },
   "selectedExerciseCard": {
     "setsLabel": "Sorozat",
