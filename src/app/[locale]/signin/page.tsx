@@ -1,5 +1,6 @@
 import SignInForm from "@/components/auth/SignInForm";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export async function generateMetadata({
   params,
@@ -28,8 +29,14 @@ export default async function SignInPage() {
   };
   return (
     <main className="page-main">
-      <div className="flex justify-center items-center grow p-4 sm:p-8">
+      <div className="flex flex-col justify-center items-center grow p-4 sm:p-8">
         <SignInForm data={signInData} />
+        <Link
+          className="text-muted-foreground hover:text-primary text-xs mt-4 active:scale-90 transition-transform"
+          href={"/"}
+        >
+          ← {t("backToHome")}
+        </Link>
       </div>
     </main>
   );

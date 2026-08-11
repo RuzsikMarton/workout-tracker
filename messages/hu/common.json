@@ -72,7 +72,8 @@
     "submitButton": "Bejelentkezés",
     "signingIn": "Bejelentkezés...",
     "noAccount": "Nincs fiókod?",
-    "registerLink": "Regisztrálj most"
+    "registerLink": "Regisztrálj most",
+    "backToHome": "vissza a kezdőlapra"
   },
   "SignUp": {
     "title": "Regisztráció",
@@ -83,7 +84,8 @@
     "submitButton": "Regisztráció",
     "signingUp": "Regisztráció...",
     "haveAccount": "Már van fiókod?",
-    "signinLink": "Jelentkezz be itt"
+    "signinLink": "Jelentkezz be itt",
+    "backToHome": "späť na hlavnú stránku"
   },
   "Contact": {
     "title": "Lépj kapcsolatba velünk",

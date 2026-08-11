@@ -72,7 +72,8 @@
     "submitButton": "Sign In",
     "signingIn": "Signing in...",
     "noAccount": "Don't have an account?",
-    "registerLink": "Sign up now"
+    "registerLink": "Sign up now",
+    "backToHome": "back to home"
   },
   "SignUp": {
     "title": "Register",
@@ -83,7 +84,8 @@
     "submitButton": "Sign Up",
     "signingUp": "Signing up...",
     "haveAccount": "Already have an account?",
-    "signinLink": "Sign in here"
+    "signinLink": "Sign in here",
+    "backToHome": "späť na hlavnú stránku"
   },
   "Contact": {
     "title": "Get in Touch",

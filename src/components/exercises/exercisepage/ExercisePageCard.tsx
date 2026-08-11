@@ -9,7 +9,8 @@ import { useActiveWorkoutStore } from "@/lib/stores/active-workout-store";
 import { useSession } from "@/lib/client";
 import { useState } from "react";
 import { Exercise } from "@prisma/client";
-import { Plus, Dumbbell, Loader2 } from "lucide-react";
+import { Plus, Dumbbell, Loader2, ArrowBigLeft } from "lucide-react";
+import Link from "next/link";
 
 const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
   const t = useTranslations(exercise.name);
@@ -59,6 +60,15 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
         </div>
       </div>
       <div className="mx-auto w-full max-w-6xl px-4 py-6">
+        <Link href="/exercises" className="sm:hidden mb-1">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center active:scale-95 transition-transform duration-150"
+          >
+            <ArrowBigLeft className="h-5 w-5" />
+          </Button>
+        </Link>
         <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
           {/*Left column*/}
           <div className="space-y-4 flex flex-col items-center">
