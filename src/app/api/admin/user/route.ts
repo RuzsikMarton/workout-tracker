@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
         headers: { "Content-Type": "application/json" },
       },
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       return NextResponse.json({ error: err.message }, { status: 400 });
     }

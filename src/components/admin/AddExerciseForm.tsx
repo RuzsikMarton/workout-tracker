@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import { createExerciseAction } from "@/lib/actions/exercises";
 import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { EQUIPMENT_OPTIONS, MUSCLE_GROUPS } from "@/const";
+import Image from "next/image";
 
 const AddExerciseForm = () => {
   const router = useRouter();
@@ -210,11 +212,13 @@ const AddExerciseForm = () => {
             className="w-full px-3 py-2 border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
           />
           {imagePreview && (
-            <div className="mt-2 relative w-full max-w-xs">
-              <img
+            <div className="mt-2 relative w-48 max-w-xs">
+              <Image
                 src={imagePreview}
                 alt="Preview"
-                className="rounded-md border object-cover w-full h-48"
+                className="rounded-md border object-cover"
+                width={200}
+                height={200}
               />
               <button
                 type="button"

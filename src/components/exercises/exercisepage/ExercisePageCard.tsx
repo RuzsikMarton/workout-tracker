@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
@@ -11,6 +10,7 @@ import { useState } from "react";
 import { Exercise } from "@prisma/client";
 import { Plus, Dumbbell, Loader2, ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 
 const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
   const t = useTranslations(exercise.name);
@@ -37,7 +37,7 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
       } else {
         toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
       }
-    } catch (error) {
+    } catch {
       toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
     } finally {
       setIsAdding(false);
@@ -73,13 +73,12 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
           {/*Left column*/}
           <div className="space-y-4 flex flex-col items-center">
             <div className="relative w-full max-w-md aspect-square">
-              <Image
+              <CldImage
                 src={exercise.imgUrl || "/logo.webp"}
                 alt={tPage("imgAlt")}
                 fill
+                sizes="(max-width: 768px) 100vw, 16rem"
                 className="rounded-md object-cover"
-                unoptimized={exercise.imgUrl ? true : false}
-                priority
               />
             </div>
             <div className="lg:hidden">

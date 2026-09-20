@@ -8,7 +8,6 @@ import {
   signUpSchema,
 } from "@/lib/validations";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export type AuthActionResult = { ok: true } | { ok: false; code: string };
 
@@ -23,7 +22,7 @@ export async function signUpAction(
   const { email, password, name } = parsed.data;
 
   try {
-    const result = await auth.api.signUpEmail({
+    await auth.api.signUpEmail({
       body: {
         email: email.trim().toLowerCase(),
         password,
@@ -31,13 +30,13 @@ export async function signUpAction(
       },
     });
 
-    if (result && typeof result === "object" && "error" in result) {
-      console.error("Sign-up error:", result.error);
-      return {
-        ok: false,
-        code: "SIGNUP_FAILED",
-      };
-    }
+    // if (result && typeof result === "object" && "error" in result) {
+    //   console.error("Sign-up error:", result.error);
+    //   return {
+    //     ok: false,
+    //     code: "SIGNUP_FAILED",
+    //   };
+    // }
 
     return { ok: true };
   } catch (error: unknown) {
@@ -45,8 +44,9 @@ export async function signUpAction(
     if (
       error &&
       typeof error === "object" &&
+      error !== null &&
       "statusCode" in error &&
-      (error as any).statusCode === 401
+      error.statusCode === 401
     ) {
       return { ok: false, code: "SIGNUP_FAILED" };
     }
@@ -65,29 +65,21 @@ export async function signInAction(
   const { email, password } = parsed.data;
 
   try {
-    const result = await auth.api.signInEmail({
+    await auth.api.signInEmail({
       body: {
         email: email.trim().toLowerCase(),
         password,
       },
     });
 
-    if (result && typeof result === "object" && "error" in result) {
-      console.error("Sign-in error:", result.error);
-      return {
-        ok: false,
-        code: "SIGNIN_FAILED",
-      };
-    }
-
     return { ok: true };
   } catch (error: unknown) {
     console.error("Sign-in error:", error);
     if (
-      error &&
       typeof error === "object" &&
+      error !== null &&
       "statusCode" in error &&
-      (error as any).statusCode === 401
+      error.statusCode === 401
     ) {
       return { ok: false, code: "SIGNIN_FAILED" };
     }

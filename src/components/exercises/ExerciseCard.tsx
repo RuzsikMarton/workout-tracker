@@ -5,10 +5,10 @@ import { Button } from "../ui/button";
 import { Info, Loader2, Plus } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
 import { toast } from "sonner";
 import { useState } from "react";
+import { CldImage } from "next-cloudinary";
 
 const ExerciseCard = ({
   exercise,
@@ -36,7 +36,7 @@ const ExerciseCard = ({
       } else {
         toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
       }
-    } catch (error) {
+    } catch {
       toast.error(tError("FAILED_TO_ADD_EXERCISES_TO_WORKOUT"));
     } finally {
       setIsAdding(false);
@@ -66,12 +66,12 @@ const ExerciseCard = ({
       </div>
       {exercise.imgUrl && (
         <div className="relative w-16 h-16 md:w-20 md:h-20 shrink-0">
-          <Image
+          <CldImage
             src={exercise.imgUrl}
             alt={tExercise("name")}
+            sizes="(max-width: 768px) 100vw, 16rem"
             fill
             className="rounded-md object-cover"
-            unoptimized
           />
         </div>
       )}

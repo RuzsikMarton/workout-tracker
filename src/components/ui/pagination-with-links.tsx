@@ -81,7 +81,7 @@ export function PaginationWithLinks({
       newSearchParams.set(key, String(newPage));
       return `${pathname}?${newSearchParams.toString()}`;
     },
-    [pageSearchParam, searchParams, pathname]
+    [pageSearchParam, searchParams, pathname],
   );
 
   const navigateToPage = useCallback(
@@ -93,15 +93,18 @@ export function PaginationWithLinks({
         });
       }
     },
-    [navigationMode, buildLink, router]
+    [navigationMode, buildLink, router],
   );
 
   const navToPageSize = useCallback(
     (newPageSize: number) => {
       const key = pageSizeSelectOptions?.pageSizeSearchParam || "pageSize";
+
       const newSearchParams = new URLSearchParams(searchParams || undefined);
+
       newSearchParams.set(key, String(newPageSize));
-      newSearchParams.delete(pageSearchParam || "page"); // Clear the page number when changing page size
+      newSearchParams.delete(pageSearchParam || "page");
+
       const url = `${pathname}?${newSearchParams.toString()}`;
 
       if (navigationMode === "router") {
@@ -112,7 +115,14 @@ export function PaginationWithLinks({
         router.push(url);
       }
     },
-    [pageSearchParam, searchParams, pathname, navigationMode, router]
+    [
+      pageSizeSelectOptions?.pageSizeSearchParam,
+      pageSearchParam,
+      searchParams,
+      pathname,
+      navigationMode,
+      router,
+    ],
   );
 
   const renderPageNumbers = () => {
@@ -128,7 +138,7 @@ export function PaginationWithLinks({
               isActive={page === pageNum}
               className={cn(
                 "cursor-pointer",
-                isPending && "pointer-events-none opacity-50"
+                isPending && "pointer-events-none opacity-50",
               )}
               aria-disabled={isPending}
             >
@@ -161,7 +171,7 @@ export function PaginationWithLinks({
         items.push(
           <PaginationItem key="ellipsis-start">
             <PaginationEllipsis />
-          </PaginationItem>
+          </PaginationItem>,
         );
       }
 
@@ -176,7 +186,7 @@ export function PaginationWithLinks({
         items.push(
           <PaginationItem key="ellipsis-end">
             <PaginationEllipsis />
-          </PaginationItem>
+          </PaginationItem>,
         );
       }
 
@@ -213,7 +223,7 @@ export function PaginationWithLinks({
                 className={cn(
                   page === 1 || isPending
                     ? "pointer-events-none opacity-50"
-                    : "cursor-pointer"
+                    : "cursor-pointer",
                 )}
               />
             ) : (
@@ -239,7 +249,7 @@ export function PaginationWithLinks({
                 className={cn(
                   page === totalPageCount || isPending
                     ? "pointer-events-none opacity-50"
-                    : "cursor-pointer"
+                    : "cursor-pointer",
                 )}
               />
             ) : (

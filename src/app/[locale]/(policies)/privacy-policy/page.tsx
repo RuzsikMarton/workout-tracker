@@ -88,7 +88,7 @@ const PrivacyPolicyPage = () => {
           safeguard your information, no system is completely secure, and we
           cannot guarantee absolute security.
         </p>
-        <h2 className="policy-subtitle">Children's privacy</h2>
+        <h2 className="policy-subtitle">Children&apos;s privacy</h2>
         <p>
           WorkoutTracker is not intended for children under 13. We do not
           knowingly collect personal information from children under 13. If we

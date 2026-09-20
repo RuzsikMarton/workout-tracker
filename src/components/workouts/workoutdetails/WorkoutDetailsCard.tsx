@@ -2,7 +2,7 @@
 
 import { Exercise, ExerciseSet } from "@prisma/client";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 
 const WorkoutDetailsCard = ({
   exercise,
@@ -17,11 +17,12 @@ const WorkoutDetailsCard = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-4 border-b ">
       <div className="flex items-center gap-3">
         <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 p-2 relative rounded-full bg-muted-foreground/50 overflow-hidden">
-          <Image
+          <CldImage
             src={exercise.imgUrl || "/logo.webp"}
             alt={tExercise("name")}
             fill
             className="object-contain"
+            sizes="(max-width: 768px) 100vw, 16rem"
           />
         </div>
         <h3 className="text-xl text-primary/80 font-semibold">

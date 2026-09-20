@@ -5,14 +5,16 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const equipment = searchParams.get("equipment") || "";
   const muscleGroup = searchParams.get("muscle") || "";
-  const orderBy = searchParams.get("sort") || "asc";
+  //const orderBy = searchParams.get("sort") || "asc";
 
   // pagination
-  const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
+  {
+    /* const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
   const pageSize = Math.min(
     100,
     Math.max(1, parseInt(searchParams.get("pageSize") || "10")),
-  );
+  ); */
+  }
 
   try {
     const res = await getExercisesFiltered({

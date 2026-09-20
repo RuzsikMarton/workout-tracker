@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { deleteWorkoutAction } from "@/lib/actions/workouts";
 import { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   AlertDialog,
@@ -18,6 +18,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Trash2Icon } from "lucide-react";
+import { toast } from "sonner";
 
 const WorkoutDetailsHeader = ({
   id,
@@ -42,16 +43,17 @@ const WorkoutDetailsHeader = ({
     try {
       const res = await deleteWorkoutAction(id);
       if (!res.ok) {
-        setError(
+        toast.error(
           res.code ? tError(res.code) : tError("FAILED_TO_DELETE_WORKOUT"),
         );
+        return;
       }
-      if (res.ok) {
-        router.replace("/workouts");
-      }
-    } catch (err) {
-      setError(tError("FAILED_TO_DELETE_WORKOUT"));
+
+      router.replace("/workouts");
+    } catch {
+      toast.error(tError("FAILED_TO_DELETE_WORKOUT"));
     }
+    setIsPending(false);
   };
   return (
     <div className="bg-section-bg py-4">

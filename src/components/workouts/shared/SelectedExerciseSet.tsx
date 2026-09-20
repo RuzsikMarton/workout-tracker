@@ -57,7 +57,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
         );
         setIsCompleted(isCompleted);
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
       setIsCompleted(isCompleted);
     }
@@ -77,7 +77,7 @@ const SelectedExerciseSet = ({ set }: { set: ExerciseSet }) => {
             : "Failed to delete set. Please try again.",
         );
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
     } finally {
       setIsPending(false);

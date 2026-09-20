@@ -96,6 +96,8 @@ export async function getWorkoutHistory({
     headers: await headers(),
   });
 
+  if (session?.user.id !== userId) return { workoutHistory: [], totalCount: 0 };
+
   const totalCount = await prisma.workout.count({
     where: {
       userId: userId,

@@ -1,12 +1,13 @@
 "use client";
 
+import { Last28DaysWorkoutDataType } from "@/types/workouts";
 import { useTranslations } from "next-intl";
 
 const Last28Days = ({
   data,
   workoutCount,
 }: {
-  data: any[];
+  data: Last28DaysWorkoutDataType[];
   workoutCount: number;
 }) => {
   const t = useTranslations("profile.last28Days");
@@ -46,7 +47,8 @@ const Last28Days = ({
           </span>
           <span className="text-2xl font-bold text-brand-primary">
             {Math.round(
-              data.reduce((sum, workout) => sum + workout.duration, 0) / 60,
+              data.reduce((sum, workout) => sum + (workout.duration ?? 0), 0) /
+                60,
             )}{" "}
             <span className="text-base font-normal text-muted-foreground">
               min

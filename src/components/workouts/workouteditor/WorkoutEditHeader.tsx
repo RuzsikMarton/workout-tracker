@@ -22,6 +22,7 @@ import { ArrowBigLeft, SquarePen, Trash2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useDebouncedCallback } from "use-debounce";
 
 const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
@@ -30,24 +31,22 @@ const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
   const tError = useTranslations("errors.codes");
   const [title, setTitle] = useState(workout.title);
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleDelete = async () => {
     setIsPending(true);
-    setError(null);
     try {
       const res = await deleteWorkoutAction(workout.id);
       if (!res.ok) {
-        setError(
+        toast.error(
           res.code ? tError(res.code) : tError("FAILED_TO_DELETE_WORKOUT"),
         );
+        return;
       }
-      if (res.ok) {
-        router.replace("/workouts");
-      }
-    } catch (err) {
-      setError(tError("FAILED_TO_DELETE_WORKOUT"));
+      router.replace("/workouts");
+    } catch {
+      toast.error(tError("FAILED_TO_DELETE_WORKOUT"));
     }
+    setIsPending(false);
   };
 
   const handleTitleChange = useDebouncedCallback(async (newTitle: string) => {

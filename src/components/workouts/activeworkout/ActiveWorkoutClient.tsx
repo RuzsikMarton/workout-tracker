@@ -22,6 +22,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { deleteWorkoutAction } from "@/lib/actions/workouts";
 import { useRouter } from "@/i18n/navigation";
+import { toast } from "sonner";
 
 const ActiveWorkoutClient = ({
   activeWorkout,
@@ -33,26 +34,25 @@ const ActiveWorkoutClient = ({
   totalVolume: number;
 }) => {
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const t = useTranslations("workoutLog");
   const tError = useTranslations("errors.codes");
   const router = useRouter();
 
   const handleCancelWorkout = async () => {
     setIsPending(true);
-    setError(null);
     try {
       const res = await deleteWorkoutAction(activeWorkout.id);
       if (!res.ok) {
-        setError(
-          res.code ? tError(res.code) : tError("FAILED_TO_DELETE_WORKOUT"),
-        );
+        if (res.code) {
+          toast.error(tError(res.code));
+        } else {
+          toast.error(tError("FAILED_TO_DELETE_WORKOUT"));
+        }
+        return;
       }
-      if (res.ok) {
-        router.replace("/workouts");
-      }
-    } catch (err) {
-      setError(tError("FAILED_TO_DELETE_WORKOUT"));
+      router.replace("/workouts");
+    } catch {
+      toast.error(tError("FAILED_TO_DELETE_WORKOUT"));
     }
   };
   return (

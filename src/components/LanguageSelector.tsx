@@ -32,6 +32,7 @@ const LanguageSelector = ({ data }: FooterProps) => {
   return (
     <div className="relative w-full">
       <button
+        disabled={isPending}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between gap-2 px-3 py-1 border-2 border-primary rounded hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300 cursor-pointer text-sm font-medium"
       >
@@ -47,6 +48,7 @@ const LanguageSelector = ({ data }: FooterProps) => {
           {languages.map((lang) => (
             <button
               key={lang.code}
+              disabled={isPending}
               onClick={() => handleLanguageChange(lang.code)}
               className={`block w-full text-left px-4 py-2 hover:bg-primary hover:text-white dark:hover:text-black transition-colors ${
                 locale === lang.code

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { WorkoutExerciseWithData } from "@/types";
 import { AlertCircle, Check, Plus, Weight, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { useState, useTransition } from "react";
 import { createExerciseSetAction } from "@/lib/actions/exercise-set";
 import { cn } from "@/lib/utils";
@@ -17,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 
 const SelectedExerciseCard = ({
   workoutExercise,
@@ -44,7 +44,7 @@ const SelectedExerciseCard = ({
           );
           return;
         }
-      } catch (err) {
+      } catch {
         setError("Something went wrong. Please try again.");
       }
     });
@@ -63,7 +63,7 @@ const SelectedExerciseCard = ({
           );
           return;
         }
-      } catch (err) {
+      } catch {
         setError("Something went wrong. Please try again.");
       }
     });
@@ -72,11 +72,12 @@ const SelectedExerciseCard = ({
     <div className="flex flex-col p-4">
       <div className="flex items-center gap-4 pb-4">
         <div className="shrink-0 p-2 rounded-full bg-muted-foreground/25">
-          <Image
+          <CldImage
             src={workoutExercise.exercise?.imgUrl || "/logo.webp"}
             alt={"Exercise image"}
             width={48}
             height={48}
+            sizes="(max-width: 768px) 100vw, 48px"
           />
         </div>
         <span className="uppercase text-primary/90 text-sm md:text-lg font-medium flex-1 min-w-0">

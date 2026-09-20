@@ -24,6 +24,16 @@ export type WorkoutWithPartialExercises = Workout & {
   }[];
 };
 
+export type Last28DaysWorkoutDataType = {
+  id: string;
+  createdAt: Date;
+  duration: number | null;
+  totalVolume: number;
+  _count: {
+    workoutExercises: number;
+  };
+};
+
 export type ChartWorkout = {
   id: string;
   createdAt: Date;

@@ -3,7 +3,7 @@
 import { useExercisePicker } from "@/lib/providers/ExercisePickerProvider";
 import { ExercisePrisma } from "@/types";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 
 const SheetExerciseCard = ({ exercise }: { exercise: ExercisePrisma }) => {
   const { toggleSelectExercise, isSelected } = useExercisePicker();
@@ -24,11 +24,12 @@ const SheetExerciseCard = ({ exercise }: { exercise: ExercisePrisma }) => {
       >
         <div className="flex-center w-16 h-16 shrink-0 rounded-full overflow-hidden bg-border">
           {" "}
-          <Image
+          <CldImage
             src={exercise.imgUrl || "/logo.webp"}
             alt={exercise.name}
             width={64}
             height={64}
+            sizes="(max-width: 768px) 100vw, 64px"
             className="object-cover rounded-full"
           />
         </div>

@@ -22,7 +22,7 @@ export async function createExerciseAction(
   }
 
   try {
-    const res = await prisma.exercise.create({
+    await prisma.exercise.create({
       data: {
         name: parsed.data.name,
         muscleGroup: parsed.data.muscleGroup,
@@ -31,12 +31,6 @@ export async function createExerciseAction(
       },
     });
 
-    if ((res as { error?: { message?: string } })?.error) {
-      return {
-        ok: false,
-        code: (res as any).error.message ?? "FAILED_TO_CREATE_EXERCISE",
-      };
-    }
     return { ok: true };
   } catch (error: unknown) {
     console.error("Error creating exercise:", error);

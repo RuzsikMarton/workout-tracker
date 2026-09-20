@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-const errorPage = ({ error }: { error: Error & { digest?: string } }) => {
+const ErrorPage = ({ error }: { error: Error & { digest?: string } }) => {
   const t = useTranslations("errors");
   return (
     <main className="page-main app-layout">
@@ -19,4 +19,4 @@ const errorPage = ({ error }: { error: Error & { digest?: string } }) => {
   );
 };
 
-export default errorPage;
+export default ErrorPage;

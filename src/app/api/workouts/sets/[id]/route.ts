@@ -16,7 +16,7 @@ export async function DELETE(
 
     const { id: setId } = await params;
 
-    const result = await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx) => {
       const existingSet = await tx.exerciseSet.findFirst({
         where: {
           id: setId,
@@ -145,8 +145,8 @@ export async function PATCH(
         throw new NotFoundError("Set not found");
       }
 
-      const workoutId = existingSet.workoutExercise.workout.id;
-      const workoutStatus = existingSet.workoutExercise.workout.status;
+      //const workoutId = existingSet.workoutExercise.workout.id;
+      //const workoutStatus = existingSet.workoutExercise.workout.status;
 
       await tx.exerciseSet.update({
         where: { id: setId },

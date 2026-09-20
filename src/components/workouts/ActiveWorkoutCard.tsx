@@ -70,7 +70,7 @@ const ActiveWorkoutCard = ({
       if (res.ok) {
         router.replace("/workouts");
       }
-    } catch (err) {
+    } catch {
       setError(errorT("FAILED_TO_DELETE_WORKOUT"));
     }
   };
