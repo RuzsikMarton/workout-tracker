@@ -39,7 +39,7 @@ const ActiveWorkoutHeader = ({
   const [error, setError] = useState<string | null>(null);
 
   const handleTitleChange = useDebouncedCallback(async (newTitle: string) => {
-    await updateWorkoutTitleAction(activeWorkout.id, newTitle);
+    await updateWorkoutTitleAction(activeWorkout.id, newTitle.trim());
   }, 1000);
 
   const handleFinishWorkout = () => {

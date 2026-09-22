@@ -50,7 +50,7 @@ const WorkoutEditHeader = ({ workout }: { workout: WorkoutWithExercises }) => {
   };
 
   const handleTitleChange = useDebouncedCallback(async (newTitle: string) => {
-    await updateWorkoutTitleAction(workout.id, newTitle);
+    await updateWorkoutTitleAction(workout.id, newTitle.trim());
   }, 1000);
 
   return (
