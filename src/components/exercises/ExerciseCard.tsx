@@ -18,7 +18,7 @@ const ExerciseCard = ({
 }: {
   exercise: Exercise;
   workoutId: string | null;
-  canAddToWorkout: number;
+  canAddToWorkout: boolean;
 }) => {
   const [isAdding, setIsAdding] = useState(false);
   const tExercise = useTranslations(exercise.name);
