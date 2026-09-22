@@ -9,6 +9,7 @@ import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
 import { toast } from "sonner";
 import { useState } from "react";
 import { CldImage } from "next-cloudinary";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const ExerciseCard = ({
   exercise,
@@ -84,24 +85,37 @@ const ExerciseCard = ({
             <Info /> {tCard("details")}
           </Button>
         </Link>
-        <Button
-          variant="outline"
-          className="h-10 w-30 rounded-md border-red-700 dark:border-red-700 hover:bg-red-700/10 dark:hover:bg-red-700/10 cursor-pointer active:scale-95 transition-transform duration-150"
-          disabled={!canAddToWorkout || isAdding}
-          onClick={handleAddToWorkout}
-        >
-          {isAdding ? (
-            <>
-              <Loader2 className="h-5 w-5 animate-spin" />
-              {tCard("adding")}
-            </>
-          ) : (
-            <>
-              <Plus className="h-5 w-5" />
-              {tCard("add")}
-            </>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="inline-block">
+              <Button
+                variant="outline"
+                className="h-10 w-30 rounded-md border-red-700 dark:border-red-700 hover:bg-red-700/10 dark:hover:bg-red-700/10 cursor-pointer active:scale-95 transition-transform duration-150"
+                disabled={!canAddToWorkout || isAdding}
+                onClick={handleAddToWorkout}
+              >
+                {isAdding ? (
+                  <>
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    {tCard("adding")}
+                  </>
+                ) : (
+                  <>
+                    <Plus className="h-5 w-5" />
+                    {tCard("add")}
+                  </>
+                )}
+              </Button>
+            </span>
+          </TooltipTrigger>
+          {!canAddToWorkout && (
+            <TooltipContent>
+              <p className=" text-red-700 font-semibold">
+                {tCard("tooltip-cant-add")}
+              </p>
+            </TooltipContent>
           )}
-        </Button>
+        </Tooltip>
       </div>
     </div>
   );

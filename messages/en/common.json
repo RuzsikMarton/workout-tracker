@@ -138,6 +138,8 @@
     "details": "Details",
     "add": "Add",
     "adding": "Adding...",
+    "tooltip-cant-add": "Start a workout to add this exercise.",
+    "tooltip-can-add": "Add exercise to your workout.",
     "muscle": "Target Muscle:",
     "equipment": "Equipment:",
     "toastAdded": "Workout exercise has been created"
@@ -151,6 +153,7 @@
     "imgAlt": "Exercise demonstration IMG",
     "button": "Add to Workout",
     "buttonAdding": "Adding...",
+    "startWorkoutToAdd": "Start a workout to add exercise.",
     "toastAdded": "Workout exercise has been created",
     "userStats": {
       "signInTitle": "Sign in to view your stats",

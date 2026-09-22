@@ -71,7 +71,10 @@ const SelectedExerciseCard = ({
   return (
     <div className="flex flex-col p-4">
       <div className="flex items-center gap-4 pb-4">
-        <div className="shrink-0 p-2 rounded-full bg-muted-foreground/25">
+        <Link
+          href={`/exercises/${workoutExercise.exercise.name}`}
+          className="shrink-0 p-2 rounded-full bg-muted-foreground/25 cursor-pointer"
+        >
           <CldImage
             src={workoutExercise.exercise?.imgUrl || "/logo.webp"}
             alt={"Exercise image"}
@@ -79,10 +82,13 @@ const SelectedExerciseCard = ({
             height={48}
             sizes="(max-width: 768px) 100vw, 48px"
           />
-        </div>
-        <span className="uppercase text-primary/90 text-sm md:text-lg font-medium flex-1 min-w-0">
+        </Link>
+        <Link
+          href={`/exercises/${workoutExercise.exercise.name}`}
+          className="uppercase text-primary/90 text-sm md:text-lg font-medium flex-1 min-w-0 cursor-pointer"
+        >
           {tE("name")}
-        </span>
+        </Link>
         {/*Reorder will be implemented in the future, for now we only showing a placeholder button*/}
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>

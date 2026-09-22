@@ -60,7 +60,7 @@ const ActiveWorkoutHeader = ({
         <Button
           variant="outline"
           className="active:scale-95 transition-transform duration-150"
-          onClick={() => router.push("/workouts")}
+          onClick={() => router.back()}
         >
           <ArrowBigLeft className="h-4 w-4 sm:hidden" />
           <span className="hidden sm:inline">← {t("backButton")}</span>

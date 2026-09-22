@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { createWorkoutExerciseAction } from "@/lib/actions/workouts";
@@ -9,15 +10,21 @@ import { useSession } from "@/lib/client";
 import { useState } from "react";
 import { Exercise } from "@prisma/client";
 import { Plus, Dumbbell, Loader2, ArrowBigLeft } from "lucide-react";
-import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 
-const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
+const ExercisePageCard = ({
+  isAuthenticated,
+  exercise,
+}: {
+  isAuthenticated: boolean;
+  exercise: Exercise;
+}) => {
   const t = useTranslations(exercise.name);
   const tError = useTranslations("errors.codes");
   const tMuscle = useTranslations("muscleGroups");
   const tEquipment = useTranslations("equipment");
   const tPage = useTranslations("ExercisePage");
+  const router = useRouter();
 
   const workoutId = useActiveWorkoutStore((state) => state.workoutId);
   const { data: session, isPending: isSessionLoading } = useSession();
@@ -59,16 +66,16 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
           </div>
         </div>
       </div>
+
       <div className="mx-auto w-full max-w-6xl px-4 py-6">
-        <Link href="/exercises" className="sm:hidden mb-1">
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex items-center active:scale-95 transition-transform duration-150"
-          >
-            <ArrowBigLeft className="h-5 w-5" />
-          </Button>
-        </Link>
+        <Button
+          onClick={() => router.back()}
+          variant="outline"
+          size="sm"
+          className="flex items-center active:scale-95 transition-transform duration-150 sm:hidden mb-1"
+        >
+          <ArrowBigLeft className="h-5 w-5" />
+        </Button>
         <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
           {/*Left column*/}
           <div className="space-y-4 flex flex-col items-center">
@@ -81,28 +88,35 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
                 className="rounded-md object-cover"
               />
             </div>
-            <div className="lg:hidden">
-              <Button
-                variant="default"
-                size="lg"
-                className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                onClick={handleAddToWorkout}
-                disabled={isButtonDisabled}
-              >
-                {isAdding ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    {tPage("buttonAdding")}
-                  </>
-                ) : (
-                  <>
-                    <Plus className="mr-2 h-5 w-5" />
-                    <Dumbbell className="mr-2 h-5 w-5" />
-                    {tPage("button")}
-                  </>
+            {isAuthenticated && (
+              <div className="lg:hidden">
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  onClick={handleAddToWorkout}
+                  disabled={isButtonDisabled}
+                >
+                  {isAdding ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      {tPage("buttonAdding")}
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="mr-2 h-5 w-5" />
+                      <Dumbbell className="mr-2 h-5 w-5" />
+                      {tPage("button")}
+                    </>
+                  )}
+                </Button>
+                {isButtonDisabled && (
+                  <p className="text-sm text-muted-foreground mt-2 text-center">
+                    {tPage("startWorkoutToAdd")}
+                  </p>
                 )}
-              </Button>
-            </div>
+              </div>
+            )}
           </div>
           {/*Right column*/}
           <div className="space-y-6">
@@ -157,28 +171,35 @@ const ExercisePageCard = ({ exercise }: { exercise: Exercise }) => {
               </p>
             </div>
 
-            <div className="hidden lg:block">
-              <Button
-                variant="default"
-                size="lg"
-                className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                onClick={handleAddToWorkout}
-                disabled={isButtonDisabled}
-              >
-                {isAdding ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    {tPage("buttonAdding")}
-                  </>
-                ) : (
-                  <>
-                    <Plus className="mr-2 h-5 w-5" />
-                    <Dumbbell className="mr-2 h-5 w-5" />
-                    {tPage("button")}
-                  </>
+            {isAuthenticated && (
+              <div className="hidden lg:block">
+                <Button
+                  variant="default"
+                  size="lg"
+                  className="w-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-linear-to-l from-primary to-brand-hover/50 hover:from-brand-hover/50 hover:to-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  onClick={handleAddToWorkout}
+                  disabled={isButtonDisabled}
+                >
+                  {isAdding ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      {tPage("buttonAdding")}
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="mr-2 h-5 w-5" />
+                      <Dumbbell className="mr-2 h-5 w-5" />
+                      {tPage("button")}
+                    </>
+                  )}
+                </Button>
+                {isButtonDisabled && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {tPage("startWorkoutToAdd")}
+                  </p>
                 )}
-              </Button>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -138,6 +138,8 @@
     "details": "Részletek",
     "add": "Hozzáadás",
     "adding": "Hozzáadás...",
+    "tooltip-cant-add": "Indíts egy edzést a gyakorlat hozzáadásához.",
+    "tooltip-can-add": "Add hozzá a gyakorlatot az edzésedhez.",
     "muscle": "Izomcsoport:",
     "equipment": "Felszerelés:",
     "toastAdded": "Gyakorlat hozzáadva az edzéshez"
@@ -151,6 +153,7 @@
     "imgAlt": "Gyakorlat bemutató GIF",
     "button": "Hozzáadás az edzéshez",
     "buttonAdding": "Hozzáadás...",
+    "startWorkoutToAdd": "Indíts egy edzést a gyakorlat hozzáadásához.",
     "toastAdded": "Gyakorlat hozzáadva az edzéshez",
     "userStats": {
       "signInTitle": "Jelentkezz be a statisztikáid megtekintéséhez",

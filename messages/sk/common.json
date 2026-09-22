@@ -138,6 +138,8 @@
     "details": "Detaily",
     "add": "Pridať",
     "adding": "Pridávanie...",
+    "tooltip-cant-add": "Spustite tréning, aby ste pridali tento cvik.",
+    "tooltip-can-add": "Pridajte cvik do svojho tréningu.",
     "muscle": "Cieľová svalová skupina:",
     "equipment": "Vybavenie:",
     "toastAdded": "Cvik bol pridaný do tréningu"
@@ -151,6 +153,7 @@
     "imgAlt": "Ukážka cvičenia IMG",
     "button": "Pridať do tréningu",
     "buttonAdding": "Pridávanie...",
+    "startWorkoutToAdd": "Spustite tréning, aby ste pridali cvik.",
     "toastAdded": "Cvik bol pridaný do tréningu",
     "userStats": {
       "signInTitle": "Prihláste sa, aby ste videli svoje štatistiky",

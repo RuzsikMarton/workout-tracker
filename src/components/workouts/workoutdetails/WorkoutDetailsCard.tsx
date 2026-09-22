@@ -3,6 +3,7 @@
 import { Exercise, ExerciseSet } from "@prisma/client";
 import { useTranslations } from "next-intl";
 import { CldImage } from "next-cloudinary";
+import Link from "next/link";
 
 const WorkoutDetailsCard = ({
   exercise,
@@ -16,7 +17,10 @@ const WorkoutDetailsCard = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-4 border-b ">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 p-2 relative rounded-full bg-muted-foreground/50 overflow-hidden">
+        <Link
+          href={`/exercises/${exercise.name}`}
+          className="w-12 h-12 md:w-16 md:h-16 shrink-0 p-2 relative rounded-full bg-muted-foreground/50 overflow-hidden cursor-pointer"
+        >
           <CldImage
             src={exercise.imgUrl || "/logo.webp"}
             alt={tExercise("name")}
@@ -24,10 +28,13 @@ const WorkoutDetailsCard = ({
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 16rem"
           />
-        </div>
-        <h3 className="text-xl text-primary/80 font-semibold">
+        </Link>
+        <Link
+          href={`/exercises/${exercise.name}`}
+          className="text-xl text-primary/80 font-semibold cursor-pointer"
+        >
           {tExercise("name")}
-        </h3>
+        </Link>
       </div>
       <div>
         <div className="grid grid-cols-3">

@@ -3,8 +3,11 @@ import { VALIDATION_LIMITS } from "@/const";
 
 // Sign in validation schema
 export const signInSchema = z.object({
-  email: z.email({ error: "INVALID_EMAIL_ADDRESS" }),
-  password: z.string().min(8, { error: "MUST_BE_AT_LEAST_8_CHARACTERS" }),
+  email: z.email({ error: "INVALID_EMAIL_ADDRESS" }).trim(),
+  password: z
+    .string()
+    .trim()
+    .min(8, { error: "MUST_BE_AT_LEAST_8_CHARACTERS" }),
 });
 
 // Sign up validation schema
@@ -12,15 +15,17 @@ export const signUpSchema = z
   .object({
     name: z
       .string()
+      .trim()
       .min(VALIDATION_LIMITS.NAME_MIN_LENGTH, {
         error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.NAME_MIN_LENGTH}_CHARACTERS`,
       })
       .max(VALIDATION_LIMITS.NAME_MAX_LENGTH, {
         error: `MUST_BE_LESS_THAN_${VALIDATION_LIMITS.NAME_MAX_LENGTH}_CHARACTERS`,
       }),
-    email: z.email({ error: "INVALID_EMAIL_ADDRESS" }),
+    email: z.email({ error: "INVALID_EMAIL_ADDRESS" }).trim(),
     password: z
       .string()
+      .trim()
       .min(VALIDATION_LIMITS.PASSWORD_MIN_LENGTH, {
         error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.PASSWORD_MIN_LENGTH}_CHARACTERS`,
       })
@@ -29,6 +34,7 @@ export const signUpSchema = z
       }),
     confirmPassword: z
       .string()
+      .trim()
       .min(1, { error: "PLEASE_CONFIRM_YOUR_PASSWORD" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -52,6 +58,7 @@ export const resetPasswordSchema = z
   .object({
     password: z
       .string()
+      .trim()
       .min(VALIDATION_LIMITS.PASSWORD_MIN_LENGTH, {
         error: `MUST_BE_AT_LEAST_${VALIDATION_LIMITS.PASSWORD_MIN_LENGTH}_CHARACTERS`,
       })
@@ -60,6 +67,7 @@ export const resetPasswordSchema = z
       }),
     confirmPassword: z
       .string()
+      .trim()
       .min(1, { error: "PLEASE_CONFIRM_YOUR_PASSWORD" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
