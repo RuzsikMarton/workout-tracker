@@ -36,8 +36,8 @@ const FinishWorkoutButton = ({
           disabled={isPending}
           className={`bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150 ${className ?? ""}`}
         >
-          <SaveAll className="h-4 w-4 sm:hidden" />
-          <span className="hidden sm:inline">
+          <SaveAll className="h-4 w-4" />
+          <span className="inline">
             {isPending ? t("completing") : t("completeButton")}
           </span>
         </Button>
@@ -63,7 +63,7 @@ const FinishWorkoutButton = ({
               onClick={handleFinishWorkout}
               disabled={isPending}
             >
-              {isPending ? t("completing") : t("completeButton")}
+              {isPending ? t("completing") : t("completeButtonDialog")}
             </Button>
           </AlertDialogAction>
         </AlertDialogFooter>

@@ -248,7 +248,7 @@
   }
 
   .app-layout {
-    @apply pt-28 dark:bg-secondary;
+    @apply pt-20 dark:bg-secondary;
   }
 
   .page-container {

@@ -8,11 +8,18 @@ import { usePathname } from "next/navigation";
 const Nav = ({ data }: NavigationProps) => {
   const pathname = usePathname().slice(3) || "/";
   const isActive = (href: string) => {
-    return pathname === href;
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname.startsWith(href);
   };
 
   return (
-    <nav aria-label="Main navigation" className="hidden items-center gap-1 xl:flex">
+    <nav
+      aria-label="Main navigation"
+      className="hidden items-center gap-1 xl:flex"
+    >
       {navLinks.map((link) => {
         const active = isActive(link.href);
 
