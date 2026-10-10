@@ -12,20 +12,22 @@ const Nav = ({ data }: NavigationProps) => {
   };
 
   return (
-    <nav className="hidden xl:flex gap-4">
+    <nav aria-label="Main navigation" className="hidden items-center gap-1 xl:flex">
       {navLinks.map((link) => {
+        const active = isActive(link.href);
+
         return (
           <Link
             key={link.href}
             href={link.href}
-            className={`font-medium uppercase transition-colors active:scale-95 duration-150 ${
-              isActive(link.href) ? "text-red-700" : "hover:text-red-700"
+            aria-current={active ? "page" : undefined}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-150 active:scale-95 ${
+              active
+                ? "bg-brand-primary/10 text-brand-primary"
+                : "text-muted-foreground hover:bg-accent hover:text-foreground"
             }`}
           >
             {data[link.name as keyof typeof data]}
-            {isActive(link.href) && (
-              <span className="block h-0.5 w-full bg-red-700"></span>
-            )}
           </Link>
         );
       })}

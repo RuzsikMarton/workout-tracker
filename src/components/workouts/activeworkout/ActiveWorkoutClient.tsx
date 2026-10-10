@@ -18,11 +18,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Trash2Icon } from "lucide-react";
-import { useState } from "react";
+import { startTransition, useState } from "react";
 import { useTranslations } from "next-intl";
-import { deleteWorkoutAction } from "@/lib/actions/workouts";
+import {
+  deleteWorkoutAction,
+  finishWorkoutAction,
+} from "@/lib/actions/workouts";
 import { useRouter } from "@/i18n/navigation";
 import { toast } from "sonner";
+import FinishWorkoutButton from "./FinishWorkoutButton";
 
 const ActiveWorkoutClient = ({
   activeWorkout,
@@ -37,6 +41,20 @@ const ActiveWorkoutClient = ({
   const t = useTranslations("workoutLog");
   const tError = useTranslations("errors.codes");
   const router = useRouter();
+
+  const handleFinishWorkout = () => {
+    startTransition(async () => {
+      setIsPending(true);
+      const result = await finishWorkoutAction(activeWorkout.id);
+      if (result.ok) {
+        toast.success(t("finishedWorkoutSuccessfully"));
+        router.push("/workouts");
+      } else {
+        toast.error(tError("FAILED_TO_FINISH_WORKOUT"));
+      }
+      setIsPending(false);
+    });
+  };
 
   const handleCancelWorkout = async () => {
     setIsPending(true);
@@ -53,6 +71,8 @@ const ActiveWorkoutClient = ({
       router.replace("/workouts");
     } catch {
       toast.error(tError("FAILED_TO_DELETE_WORKOUT"));
+    } finally {
+      setIsPending(false);
     }
   };
   return (
@@ -70,15 +90,20 @@ const ActiveWorkoutClient = ({
             workoutExercises={activeWorkout.workoutExercises}
           />
         </div>
-        <div className="flex justify-center mt-4">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center mt-4">
+          <FinishWorkoutButton
+            isPending={isPending}
+            handleFinishWorkout={handleFinishWorkout}
+            className="w-full lg:w-1/3"
+          />
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
                 variant={"outline"}
-                className="w-full lg:w-1/2 bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
+                className="w-full lg:w-1/3 active:scale-95 transition-transform duration-150"
                 disabled={isPending}
               >
-                <Trash2Icon className="h-4 w-4 hidden" />
+                <Trash2Icon className="h-4 w-4" />
                 <span className="inline">
                   {isPending ? t("cancelingWorkout") : t("cancelWorkoutButton")}
                 </span>

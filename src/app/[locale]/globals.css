@@ -286,6 +286,81 @@
   .socials-icon {
     @apply flex items-center justify-center p-1 border-2 rounded-full border-primary hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300;
   }
+
+  .landing-divider {
+    @apply bg-linear-to-r from-transparent via-brand-primary to-transparent w-20 h-1 my-4 mx-auto relative;
+  }
+  .landing-divider::before {
+    @apply bg-brand-primary w-3 h-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    content: "";
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+}
+
+@utility honeycomb-background {
+  background-color: var(--secondary);
+  opacity: 0.8;
+  background-image:
+    radial-gradient(
+      circle farthest-side at 0% 50%,
+      var(--secondary) 23.5%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle farthest-side at 0% 50%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 24%,
+      transparent 0
+    ),
+    linear-gradient(
+      var(--secondary) 14%,
+      transparent 0,
+      transparent 85%,
+      var(--secondary) 0
+    ),
+    linear-gradient(
+      150deg,
+      var(--secondary) 24%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 0 26%,
+      transparent 0 74%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 0 76%,
+      var(--secondary) 0
+    ),
+    linear-gradient(
+      30deg,
+      var(--secondary) 24%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 0 26%,
+      transparent 0 74%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 0 76%,
+      var(--secondary) 0
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 1.6%,
+      var(--secondary) 0 100.4%,
+      color-mix(in oklch, var(--brand-primary) 45%, transparent) 0
+    );
+  background-position:
+    16px 23px,
+    14px 23px,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  background-size: 30px 45px;
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .cc--elegant-black {

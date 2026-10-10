@@ -22,14 +22,19 @@ const MobileNav = ({ data, ComponentStyles, setIsOpen }: MobileNavProps) => {
   }, [pathname, setIsOpen]);
 
   return (
-    <nav className={ComponentStyles}>
+    <nav aria-label="Main navigation" className={ComponentStyles}>
       {navLinks.map((link) => {
+        const active = isActive(link.href);
+
         return (
           <Link
             key={link.name}
             href={link.href}
-            className={`font-medium uppercase transition-colors active:scale-95 duration-150 ${
-              isActive(link.href) ? "text-red-700" : "hover:text-red-700"
+            aria-current={active ? "page" : undefined}
+            className={`rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-wide transition-colors duration-150 active:scale-[0.98] ${
+              active
+                ? "bg-brand-primary/10 text-brand-primary"
+                : "text-muted-foreground hover:bg-accent hover:text-foreground"
             }`}
           >
             {data[link.name as keyof typeof data]}
