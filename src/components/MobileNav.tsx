@@ -14,7 +14,10 @@ interface MobileNavProps extends NavigationProps {
 const MobileNav = ({ data, ComponentStyles, setIsOpen }: MobileNavProps) => {
   const pathname = usePathname().slice(3) || "/";
   const isActive = (href: string) => {
-    return pathname === href;
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
   };
 
   useEffect(() => {

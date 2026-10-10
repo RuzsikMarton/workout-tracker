@@ -59,7 +59,7 @@ const Header = ({ publicSession }: HeaderProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setHeaderActive(window.scrollY > 50);
+      setHeaderActive(window.scrollY > 48);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
