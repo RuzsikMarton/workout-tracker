@@ -24,7 +24,12 @@ const ConditionalLayout = ({
 
   // Hide header and footer on these routes
   const hideLayout =
-    pathname.includes("/signin") || pathname.includes("/signup");
+    pathname.includes("/signin") ||
+    pathname.includes("/signup") ||
+    pathname.includes("/install");
+
+  const hideFooter =
+    pathname.includes("/workouts/active") || pathname.includes("/install");
 
   return (
     <>
@@ -32,7 +37,7 @@ const ConditionalLayout = ({
       <div role="main" tabIndex={-1}>
         {children}
       </div>
-      <Footer />
+      {!hideFooter && <Footer />}
     </>
   );
 };

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import TimerWorkout from "../TimerWorkout";
-import { AlertCircle, ArrowBigLeft, SaveAll, SquarePen } from "lucide-react";
+import { AlertCircle, ArrowBigLeft, SquarePen } from "lucide-react";
 import { WorkoutWithExercises } from "@/types";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useTransition } from "react";
@@ -12,18 +12,7 @@ import {
 } from "@/lib/actions/workouts";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import {
-  AlertDialogCancel,
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogTrigger,
-  AlertDialogHeader,
-  AlertDialogDescription,
-  AlertDialogTitle,
-  AlertDialogMedia,
-} from "@/components/ui/alert-dialog";
+import FinishWorkoutButton from "./FinishWorkoutButton";
 
 const ActiveWorkoutHeader = ({
   activeWorkout,
@@ -79,46 +68,10 @@ const ActiveWorkoutHeader = ({
           <SquarePen className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         </div>
         {/* Buttons */}
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant="outline"
-              disabled={isPending}
-              className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white active:scale-95 transition-transform duration-150"
-            >
-              <SaveAll className="h-4 w-4 sm:hidden" />
-              <span className="hidden sm:inline">
-                {isPending ? t("completing") : t("completeButton")}
-              </span>
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent size="sm" className="bg-card">
-            <AlertDialogHeader>
-              <AlertDialogMedia className="bg-black/20 text-black dark:bg-black/40 dark:text-muted-foreground">
-                <SaveAll />
-              </AlertDialogMedia>
-              <AlertDialogTitle>{t("confirmCompleteTitle")}</AlertDialogTitle>
-              <AlertDialogDescription>
-                {t("confirmCompleteDescription")}
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel variant="outline">
-                {t("cancelButton")}
-              </AlertDialogCancel>
-              <AlertDialogAction asChild>
-                <Button
-                  variant={"outline"}
-                  className="bg-brand-primary/80 dark:bg-brand-primary/55 hover:bg-brand-hover/85 dark:hover:bg-brand-hover/50 text-white hover:text-white"
-                  onClick={handleFinishWorkout}
-                  disabled={isPending}
-                >
-                  {isPending ? t("completing") : t("completeButton")}
-                </Button>
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <FinishWorkoutButton
+          isPending={isPending}
+          handleFinishWorkout={handleFinishWorkout}
+        />
       </div>
 
       {/* Stats Row */}

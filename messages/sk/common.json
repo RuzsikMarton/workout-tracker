@@ -53,6 +53,7 @@
     "signout": "Odhlásiť sa",
     "myaccount": "Môj účet",
     "profile": "Profil",
+    "install": "Inštalovať",
     "signoutSuccess": "Úspešne ste sa odhlásili.",
     "signoutError": "Pri odhlasovaní sa vyskytla chyba. Skúste to prosím znova."
   },
@@ -248,6 +249,7 @@
     "confirmCompleteTitle": "Dokončiť tréning?",
     "confirmCompleteDescription": "Ste si istí, že chcete dokončiť tento tréning? Túto akciu nie je možné vrátiť späť. Stále budete môcť zobraziť a upraviť tento tréning vo svojej histórii.",
     "cancelButton": "Zrušiť",
+    "finishedWorkoutSuccessfully": "Tréning bol úspešne dokončený.",
     "workoutNamePlaceholder": "Názov tréningu",
     "addExerciseButton": "Pridať cvik",
     "cancelWorkoutButton": "Zrušiť tréning",
@@ -324,6 +326,137 @@
       "description": "V tomto grafe ešte nie sú žiadne údaje na zobrazenie.<br></br>Údaje sa tu zobrazia, keď budú k dispozícii.",
       "volume": "Objem (kg)",
       "duration": "Trvanie (min)"
+    }
+  },
+  "install": {
+    "page": {
+      "title": "Najprv si nainštalujte aplikáciu — a sledujte svoje tréningy priamo zo svojho zariadenia kedykoľvek a kdekoľvek, bez potreby otvárať prehliadač.",
+      "info1": "Informácie",
+      "info2": "o aplikácii",
+      "language-alert": "Pred inštaláciou sa uistite, že ste si vybrali preferovaný jazyk.",
+      "startWithoutInstalling": "Spustiť bez inštalácie?",
+      "startWithInstalling": "Začať sledovať tréningy",
+      "appInstalled": "Aplikácia nainštalovaná",
+      "congrats": "Gratulujeme! ",
+      "success": "je pripravená na použitie na vašom zariadení.",
+      "startTracking": "Začnite sledovať svoje tréningy, keď budete pripravení!"
+    },
+    "install-guide": {
+      "ios": {
+        "title": "Na iPhone/iPad",
+        "step1-start": "Stlačte tlačidlo ",
+        "step1-strong": "\"Zdieľať\"",
+        "step1-end": "v navigačnom paneli.",
+        "step2-start": "Posuňte sa nadol a vyberte možnosť ",
+        "step2-strong": "\"Pridať na plochu\""
+      },
+      "mac": {
+        "safari": {
+          "title": "Na Macu · Safari",
+          "step1-start": "Stlačte ",
+          "step1-strong1": "\"Zdieľať\"",
+          "step1-mid": " v navigačnom paneli (alebo v ",
+          "step1-strong2": "\"Súbor\"",
+          "step1-end2": " menu).",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Pridať do doku\""
+        },
+        "chrome": {
+          "title": "Na Macu · Chrome",
+          "step1-start": "Kliknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Uložiť a zdieľať\"",
+          "step2-mid": " a ",
+          "step2-strong2": "\"Nainštalovať stránku ako aplikáciu\"",
+          "step2-end": " tlačidlo."
+        },
+        "edge": {
+          "title": "Na Macu · Edge",
+          "step1-start": "Kliknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Aplikácie\" a ",
+          "step2-strong2": "\"Nainštalovať túto stránku ako aplikáciu\"",
+          "step2-end": " tlačidlo."
+        },
+        "other": {
+          "title": "Na Macu",
+          "step1-start": "Otvorte menu prehliadača a hľadajte možnosť ",
+          "step1-strong1": "\"Inštalovať\"",
+          "step1-mid": " alebo ",
+          "step1-strong2": "\"Pridať na plochu\"",
+          "step1-end": "."
+        }
+      },
+      "android": {
+        "chrome": {
+          "title": "Na Androide · Chrome",
+          "step1-start": "Ťuknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Pridať na plochu\"",
+          "step2-end": "."
+        },
+        "other": {
+          "title": "Na Androide",
+          "step1-start": "Ťuknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Plochu\"",
+          "step2-end": "."
+        }
+      },
+      "desktop": {
+        "chrome": {
+          "title": "Na počítači · Chrome",
+          "step1-start": "Kliknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Uložiť a zdieľať\"",
+          "step2-mid": " a ",
+          "step2-strong2": "\"Inštalovať stránku ako aplikáciu\"",
+          "step2-end": "."
+        },
+        "edge": {
+          "title": "Na počítači · Edge",
+          "step1-start": "Kliknite na ",
+          "step1-strong": "\"3-bodové menu\"",
+          "step1-end": " na paneli s nástrojmi.",
+          "step2-start": "Vyberte ",
+          "step2-strong": "\"Aplikácie\"",
+          "step2-mid": " a ",
+          "step2-strong2": "\"Inštalovať túto stránku ako aplikáciu\"",
+          "step2-end": "."
+        },
+        "firefox": {
+          "title": "Na počítači · Firefox",
+          "step1-start": "Firefox nepodporuje priame inštalovanie webových aplikácií z menu prehliadača.",
+          "step2-start": "Otvorte túto stránku v ",
+          "step2-strong1": "\"Chrome\"",
+          "step2-mid1": ", ",
+          "step2-strong2": "\"Edge\"",
+          "step2-mid2": " alebo ",
+          "step2-strong3": "\"Safari\"",
+          "step2-end": "."
+        },
+        "other": {
+          "title": "Na počítači",
+          "step1-start": "Nepodarilo sa zistiť podporovanú metódu inštalácie pre tento prehliadač.",
+          "step2-start": "Skúste otvoriť túto stránku v ",
+          "step2-strong1": "\"Chrome\"",
+          "step2-mid1": ", ",
+          "step2-strong2": "\"Edge\"",
+          "step2-mid2": ", alebo ",
+          "step2-strong3": "\"Safari\"",
+          "step2-end": " na inštaláciu webovej aplikácie."
+        }
+      }
     }
   }
 }

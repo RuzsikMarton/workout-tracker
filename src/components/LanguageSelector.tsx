@@ -7,7 +7,7 @@ import { ChevronDown } from "lucide-react";
 import { Locale } from "@/i18n/routing";
 import { FooterProps } from "@/types";
 
-const LanguageSelector = ({ data }: FooterProps) => {
+const LanguageSelector = ({ data, disabled }: FooterProps) => {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -32,28 +32,38 @@ const LanguageSelector = ({ data }: FooterProps) => {
   return (
     <div className="relative w-full">
       <button
-        disabled={isPending}
+        type="button"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        disabled={isPending || disabled}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-2 px-3 py-1 border-2 border-primary rounded hover:bg-primary hover:text-white dark:hover:text-black transition-colors duration-300 cursor-pointer text-sm font-medium"
+        className="flex w-full cursor-pointer items-center justify-between gap-2 rounded-full border border-primary/15 bg-background/70 px-4 py-2 text-sm font-medium shadow-none transition-colors hover:border-brand-primary/40 hover:bg-brand-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-50"
       >
         {currentLanguage}
         <ChevronDown
-          size={16}
-          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`size-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          aria-hidden="true"
         />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full bottom-auto lg:top-auto lg:bottom-full w-full bg-background border-2 border-primary rounded shadow-lg z-50 text-sm">
+        <div
+          role="listbox"
+          aria-label="Select language"
+          className="absolute bottom-full z-50 mb-2 w-full overflow-hidden rounded-xl border border-primary/10 bg-surface/95 p-1.5 text-sm shadow-lg backdrop-blur-xl"
+        >
           {languages.map((lang) => (
             <button
               key={lang.code}
-              disabled={isPending}
+              type="button"
+              role="option"
+              aria-selected={locale === lang.code}
+              disabled={isPending || disabled}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`block w-full text-left px-4 py-2 hover:bg-primary hover:text-white dark:hover:text-black transition-colors ${
+              className={`w-full rounded-lg px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary disabled:cursor-not-allowed disabled:opacity-50 ${
                 locale === lang.code
-                  ? "bg-primary text-white dark:text-black font-semibold"
-                  : ""
+                  ? "bg-brand-primary/10 font-semibold text-brand-primary"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
               }`}
             >
               {lang.name}

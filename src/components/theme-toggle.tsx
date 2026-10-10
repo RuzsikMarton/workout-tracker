@@ -15,7 +15,12 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="outline" size="icon" disabled>
+      <Button
+        variant="outline"
+        size="icon"
+        disabled
+        className="size-10 rounded-full border-primary/15 bg-background/70 shadow-none"
+      >
         <Sun className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">Toggle theme</span>
       </Button>
@@ -30,7 +35,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-      className="active:scale-90 transition-transform duration-150"
+      className="size-10 rounded-full border-primary/15 bg-background/70 shadow-none transition-colors hover:border-brand-primary/40 hover:bg-brand-primary/5 active:scale-95"
     >
       <Sun className="absolute h-[1.2rem] w-[1.2rem] scale-100 dark:scale-0 " />
       <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 dark:scale-100" />

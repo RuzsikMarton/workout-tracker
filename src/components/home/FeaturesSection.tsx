@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 export default function FeatureSection() {
   const t = useTranslations("FeaturesSection");
   return (
-    <section className="py-16 md:py-32 dark:bg-secondary">
+    <section id="features" className="py-16 md:py-32 dark:bg-secondary">
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
           <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
