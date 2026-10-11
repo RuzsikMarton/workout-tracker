@@ -14,7 +14,9 @@ import ActiveWorkoutSync from "@/components/active-workout-sync";
 import { Toaster } from "@/components/ui/sonner";
 import { Viewport } from "next";
 import CookieBanner from "@/components/CookieBanner";
-import BackToTopButton from "@/components/BackToTopButton";
+import BackToTopButton from "@/components/layout/BackToTopButton";
+import Script from "next/script";
+import IosPwaSplash from "@/components/IosPwaSplash";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -90,31 +92,26 @@ async function LayoutContent({
     ? await getActiveWorkout(session.user.id)
     : null;
   return (
-    <body
-      className="font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground"
-      suppressHydrationWarning
-    >
-      <Suspense
-        fallback={
-          <div className="page-main bg-secondary">
-            <div className="flex flex-col items-center justify-center space-y-4">
-              <LoadingSpinner />
-            </div>
+    <Suspense
+      fallback={
+        <div className="page-main bg-secondary">
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <LoadingSpinner />
           </div>
-        }
-      >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ClientProviders>
-            <ActiveWorkoutSync workoutId={activeWorkout?.id ?? null} />
-            <Toaster />
-            <ConditionalLayout publicSession={publicSession}>
-              {children}
-            </ConditionalLayout>
-            <BackToTopButton />
-          </ClientProviders>
-        </NextIntlClientProvider>
-      </Suspense>
-    </body>
+        </div>
+      }
+    >
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <ClientProviders>
+          <ActiveWorkoutSync workoutId={activeWorkout?.id ?? null} />
+          <Toaster />
+          <ConditionalLayout publicSession={publicSession}>
+            {children}
+          </ConditionalLayout>
+          <BackToTopButton />
+        </ClientProviders>
+      </NextIntlClientProvider>
+    </Suspense>
   );
 }
 
@@ -132,20 +129,21 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       data-scroll-behavior="smooth"
       className="scroll-smooth relative"
     >
-      <Suspense
-        fallback={
-          <body className="min-h-screen bg-secondary">
+      <body className="font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
+        <IosPwaSplash />
+        <Suspense
+          fallback={
             <div className="min-h-screen bg-secondary flex items-center justify-center">
               <LoadingSpinner />
             </div>
-          </body>
-        }
-      >
-        <LayoutContent locale={locale}>
-          {children}
-          <CookieBanner locale={locale} />
-        </LayoutContent>
-      </Suspense>
+          }
+        >
+          <LayoutContent locale={locale}>
+            {children}
+            <CookieBanner locale={locale} />
+          </LayoutContent>
+        </Suspense>
+      </body>
     </html>
   );
 }

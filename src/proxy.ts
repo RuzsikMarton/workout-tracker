@@ -13,6 +13,7 @@ const basePublicRoutes = [
   "/signup",
   "/contact",
   "/exercises",
+  "/install",
   "/privacy-policy",
   "/terms-of-service",
 ];
