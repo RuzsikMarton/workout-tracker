@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import MobileNav from "../MobileNav";
-import Nav from "../Nav";
+import MobileNav from "./MobileNav";
+import Nav from "./Nav";
 import Link from "next/link";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";

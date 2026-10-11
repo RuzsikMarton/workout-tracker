@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { Dumbbell, Mail } from "lucide-react";
-import LanguageSelector from "../LanguageSelector";
+import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { isStandalone } from "@/lib/pwa/detection";
