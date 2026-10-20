@@ -22,13 +22,9 @@ export const getInstallGuide = (
           <ShareIcon className="mr-1 inline-block size-4 -translate-y-0.5 text-brand-primary" />
           {t("ios.step1-start")}
           <strong className="text-foreground">
-            {t("ios.step1-strong1")}
+            {t("ios.step1-strong")}
           </strong>{" "}
-          {t("ios.step1-mid")}
-          <strong className="text-foreground">
-            {t("ios.step1-strong2")}
-          </strong>{" "}
-          {t("ios.step1-end2")}
+          {t("ios.step1-end")}
         </>,
         <>
           {t("ios.step2-start")}
